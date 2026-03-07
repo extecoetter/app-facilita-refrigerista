@@ -1,216 +1,551 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>App de Orçamento para Climatização</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>App de Orçamento para Climatização</title>
+  <style>
+    :root{
+      --bg:#f4f8fc;
+      --card:#ffffff;
+      --text:#102033;
+      --muted:#5d6b7a;
+      --line:#dce6f0;
+      --brand:#0b6bcb;
+      --brand-dark:#084f97;
+      --ok:#118a4e;
+      --shadow:0 14px 40px rgba(16,32,51,.10);
+      --radius:22px;
+      --max:1100px;
+    }
 
-<style>
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+      background:linear-gradient(180deg,#0b6bcb 0%, #1e88ff 40%, #eef5fc 100%);
+      color:var(--text);
+      line-height:1.55;
+    }
 
-body{
-font-family: Arial, sans-serif;
-margin:0;
-background:#f4f7fb;
-color:#1d2b3a;
-line-height:1.6;
-}
+    .wrap{
+      width:min(var(--max),calc(100% - 32px));
+      margin:0 auto;
+    }
 
-.container{
-max-width:900px;
-margin:auto;
-padding:40px 20px;
-}
+    .hero{
+      padding:56px 0 34px;
+    }
 
-.hero{
-text-align:center;
-padding:40px 20px;
-}
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:28px;
+      align-items:center;
+    }
 
-h1{
-font-size:40px;
-margin-bottom:10px;
-}
+    .badge{
+      display:inline-block;
+      padding:10px 14px;
+      border:1px solid rgba(255,255,255,.35);
+      background:rgba(255,255,255,.15);
+      color:#fff;
+      border-radius:999px;
+      font-size:14px;
+      font-weight:700;
+      box-shadow:var(--shadow);
+      margin-bottom:18px;
+      backdrop-filter: blur(8px);
+    }
 
-.subtitle{
-font-size:18px;
-color:#555;
-margin-bottom:30px;
-}
+    h1{
+      font-size:clamp(32px,5vw,56px);
+      line-height:1.05;
+      margin:0 0 16px;
+      letter-spacing:-.03em;
+      color:#fff;
+    }
 
-.btn{
-display:inline-block;
-background:#0b6bcb;
-color:white;
-padding:16px 26px;
-border-radius:8px;
-font-weight:bold;
-text-decoration:none;
-font-size:18px;
-}
+    .sub{
+      font-size:18px;
+      color:rgba(255,255,255,.92);
+      max-width:700px;
+      margin:0 0 26px;
+    }
 
-.btn:hover{
-background:#0954a2;
-}
+    .cta-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin:0 0 18px;
+    }
 
-.section{
-margin-top:60px;
-}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      text-decoration:none;
+      border:none;
+      border-radius:16px;
+      padding:16px 22px;
+      font-size:16px;
+      font-weight:800;
+      cursor:pointer;
+      transition:.18s ease;
+    }
 
-.card{
-background:white;
-padding:25px;
-border-radius:10px;
-box-shadow:0 5px 15px rgba(0,0,0,0.05);
-margin-bottom:20px;
-}
+    .btn-primary{
+      background:#ffffff;
+      color:var(--brand);
+      box-shadow:0 12px 24px rgba(11,107,203,.22);
+    }
+    .btn-primary:hover{
+      background:#f3f8ff;
+      transform:translateY(-1px);
+    }
 
-.price{
-font-size:48px;
-color:#0b6bcb;
-font-weight:bold;
-}
+    .btn-secondary{
+      background:rgba(255,255,255,.14);
+      color:#fff;
+      border:1px solid rgba(255,255,255,.35);
+      backdrop-filter: blur(8px);
+    }
+    .btn-secondary:hover{transform:translateY(-1px)}
 
-.old{
-text-decoration:line-through;
-color:#777;
-}
+    .mini-list{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px 18px;
+      padding:0;
+      margin:8px 0 0;
+      list-style:none;
+      color:#fff;
+      font-weight:600;
+    }
 
-footer{
-margin-top:60px;
-text-align:center;
-color:#777;
-font-size:14px;
-}
+    .phone-card{
+      background:rgba(255,255,255,.18);
+      border:1px solid rgba(255,255,255,.28);
+      border-radius:30px;
+      padding:18px;
+      box-shadow:var(--shadow);
+      max-width:420px;
+      margin-left:auto;
+      backdrop-filter: blur(10px);
+    }
 
-</style>
+    .phone{
+      background:linear-gradient(180deg,#0f2237,#1b3958);
+      border-radius:24px;
+      padding:16px;
+      color:#fff;
+      overflow:hidden;
+    }
 
+    .screen{
+      background:#f8fbff;
+      color:var(--text);
+      border-radius:18px;
+      padding:14px;
+      min-height:420px;
+    }
+
+    .mock-top{
+      font-size:13px;
+      color:#6a7c8f;
+      margin-bottom:10px;
+      font-weight:700;
+    }
+
+    .mock-box{
+      background:#fff;
+      border:1px solid #e3edf7;
+      border-radius:14px;
+      padding:12px;
+      margin-bottom:12px;
+      box-shadow:0 8px 20px rgba(20,50,80,.06);
+    }
+
+    .mock-title{font-weight:800; margin-bottom:6px}
+    .mock-line{height:10px; border-radius:999px; background:#dce8f4; margin:8px 0}
+    .mock-line.small{width:52%}
+    .mock-line.mid{width:74%}
+    .mock-price{
+      margin-top:10px;
+      background:#e9f4ff;
+      color:var(--brand);
+      font-weight:900;
+      border-radius:12px;
+      padding:10px 12px;
+      display:inline-block;
+    }
+
+    section{padding:26px 0}
+
+    .cards-3{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:24px;
+      box-shadow:var(--shadow);
+    }
+
+    h2{
+      font-size:clamp(26px,3.4vw,38px);
+      line-height:1.1;
+      margin:0 0 14px;
+      letter-spacing:-.02em;
+    }
+
+    .lead{
+      color:var(--muted);
+      font-size:17px;
+      max-width:760px;
+      margin:0 0 26px;
+    }
+
+    .list{
+      margin:0;
+      padding-left:18px;
+      color:#26415a;
+    }
+
+    .list li{margin:10px 0}
+
+    .problem{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
+
+    .problem .card strong{display:block; margin-bottom:10px}
+
+    .gallery{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .shot{
+      background:linear-gradient(180deg,#ffffff,#f6fafe);
+      border:1px solid var(--line);
+      border-radius:26px;
+      padding:18px;
+      box-shadow:var(--shadow);
+      min-height:280px;
+    }
+
+    .shot .top{
+      font-weight:800;
+      margin-bottom:14px;
+    }
+
+    .price-box{
+      text-align:center;
+      padding:34px 24px;
+      background:linear-gradient(180deg,#ffffff,#f3f8fe);
+      border:1px solid var(--line);
+      border-radius:28px;
+      box-shadow:var(--shadow);
+    }
+
+    .old{
+      color:#7a8897;
+      text-decoration:line-through;
+      font-size:18px;
+      margin-bottom:8px;
+    }
+
+    .price{
+      font-size:clamp(40px,6vw,64px);
+      line-height:1;
+      font-weight:900;
+      color:var(--brand);
+      margin-bottom:8px;
+    }
+
+    .price-note{
+      color:var(--muted);
+      margin-bottom:22px;
+      font-size:17px;
+    }
+
+    .guarantee{
+      margin-top:18px;
+      color:var(--ok);
+      font-weight:800;
+    }
+
+    .faq{
+      display:grid;
+      gap:14px;
+    }
+
+    details{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:18px 20px;
+      box-shadow:var(--shadow);
+    }
+
+    summary{
+      cursor:pointer;
+      font-weight:800;
+    }
+
+    details p{
+      color:var(--muted);
+      margin:12px 0 0;
+    }
+
+    .final-cta{
+      text-align:center;
+      padding:10px 0 60px;
+    }
+
+    footer{
+      padding:24px 0 50px;
+      color:#748396;
+      text-align:center;
+      font-size:14px;
+    }
+
+    @media (max-width: 960px){
+      .hero-grid,
+      .cards-3,
+      .problem,
+      .gallery{
+        grid-template-columns:1fr;
+      }
+      .phone-card{margin:0 auto}
+    }
+
+    @media (max-width: 640px){
+      .hero{padding-top:34px}
+      .wrap{width:min(var(--max),calc(100% - 20px))}
+      .card,.shot,.price-box{padding:18px}
+      .btn{width:100%}
+      .cta-row{flex-direction:column}
+      .mini-list{display:block}
+      .mini-list li{margin:8px 0}
+    }
+  </style>
 </head>
-
 <body>
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="badge">Aplicativo para instaladores de ar-condicionado</div>
+        <h1>Crie orçamentos profissionais em minutos e envie direto para o cliente</h1>
+        <p class="sub">
+          Pare de perder tempo digitando tudo manualmente. Com este aplicativo, você monta a proposta,
+          gera o PDF e envia para o cliente com muito mais profissionalismo.
+        </p>
 
-<div class="container">
+        <div class="cta-row">
+          <a class="btn btn-primary" href="SEU_LINK_KIWIFY_AQUI" target="_blank" rel="noopener noreferrer">QUERO ACESSAR O APLICATIVO</a>
+          <a class="btn btn-secondary" href="#beneficios">Ver tudo que o app faz</a>
+        </div>
 
-<div class="hero">
+        <ul class="mini-list">
+          <li>✅ Funciona no celular</li>
+          <li>✅ Gera PDF profissional</li>
+          <li>✅ Envio rápido para o cliente</li>
+        </ul>
+      </div>
 
-<h1>Aplicativo de Orçamento para Instaladores de Ar-Condicionado</h1>
+      <div class="phone-card">
+        <div class="phone">
+          <div class="screen">
+            <div class="mock-top">Prévia do aplicativo</div>
+            <div class="mock-box">
+              <div class="mock-title">Cliente: João da Silva</div>
+              <div class="mock-line"></div>
+              <div class="mock-line mid"></div>
+              <div class="mock-line small"></div>
+            </div>
+            <div class="mock-box">
+              <div class="mock-title">Serviço: Instalação 12.000 BTUs</div>
+              <div class="mock-line"></div>
+              <div class="mock-line small"></div>
+            </div>
+            <div class="mock-box">
+              <div class="mock-title">PDF pronto para envio</div>
+              <div class="mock-line mid"></div>
+              <div class="mock-line small"></div>
+              <div class="mock-price">Total: R$ 850,00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
 
-<p class="subtitle">
-Crie propostas profissionais em minutos e envie direto para o cliente.
-</p>
+  <section>
+    <div class="wrap">
+      <h2>Você ainda faz orçamento no improviso?</h2>
+      <p class="lead">
+        Muitos profissionais ainda perdem vendas porque enviam orçamento de qualquer jeito. Isso passa menos confiança,
+        toma tempo e dificulta fechar o serviço.
+      </p>
+      <div class="problem">
+        <div class="card">
+          <strong>Sem o app</strong>
+          <ul class="list">
+            <li>Digita tudo manualmente no WhatsApp</li>
+            <li>Faz conta na pressa e pode errar</li>
+            <li>Envia orçamento sem aparência profissional</li>
+            <li>Perde tempo repetindo as mesmas informações</li>
+          </ul>
+        </div>
+        <div class="card">
+          <strong>Com o app</strong>
+          <ul class="list">
+            <li>Monta o orçamento em poucos minutos</li>
+            <li>Gera um PDF organizado e bonito</li>
+            <li>Passa mais profissionalismo ao cliente</li>
+            <li>Agiliza o atendimento e aumenta a chance de fechar</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<a class="btn" href="SEU_LINK_KIWIFY_AQUI">QUERO ACESSAR O APLICATIVO</a>
+  <section id="beneficios">
+    <div class="wrap">
+      <h2>O que o aplicativo faz</h2>
+      <p class="lead">
+        Ele foi pensado para o dia a dia de quem trabalha com climatização e precisa ganhar tempo sem perder qualidade.
+      </p>
 
-</div>
+      <div class="cards-3">
+        <div class="card">
+          <h3>Cria propostas rapidamente</h3>
+          <p>Preencha os dados do cliente, escolha os serviços e monte o orçamento sem complicação.</p>
+        </div>
+        <div class="card">
+          <h3>Gera PDF profissional</h3>
+          <p>Seu cliente recebe uma proposta organizada, com aparência muito mais profissional.</p>
+        </div>
+        <div class="card">
+          <h3>Ajuda a vender mais</h3>
+          <p>Um orçamento bem apresentado transmite confiança e aumenta sua chance de fechar negócio.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <section>
+    <div class="wrap">
+      <h2>O que você recebe</h2>
+      <div class="cards-3">
+        <div class="card">
+          <h3>Acesso ao aplicativo</h3>
+          <p>Use no celular para criar orçamentos de forma rápida no atendimento do dia a dia.</p>
+        </div>
+        <div class="card">
+          <h3>Layout profissional</h3>
+          <p>Seu cliente recebe uma proposta melhor apresentada, o que valoriza seu serviço.</p>
+        </div>
+        <div class="card">
+          <h3>Atualização prática</h3>
+          <p>Modelo simples e direto para você vender sem depender de papel, texto solto ou improviso.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<div class="section">
+  <section>
+    <div class="wrap">
+      <h2>Coloque aqui prints reais do seu app</h2>
+      <p class="lead">
+        Esta parte já ficou pronta para você trocar pelas imagens do aplicativo. Basta substituir os blocos abaixo por prints reais.
+      </p>
+      <div class="gallery">
+        <div class="shot">
+          <div class="top">Print 1</div>
+          <div class="mock-box">
+            <div class="mock-title">Tela de orçamento</div>
+            <div class="mock-line"></div>
+            <div class="mock-line mid"></div>
+            <div class="mock-line small"></div>
+          </div>
+        </div>
+        <div class="shot">
+          <div class="top">Print 2</div>
+          <div class="mock-box">
+            <div class="mock-title">Tela de cliente</div>
+            <div class="mock-line"></div>
+            <div class="mock-line"></div>
+            <div class="mock-line small"></div>
+          </div>
+        </div>
+        <div class="shot">
+          <div class="top">Print 3</div>
+          <div class="mock-box">
+            <div class="mock-title">PDF gerado</div>
+            <div class="mock-line mid"></div>
+            <div class="mock-line small"></div>
+            <div class="mock-price">Proposta pronta</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<h2>Você ainda faz orçamento assim?</h2>
+  <section id="comprar">
+    <div class="wrap">
+      <div class="price-box">
+        <h2>Comece a usar hoje mesmo</h2>
+        <div class="old">de R$ 197,00</div>
+        <div class="price">R$ 97</div>
+        <div class="price-note">Pagamento único. Sem mensalidade.</div>
+        <a class="btn btn-primary" href="SEU_LINK_KIWIFY_AQUI" target="_blank" rel="noopener noreferrer">QUERO ACESSAR O APLICATIVO</a>
+        <div class="guarantee">✅ Acesso simples e compra segura pela Kiwify</div>
+      </div>
+    </div>
+  </section>
 
-<div class="card">
-• Digitando tudo manualmente no WhatsApp<br>
-• Fazendo conta na calculadora<br>
-• Enviando texto simples para o cliente<br>
-• Perdendo tempo repetindo sempre as mesmas coisas
-</div>
+  <section>
+    <div class="wrap">
+      <h2>Perguntas frequentes</h2>
+      <div class="faq">
+        <details>
+          <summary>Preciso instalar alguma coisa?</summary>
+          <p>Você pode ajustar essa resposta conforme a forma de entrega do seu app. Exemplo: funciona direto pelo celular, sem complicação.</p>
+        </details>
+        <details>
+          <summary>Esse aplicativo serve para quem?</summary>
+          <p>Para profissionais de climatização que querem criar orçamentos mais rápidos e passar mais profissionalismo ao cliente.</p>
+        </details>
+        <details>
+          <summary>Como recebo o acesso depois da compra?</summary>
+          <p>Você pode configurar a Kiwify para entregar automaticamente o link ou as instruções após o pagamento.</p>
+        </details>
+      </div>
+    </div>
+  </section>
 
-</div>
+  <section class="final-cta">
+    <div class="wrap">
+      <h2>Profissionalize seus orçamentos e feche mais serviços</h2>
+      <p class="lead" style="margin-left:auto;margin-right:auto;">
+        Quanto mais rápido, organizado e profissional for o seu atendimento, maior a chance de o cliente fechar com você.
+      </p>
+      <a class="btn btn-primary" href="SEU_LINK_KIWIFY_AQUI" target="_blank" rel="noopener noreferrer">COMPRAR AGORA</a>
+    </div>
+  </section>
 
-
-<div class="section">
-
-<h2>Com este aplicativo você consegue</h2>
-
-<div class="card">
-✔ Criar orçamento em menos de 1 minuto
-</div>
-
-<div class="card">
-✔ Gerar PDF profissional automaticamente
-</div>
-
-<div class="card">
-✔ Passar muito mais profissionalismo para o cliente
-</div>
-
-<div class="card">
-✔ Enviar a proposta rapidamente
-</div>
-
-</div>
-
-
-<div class="section">
-
-<h2>Veja como funciona</h2>
-
-<div class="card">
-
-Aqui você pode colocar prints do aplicativo.
-
-Exemplo:
-
-• tela criando orçamento  
-• tela do cliente  
-• PDF gerado  
-
-</div>
-
-</div>
-
-
-<div class="section">
-
-<h2>Acesso ao aplicativo</h2>
-
-<div class="card" style="text-align:center">
-
-<div class="old">de R$197</div>
-
-<div class="price">R$97</div>
-
-<p>Pagamento único. Sem mensalidade.</p>
-
-<br>
-
-<a class="btn" href="SEU_LINK_KIWIFY_AQUI">
-COMPRAR AGORA
-</a>
-
-</div>
-
-</div>
-
-
-<div class="section">
-
-<h2>Perguntas Frequentes</h2>
-
-<div class="card">
-<strong>Preciso instalar algo?</strong><br>
-Você pode acessar direto pelo celular.
-</div>
-
-<div class="card">
-<strong>Para quem é esse aplicativo?</strong><br>
-Para profissionais que trabalham com climatização e precisam gerar orçamentos rápidos.
-</div>
-
-<div class="card">
-<strong>Como recebo o acesso?</strong><br>
-Após o pagamento você recebe as instruções automaticamente.
-</div>
-
-</div>
-
-
-<footer>
-
-© 2026 - Aplicativo de Orçamento para Climatização
-
-</footer>
-
-</div>
-
+  <footer>
+    © 2026 - Sua marca aqui. Todos os direitos reservados.
+  </footer>
 </body>
 </html>
