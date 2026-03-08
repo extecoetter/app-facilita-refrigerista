@@ -31,7 +31,7 @@
   }
 
   .wrap{
-    width:min(980px, calc(100% - 24px));
+    width:min(1100px, calc(100% - 24px));
     margin:0 auto;
   }
 
@@ -177,8 +177,8 @@
 
   .logos{
     display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:14px;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
   }
 
   .logo-option{
@@ -188,36 +188,39 @@
     overflow:hidden;
     background:#fff;
     cursor:pointer;
+    transition:.18s ease;
+  }
+
+  .logo-option:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 24px rgba(16,32,51,.08);
   }
 
   .logo-option input[type="radio"]{
     position:absolute;
     top:14px;
     left:14px;
-    width:20px;
-    height:20px;
+    width:22px;
+    height:22px;
     z-index:2;
   }
 
-  .logo-preview{
+  .logo-image-wrap{
     aspect-ratio:16/10;
     display:flex;
     align-items:center;
     justify-content:center;
     background:linear-gradient(180deg,#fafdff,#eef6ff);
-    padding:16px;
-    font-weight:900;
-    font-size:26px;
-    color:#0b6bcb;
-    text-align:center;
+    padding:14px;
   }
 
-  .logo-preview span{
+  .logo-image-wrap img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
     display:block;
-    font-size:14px;
-    font-weight:700;
-    color:#4d6c89;
-    margin-top:8px;
+    border-radius:14px;
+    background:#fff;
   }
 
   .logo-meta{
@@ -276,6 +279,12 @@
     color:#6e8094;
     font-size:14px;
     padding:0 0 38px;
+  }
+
+  @media (max-width: 900px){
+    .logos{
+      grid-template-columns:1fr 1fr;
+    }
   }
 
   @media (max-width: 760px){
@@ -359,38 +368,68 @@
 
           <div class="logos">
             <label class="logo-option">
-              <input type="radio" name="logo_padrao" value="Logo 1 - Azul gelo">
-              <div class="logo-preview">RC<span>CLIMATIZAÇÃO</span></div>
+              <input type="radio" name="logo_padrao" value="Logo 1">
+              <div class="logo-image-wrap">
+                <img src="logo1.png" alt="Logo 1">
+              </div>
               <div class="logo-meta">
                 <strong>Logo 1</strong>
-                <div class="muted">Azul gelo, visual técnico</div>
+                <div class="muted">Clique para escolher este modelo</div>
               </div>
             </label>
 
             <label class="logo-option">
-              <input type="radio" name="logo_padrao" value="Logo 2 - Azul moderno">
-              <div class="logo-preview">AR<span>SOLUÇÕES</span></div>
+              <input type="radio" name="logo_padrao" value="Logo 2">
+              <div class="logo-image-wrap">
+                <img src="logo2.png" alt="Logo 2">
+              </div>
               <div class="logo-meta">
                 <strong>Logo 2</strong>
-                <div class="muted">Azul moderno, estilo limpo</div>
+                <div class="muted">Clique para escolher este modelo</div>
               </div>
             </label>
 
             <label class="logo-option">
-              <input type="radio" name="logo_padrao" value="Logo 3 - Gelo forte">
-              <div class="logo-preview">FRIO<span>CLIMA</span></div>
+              <input type="radio" name="logo_padrao" value="Logo 3">
+              <div class="logo-image-wrap">
+                <img src="logo3.png" alt="Logo 3">
+              </div>
               <div class="logo-meta">
                 <strong>Logo 3</strong>
-                <div class="muted">Visual forte para refrigeração</div>
+                <div class="muted">Clique para escolher este modelo</div>
               </div>
             </label>
 
             <label class="logo-option">
-              <input type="radio" name="logo_padrao" value="Logo 4 - Profissional">
-              <div class="logo-preview">TOP<span>AR</span></div>
+              <input type="radio" name="logo_padrao" value="Logo 4">
+              <div class="logo-image-wrap">
+                <img src="logo4.png" alt="Logo 4">
+              </div>
               <div class="logo-meta">
                 <strong>Logo 4</strong>
-                <div class="muted">Estilo profissional e simples</div>
+                <div class="muted">Clique para escolher este modelo</div>
+              </div>
+            </label>
+
+            <label class="logo-option">
+              <input type="radio" name="logo_padrao" value="Logo 5">
+              <div class="logo-image-wrap">
+                <img src="logo5.png" alt="Logo 5">
+              </div>
+              <div class="logo-meta">
+                <strong>Logo 5</strong>
+                <div class="muted">Clique para escolher este modelo</div>
+              </div>
+            </label>
+
+            <label class="logo-option">
+              <input type="radio" name="logo_padrao" value="Logo 6">
+              <div class="logo-image-wrap">
+                <img src="logo6.png" alt="Logo 6">
+              </div>
+              <div class="logo-meta">
+                <strong>Logo 6</strong>
+                <div class="muted">Clique para escolher este modelo</div>
               </div>
             </label>
           </div>
