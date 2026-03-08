@@ -1,179 +1,456 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Obrigado pela compra</title>
-
 <style>
-body{
-font-family: Arial, sans-serif;
-margin:0;
-background:linear-gradient(180deg,#0b6bcb 0%, #1e88ff 40%, #eef5fc 100%);
-color:#1d2b3a;
-}
+  :root{
+    --brand:#0b6bcb;
+    --brand-dark:#084f97;
+    --bg1:#0b6bcb;
+    --bg2:#1e88ff;
+    --bg3:#eef5fc;
+    --card:#ffffff;
+    --text:#102033;
+    --muted:#617286;
+    --line:#dce6f0;
+    --shadow:0 14px 40px rgba(16,32,51,.10);
+    --radius:24px;
+    --whats:#25D366;
+    --whats-dark:#1fae55;
+  }
 
-.container{
-max-width:900px;
-margin:auto;
-padding:40px 20px;
-}
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+    background:linear-gradient(180deg,var(--bg1) 0%, var(--bg2) 36%, var(--bg3) 100%);
+    color:var(--text);
+    line-height:1.55;
+  }
 
-h1{
-color:white;
-text-align:center;
-font-size:36px;
-}
+  .wrap{
+    width:min(980px, calc(100% - 24px));
+    margin:0 auto;
+  }
 
-.subtitle{
-text-align:center;
-color:white;
-margin-bottom:40px;
-}
+  .hero{
+    text-align:center;
+    padding:34px 0 22px;
+    color:#fff;
+  }
 
-.card{
-background:white;
-padding:30px;
-border-radius:12px;
-box-shadow:0 10px 30px rgba(0,0,0,0.1);
-margin-bottom:20px;
-}
+  .tag{
+    display:inline-block;
+    padding:10px 14px;
+    border-radius:999px;
+    background:rgba(255,255,255,.14);
+    border:1px solid rgba(255,255,255,.30);
+    font-weight:800;
+    margin-bottom:16px;
+    backdrop-filter: blur(8px);
+  }
 
-label{
-font-weight:bold;
-display:block;
-margin-top:15px;
-}
+  h1{
+    margin:0 0 12px;
+    font-size:clamp(31px,5vw,54px);
+    line-height:1.05;
+    letter-spacing:-.03em;
+  }
 
-input, textarea, select{
-width:100%;
-padding:12px;
-margin-top:6px;
-border-radius:8px;
-border:1px solid #ccc;
-font-size:16px;
-}
+  .sub{
+    max-width:760px;
+    margin:0 auto;
+    color:rgba(255,255,255,.94);
+    font-size:18px;
+  }
 
-.logo-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-gap:15px;
-margin-top:15px;
-}
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:28px;
+    margin:12px auto 34px;
+  }
 
-.logo-option{
-border:2px solid #ddd;
-border-radius:10px;
-padding:15px;
-text-align:center;
-cursor:pointer;
-}
+  .success{
+    display:grid;
+    gap:12px;
+    margin-bottom:18px;
+  }
 
-button{
-background:#0b6bcb;
-color:white;
-border:none;
-padding:16px;
-border-radius:10px;
-font-size:18px;
-margin-top:25px;
-width:100%;
-cursor:pointer;
-}
+  .pill{
+    background:#eef7ff;
+    border:1px solid #cfe3f8;
+    color:var(--brand);
+    border-radius:16px;
+    padding:12px 14px;
+    font-weight:800;
+  }
 
-button:hover{
-background:#084f97;
-}
+  .section-title{
+    margin:0 0 8px;
+    font-size:28px;
+  }
 
-.whatsapp{
-background:#25D366;
-text-align:center;
-padding:15px;
-border-radius:10px;
-color:white;
-text-decoration:none;
-display:block;
-margin-top:20px;
-font-weight:bold;
-}
+  .lead{
+    color:var(--muted);
+    margin:0 0 22px;
+  }
+
+  form{
+    display:grid;
+    gap:16px;
+  }
+
+  .field{
+    display:grid;
+    gap:8px;
+  }
+
+  .two{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+  }
+
+  label{
+    font-size:14px;
+    font-weight:800;
+    color:#3d5167;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+  }
+
+  input, textarea, select{
+    width:100%;
+    border:1px solid var(--line);
+    border-radius:16px;
+    background:#fff;
+    padding:16px;
+    font-size:16px;
+    outline:none;
+  }
+
+  input:focus, textarea:focus, select:focus{
+    border-color:#9cc8f1;
+    box-shadow:0 0 0 4px rgba(11,107,203,.10);
+  }
+
+  textarea{
+    min-height:110px;
+    resize:vertical;
+  }
+
+  .plan-box{
+    display:grid;
+    gap:12px;
+  }
+
+  .plan{
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:16px;
+    background:#fff;
+  }
+
+  .plan input[type="radio"]{
+    width:20px;
+    height:20px;
+    margin-top:2px;
+  }
+
+  .plan-title{
+    font-weight:900;
+    margin-bottom:4px;
+  }
+
+  .price{
+    color:var(--brand);
+    font-weight:900;
+  }
+
+  .logos{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+  }
+
+  .logo-option{
+    position:relative;
+    border:2px solid #d9e7f4;
+    border-radius:20px;
+    overflow:hidden;
+    background:#fff;
+    cursor:pointer;
+  }
+
+  .logo-option input[type="radio"]{
+    position:absolute;
+    top:14px;
+    left:14px;
+    width:20px;
+    height:20px;
+    z-index:2;
+  }
+
+  .logo-preview{
+    aspect-ratio:16/10;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(180deg,#fafdff,#eef6ff);
+    padding:16px;
+    font-weight:900;
+    font-size:26px;
+    color:#0b6bcb;
+    text-align:center;
+  }
+
+  .logo-preview span{
+    display:block;
+    font-size:14px;
+    font-weight:700;
+    color:#4d6c89;
+    margin-top:8px;
+  }
+
+  .logo-meta{
+    padding:14px;
+    border-top:1px solid #e7eff7;
+  }
+
+  .logo-meta strong{
+    display:block;
+    margin-bottom:4px;
+  }
+
+  .muted{
+    color:var(--muted);
+    font-size:14px;
+  }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:100%;
+    border:none;
+    border-radius:18px;
+    padding:18px 20px;
+    font-size:17px;
+    font-weight:900;
+    text-decoration:none;
+    cursor:pointer;
+    transition:.18s ease;
+  }
+
+  .btn-whats{
+    background:var(--whats);
+    color:#fff;
+    box-shadow:0 14px 28px rgba(37,211,102,.24);
+  }
+
+  .btn-whats:hover{
+    background:var(--whats-dark);
+    transform:translateY(-1px);
+  }
+
+  .info{
+    margin-top:14px;
+    background:#f7fbff;
+    border:1px solid #dbe9f6;
+    border-radius:18px;
+    padding:16px;
+    color:var(--muted);
+    font-size:14px;
+  }
+
+  .footer{
+    text-align:center;
+    color:#6e8094;
+    font-size:14px;
+    padding:0 0 38px;
+  }
+
+  @media (max-width: 760px){
+    .two, .logos{
+      grid-template-columns:1fr;
+    }
+    .card{
+      padding:18px;
+    }
+    .sub{
+      font-size:16px;
+    }
+  }
 </style>
-
 </head>
-
 <body>
+  <header class="hero">
+    <div class="wrap">
+      <div class="tag">Compra aprovada com sucesso</div>
+      <h1>Agora personalize seu aplicativo</h1>
+      <p class="sub">Preencha os dados abaixo e, ao enviar, seu WhatsApp vai abrir já com todas as informações prontas para me mandar.</p>
+    </div>
+  </header>
 
-<div class="container">
+  <main class="wrap">
+    <section class="card">
+      <div class="success">
+        <div class="pill">✅ Próximo passo: enviar seus dados para personalização</div>
+        <div class="pill">✅ Depois disso eu preparo a sua versão do app</div>
+      </div>
 
-<h1>Compra realizada com sucesso</h1>
-<p class="subtitle">Agora preencha os dados para personalizar seu aplicativo</p>
+      <h2 class="section-title">Preencha os dados do seu aplicativo</h2>
+      <p class="lead">Esses dados vão aparecer no cabeçalho do PDF e na sua versão personalizada.</p>
 
-<div class="card">
+      <form id="pedidoForm">
+        <div class="field">
+          <label for="nomePdf">Nome que vai aparecer no PDF</label>
+          <input id="nomePdf" name="nome_pdf" type="text" placeholder="Ex.: RE Climatização" required>
+        </div>
 
-<form action="https://formsubmit.co/extecoetterrobson@gmail.com" method="POST">
+        <div class="two">
+          <div class="field">
+            <label for="whats">WhatsApp</label>
+            <input id="whats" name="whatsapp" type="text" placeholder="Ex.: (14) 99999-9999" required>
+          </div>
+          <div class="field">
+            <label for="nomePix">Nome do Pix</label>
+            <input id="nomePix" name="nome_pix" type="text" placeholder="Ex.: Robson A Extecoetter" required>
+          </div>
+        </div>
 
-<input type="hidden" name="_subject" value="Nova personalização de aplicativo">
-<input type="hidden" name="_captcha" value="false">
-<input type="hidden" name="_template" value="table">
+        <div class="field">
+          <label for="chavePix">Chave Pix</label>
+          <input id="chavePix" name="chave_pix" type="text" placeholder="Ex.: 14997073447" required>
+        </div>
 
-<label>Nome que vai aparecer no PDF</label>
-<input type="text" name="nome_pdf" required>
+        <div class="field">
+          <label>Escolha seu plano</label>
+          <div class="plan-box">
+            <label class="plan">
+              <input type="radio" name="plano" value="Logo padrão - R$ 57,00" checked>
+              <div>
+                <div class="plan-title">Logo padrão <span class="price">R$ 57,00</span></div>
+                <div class="muted">Escolha um dos logos prontos abaixo.</div>
+              </div>
+            </label>
 
-<label>WhatsApp</label>
-<input type="text" name="whatsapp" required>
+            <label class="plan">
+              <input type="radio" name="plano" value="Logo personalizado - R$ 97,00">
+              <div>
+                <div class="plan-title">Logo personalizado <span class="price">R$ 97,00</span></div>
+                <div class="muted">Você fala comigo no WhatsApp para criar um logo próprio.</div>
+              </div>
+            </label>
+          </div>
+        </div>
 
-<label>Nome do Pix</label>
-<input type="text" name="nome_pix" required>
+        <div class="field">
+          <label>Escolha um logo padrão</label>
+          <div class="muted" style="margin-bottom:6px;">Se você escolheu o plano de R$ 57, selecione um logo. Se escolheu o personalizado, pode ignorar esta parte.</div>
 
-<label>Chave Pix</label>
-<input type="text" name="chave_pix" required>
+          <div class="logos">
+            <label class="logo-option">
+              <input type="radio" name="logo_padrao" value="Logo 1 - Azul gelo">
+              <div class="logo-preview">RC<span>CLIMATIZAÇÃO</span></div>
+              <div class="logo-meta">
+                <strong>Logo 1</strong>
+                <div class="muted">Azul gelo, visual técnico</div>
+              </div>
+            </label>
 
-<label>Plano escolhido</label>
-<select name="plano">
-<option value="Logo padrão - R$57">Logo padrão - R$57</option>
-<option value="Logo personalizado - R$97">Logo personalizado - R$97</option>
-</select>
+            <label class="logo-option">
+              <input type="radio" name="logo_padrao" value="Logo 2 - Azul moderno">
+              <div class="logo-preview">AR<span>SOLUÇÕES</span></div>
+              <div class="logo-meta">
+                <strong>Logo 2</strong>
+                <div class="muted">Azul moderno, estilo limpo</div>
+              </div>
+            </label>
 
-<label>Escolha um logo padrão</label>
+            <label class="logo-option">
+              <input type="radio" name="logo_padrao" value="Logo 3 - Gelo forte">
+              <div class="logo-preview">FRIO<span>CLIMA</span></div>
+              <div class="logo-meta">
+                <strong>Logo 3</strong>
+                <div class="muted">Visual forte para refrigeração</div>
+              </div>
+            </label>
 
-<div class="logo-grid">
+            <label class="logo-option">
+              <input type="radio" name="logo_padrao" value="Logo 4 - Profissional">
+              <div class="logo-preview">TOP<span>AR</span></div>
+              <div class="logo-meta">
+                <strong>Logo 4</strong>
+                <div class="muted">Estilo profissional e simples</div>
+              </div>
+            </label>
+          </div>
+        </div>
 
-<label class="logo-option">
-<input type="radio" name="logo" value="Logo 1">
-Logo 1
-</label>
+        <div class="field">
+          <label for="obs">Observações</label>
+          <textarea id="obs" name="observacoes" placeholder="Se quiser, escreva aqui alguma observação extra sobre sua personalização."></textarea>
+        </div>
 
-<label class="logo-option">
-<input type="radio" name="logo" value="Logo 2">
-Logo 2
-</label>
+        <button class="btn btn-whats" type="submit">ENVIAR NO WHATSAPP</button>
+      </form>
 
-<label class="logo-option">
-<input type="radio" name="logo" value="Logo 3">
-Logo 3
-</label>
+      <div class="info">
+        Ao clicar em enviar, a página abre o WhatsApp já com a mensagem preenchida para facilitar seu atendimento.
+      </div>
+    </section>
+  </main>
 
-<label class="logo-option">
-<input type="radio" name="logo" value="Logo 4">
-Logo 4
-</label>
+  <div class="wrap footer">© 2026 - Personalização do aplicativo de orçamento</div>
 
-</div>
+<script>
+  const form = document.getElementById('pedidoForm');
 
-<label>Observações</label>
-<textarea name="observacoes"></textarea>
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
 
-<button type="submit">ENVIAR DADOS</button>
+    const nomePdf = document.getElementById('nomePdf').value.trim();
+    const whatsapp = document.getElementById('whats').value.trim();
+    const nomePix = document.getElementById('nomePix').value.trim();
+    const chavePix = document.getElementById('chavePix').value.trim();
+    const observacoes = document.getElementById('obs').value.trim();
 
-</form>
+    const planoSelecionado = document.querySelector('input[name="plano"]:checked');
+    const logoSelecionado = document.querySelector('input[name="logo_padrao"]:checked');
 
-<a class="whatsapp" href="https://wa.me/5514997073447?text=Olá,%20acabei%20de%20comprar%20o%20app%20e%20quero%20um%20logo%20personalizado." target="_blank">
-Falar no WhatsApp para logo personalizado
-</a>
+    const plano = planoSelecionado ? planoSelecionado.value : '';
+    const logo = logoSelecionado ? logoSelecionado.value : 'Não selecionado';
 
-</div>
+    let mensagem = 'Olá, acabei de comprar o aplicativo e estou enviando meus dados para personalização.%0A%0A';
+    mensagem += '*Nome no PDF:* ' + encodeURIComponent(nomePdf) + '%0A';
+    mensagem += '*WhatsApp:* ' + encodeURIComponent(whatsapp) + '%0A';
+    mensagem += '*Nome do Pix:* ' + encodeURIComponent(nomePix) + '%0A';
+    mensagem += '*Chave Pix:* ' + encodeURIComponent(chavePix) + '%0A';
+    mensagem += '*Plano escolhido:* ' + encodeURIComponent(plano) + '%0A';
 
-</div>
+    if (plano.includes('Logo padrão')) {
+      mensagem += '*Logo padrão escolhido:* ' + encodeURIComponent(logo) + '%0A';
+    } else {
+      mensagem += '*Logo padrão escolhido:* Não se aplica%0A';
+    }
 
+    if (observacoes) {
+      mensagem += '*Observações:* ' + encodeURIComponent(observacoes) + '%0A';
+    }
+
+    const numeroDestino = '5514997073447';
+    const url = 'https://wa.me/' + numeroDestino + '?text=' + mensagem;
+    window.location.href = url;
+  });
+</script>
 </body>
 </html>
