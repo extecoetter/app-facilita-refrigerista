@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Obrigado pela compra</title>
+
+<style>
+body{
+font-family: Arial, sans-serif;
+margin:0;
+background:linear-gradient(180deg,#0b6bcb 0%, #1e88ff 40%, #eef5fc 100%);
+color:#1d2b3a;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+padding:40px 20px;
+}
+
+h1{
+color:white;
+text-align:center;
+font-size:36px;
+}
+
+.subtitle{
+text-align:center;
+color:white;
+margin-bottom:40px;
+}
+
+.card{
+background:white;
+padding:30px;
+border-radius:12px;
+box-shadow:0 10px 30px rgba(0,0,0,0.1);
+margin-bottom:20px;
+}
+
+label{
+font-weight:bold;
+display:block;
+margin-top:15px;
+}
+
+input, textarea, select{
+width:100%;
+padding:12px;
+margin-top:6px;
+border-radius:8px;
+border:1px solid #ccc;
+font-size:16px;
+}
+
+.logo-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+gap:15px;
+margin-top:15px;
+}
+
+.logo-option{
+border:2px solid #ddd;
+border-radius:10px;
+padding:15px;
+text-align:center;
+cursor:pointer;
+}
+
+button{
+background:#0b6bcb;
+color:white;
+border:none;
+padding:16px;
+border-radius:10px;
+font-size:18px;
+margin-top:25px;
+width:100%;
+cursor:pointer;
+}
+
+button:hover{
+background:#084f97;
+}
+
+.whatsapp{
+background:#25D366;
+text-align:center;
+padding:15px;
+border-radius:10px;
+color:white;
+text-decoration:none;
+display:block;
+margin-top:20px;
+font-weight:bold;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Compra realizada com sucesso</h1>
+<p class="subtitle">Agora preencha os dados para personalizar seu aplicativo</p>
+
+<div class="card">
+
+<form action="https://formsubmit.co/SEUEMAILAQUI@gmail.com" method="POST">
+
+<input type="hidden" name="_subject" value="Nova personalização de aplicativo">
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_template" value="table">
+
+<label>Nome que vai aparecer no PDF</label>
+<input type="text" name="nome_pdf" required>
+
+<label>WhatsApp</label>
+<input type="text" name="whatsapp" required>
+
+<label>Nome do Pix</label>
+<input type="text" name="nome_pix" required>
+
+<label>Chave Pix</label>
+<input type="text" name="chave_pix" required>
+
+<label>Plano escolhido</label>
+<select name="plano">
+<option value="Logo padrão - R$57">Logo padrão - R$57</option>
+<option value="Logo personalizado - R$97">Logo personalizado - R$97</option>
+</select>
+
+<label>Escolha um logo padrão</label>
+
+<div class="logo-grid">
+
+<label class="logo-option">
+<input type="radio" name="logo" value="Logo 1">
+Logo 1
+</label>
+
+<label class="logo-option">
+<input type="radio" name="logo" value="Logo 2">
+Logo 2
+</label>
+
+<label class="logo-option">
+<input type="radio" name="logo" value="Logo 3">
+Logo 3
+</label>
+
+<label class="logo-option">
+<input type="radio" name="logo" value="Logo 4">
+Logo 4
+</label>
+
+</div>
+
+<label>Observações</label>
+<textarea name="observacoes"></textarea>
+
+<button type="submit">ENVIAR DADOS</button>
+
+</form>
+
+<a class="whatsapp" href="https://wa.me/5514997073447?text=Olá,%20acabei%20de%20comprar%20o%20app%20e%20quero%20um%20logo%20personalizado." target="_blank">
+Falar no WhatsApp para logo personalizado
+</a>
+
+</div>
+
+</div>
+
+</body>
+</html>
