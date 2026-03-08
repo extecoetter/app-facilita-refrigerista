@@ -136,6 +136,7 @@
       cursor:pointer;
       transition:.18s ease;
       min-width:220px;
+      text-align:center;
     }
 
     .btn-primary{
@@ -304,20 +305,49 @@
       margin-top:8px;
     }
 
-    .price-box{
+    .plans-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:22px;
+      align-items:stretch;
+      margin-top:28px;
+    }
+
+    .plan-card{
+      position:relative;
       text-align:center;
-      padding:36px 24px;
+      padding:36px 24px 28px;
       background:linear-gradient(180deg,#ffffff,#f3f8fe);
       border:1px solid var(--line);
       border-radius:30px;
       box-shadow:var(--shadow);
     }
 
-    .old{
-      color:#7a8897;
-      text-decoration:line-through;
-      font-size:18px;
-      margin-bottom:8px;
+    .plan-card.featured{
+      border:2px solid #3e94ff;
+      box-shadow:0 20px 60px rgba(11,107,203,.22);
+      transform:translateY(-4px);
+    }
+
+    .badge-top{
+      position:absolute;
+      top:-14px;
+      left:50%;
+      transform:translateX(-50%);
+      background:linear-gradient(135deg,#0b6bcb,#2d91ff);
+      color:#fff;
+      padding:9px 16px;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:900;
+      letter-spacing:.03em;
+      box-shadow:0 12px 24px rgba(11,107,203,.18);
+    }
+
+    .plan-subtitle{
+      color:var(--muted);
+      margin:6px 0 18px;
+      font-size:17px;
     }
 
     .price{
@@ -339,6 +369,15 @@
       color:var(--ok);
       font-weight:800;
     }
+
+    .plan-list{
+      text-align:left;
+      margin:18px 0 24px;
+      padding-left:18px;
+      color:#26415a;
+    }
+
+    .plan-list li{margin:10px 0}
 
     .faq{display:grid; gap:14px}
 
@@ -376,17 +415,19 @@
       .hero-grid,
       .problem,
       .cards-3,
-      .prints-grid{
+      .prints-grid,
+      .plans-grid{
         grid-template-columns:1fr;
       }
       .hero-visual{max-width:560px; margin:0 auto}
+      .plan-card.featured{transform:none}
     }
 
     @media (max-width: 640px){
       .wrap{width:min(var(--max),calc(100% - 20px))}
       .hero{padding-top:18px}
       .white-section{padding:20px}
-      .card,.price-box{padding:18px}
+      .card,.plan-card{padding:18px}
       .btn{width:100%}
       .cta-row{flex-direction:column}
       .mini-list{display:block}
@@ -401,7 +442,7 @@
       <div>
         <div class="logo-card">
           <img src="logo-re-climatizacao.png" alt="Logo RE Climatização">
-          <span>RE Climatização</span>
+          <span>Facilita Refrigerista</span>
         </div>
 
         <h1>Crie orçamentos profissionais no celular e impressione seu cliente na hora</h1>
@@ -411,7 +452,7 @@
         </p>
 
         <div class="cta-row">
-          <a class="btn btn-primary" href="https://pay.kiwify.com.br/TjitDIM" target="_blank" rel="noopener noreferrer">QUERO ACESSAR O APLICATIVO</a>
+          <a class="btn btn-primary" href="#comprar">VER PLANOS E COMPRAR</a>
           <a class="btn btn-secondary" href="#prints">Ver o app funcionando</a>
         </div>
 
@@ -519,13 +560,50 @@
 
   <section id="comprar">
     <div class="wrap white-section">
-      <div class="price-box">
-        <h2>Comece a usar hoje mesmo</h2>
-        <div class="old">de R$ 197,00</div>
-        <div class="price">R$ 97</div>
-        <div class="price-note">Pagamento único. Sem mensalidade.</div>
-        <a class="btn btn-primary" href="https://pay.kiwify.com.br/TjitDIM" target="_blank" rel="noopener noreferrer">QUERO ACESSAR O APLICATIVO</a>
-        <div class="guarantee">✅ Compra segura pela Kiwify</div>
+      <div class="prints-title">
+        <h2>Escolha sua versão</h2>
+        <p class="lead" style="margin-left:auto;margin-right:auto;">
+          Pagamento único, sem mensalidade. Escolha a opção que faz mais sentido para o seu negócio.
+        </p>
+      </div>
+
+      <div class="plans-grid">
+        <div class="plan-card">
+          <h3>App com Logo Padrão</h3>
+          <p class="plan-subtitle">Escolha um dos logos prontos na página de personalização.</p>
+          <div class="price">R$57</div>
+          <div class="price-note">Pagamento único</div>
+
+          <ul class="plan-list">
+            <li>✔ Aplicativo completo</li>
+            <li>✔ Geração de PDF profissional</li>
+            <li>✔ Funciona no celular</li>
+            <li>✔ Escolha de logo padrão</li>
+            <li>✔ Envio dos seus dados após a compra</li>
+          </ul>
+
+          <a class="btn btn-primary" href="https://pay.kiwify.com.br/nlcTzDI" target="_blank" rel="noopener noreferrer">COMPRAR COM LOGO PADRÃO</a>
+          <div class="guarantee">✅ Compra segura pela Kiwify</div>
+        </div>
+
+        <div class="plan-card featured">
+          <div class="badge-top">MAIS ESCOLHIDO</div>
+          <h3>App com Logo Personalizado</h3>
+          <p class="plan-subtitle">Receba seu aplicativo com uma identidade visual mais exclusiva.</p>
+          <div class="price">R$97</div>
+          <div class="price-note">Pagamento único</div>
+
+          <ul class="plan-list">
+            <li>✔ Aplicativo completo</li>
+            <li>✔ Geração de PDF profissional</li>
+            <li>✔ Funciona no celular</li>
+            <li>✔ Logo exclusivo personalizado</li>
+            <li>✔ Atendimento direto para alinhar o logo</li>
+          </ul>
+
+          <a class="btn btn-primary" href="https://pay.kiwify.com.br/SaMmMs2" target="_blank" rel="noopener noreferrer">QUERO LOGO PERSONALIZADO</a>
+          <div class="guarantee">✅ Compra segura pela Kiwify</div>
+        </div>
       </div>
     </div>
   </section>
@@ -544,7 +622,7 @@
         </details>
         <details>
           <summary>Como recebo o acesso depois da compra?</summary>
-          <p>Você pode configurar a Kiwify para entregar automaticamente o link ou as instruções após o pagamento.</p>
+          <p>Após o pagamento, o cliente vai para a página de personalização, preenche os dados do app e você prepara a versão dele.</p>
         </details>
       </div>
     </div>
@@ -556,12 +634,12 @@
       <p class="lead" style="margin-left:auto;margin-right:auto;color:rgba(255,255,255,.92);max-width:760px;">
         Quanto mais rápido, organizado e profissional for o seu atendimento, maior a chance de o cliente fechar com você.
       </p>
-      <a class="btn btn-primary" href="https://pay.kiwify.com.br/TjitDIM" target="_blank" rel="noopener noreferrer">COMPRAR AGORA</a>
+      <a class="btn btn-primary" href="#comprar">ESCOLHER MEU PLANO</a>
     </div>
   </section>
 
   <footer>
-    © 2026 - RE Climatização. Todos os direitos reservados.
+    © 2026 - Facilita Refrigerista. Todos os direitos reservados.
   </footer>
 </body>
 </html>
