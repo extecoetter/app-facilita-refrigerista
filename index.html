@@ -434,7 +434,52 @@
       .mini-list li{margin:8px 0}
       .impact-box{font-size:19px}
     }
-  </style>
+  
+/* PROMOÇÃO */
+.promo-title{
+  font-weight:900;
+  color:#d00000;
+  margin-bottom:10px;
+}
+
+.countdown{
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  margin-bottom:14px;
+}
+
+.countdown div{
+  background:#111;
+  color:#fff;
+  padding:8px 10px;
+  border-radius:8px;
+  font-weight:900;
+  min-width:45px;
+}
+
+.countdown small{
+  display:block;
+  font-size:10px;
+  opacity:.7;
+}
+
+.old-price{
+  font-size:20px;
+  color:#888;
+  text-decoration:line-through;
+  text-decoration-color:red;
+  margin-bottom:6px;
+  font-weight:700;
+}
+
+.price-label{
+  font-size:18px;
+  font-weight:700;
+  margin-bottom:4px;
+}
+
+</style>
 </head>
 <body>
   <header class="hero">
@@ -641,6 +686,18 @@
         <div class="plan-card">
           <h3>App com Logo Padrão</h3>
           <p class="plan-subtitle">Mais simples e rápido para começar.</p>
+
+          <div class="promo-title">Promoção por tempo limitado</div>
+
+          <div class="countdown">
+            <div><span class="d">3</span><small>d</small></div>
+            <div><span class="h">20</span><small>h</small></div>
+            <div><span class="m">20</span><small>m</small></div>
+          </div>
+
+          <div class="old-price">R$57,00</div>
+          <div class="price-label">por apenas</div>
+
           <div class="price">R$37,00</div>
           <div class="price-note">Pagamento único</div>
 
@@ -661,6 +718,18 @@
           <div class="badge-top">MAIS ESCOLHIDO</div>
           <h3>App com Logo Personalizado</h3>
           <p class="plan-subtitle">Mais profissional para impressionar seu cliente.</p>
+
+          <div class="promo-title">Promoção por tempo limitado</div>
+
+          <div class="countdown">
+            <div><span class="d">3</span><small>d</small></div>
+            <div><span class="h">20</span><small>h</small></div>
+            <div><span class="m">20</span><small>m</small></div>
+          </div>
+
+          <div class="old-price">R$87,00</div>
+          <div class="price-label">por apenas</div>
+
           <div class="price">R$67,00</div>
           <div class="price-note">Pagamento único<br>ou em até 12x no cartão</div>
 
@@ -713,5 +782,29 @@
   <footer>
     © 2026 - Facilita Refrigerista. Todos os direitos reservados.
   </footer>
+
+<script>
+let total = (3*24*60)+(20*60)+20;
+
+function updateCountdown(){
+  let d = Math.floor(total/(60*24));
+  let h = Math.floor((total%(60*24))/60);
+  let m = total%60;
+
+  document.querySelectorAll(".d").forEach(el=>el.textContent=d);
+  document.querySelectorAll(".h").forEach(el=>el.textContent=h);
+  document.querySelectorAll(".m").forEach(el=>el.textContent=m);
+
+  total--;
+
+  if(total<=0){
+    total=(3*24*60)+(20*60)+20;
+  }
+}
+
+updateCountdown();
+setInterval(updateCountdown,60000);
+</script>
+
 </body>
 </html>
