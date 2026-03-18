@@ -284,81 +284,6 @@
       box-shadow:0 12px 30px rgba(16,32,51,.10);
     }
 
-    .carousel{
-      position:relative;
-      overflow:hidden;
-      margin-top:10px;
-    }
-
-    .carousel-track{
-      display:flex;
-      gap:22px;
-      transition:transform .45s ease;
-      will-change:transform;
-      touch-action:pan-y;
-      cursor:grab;
-    }
-
-    .carousel-track.dragging{
-      cursor:grabbing;
-      transition:none;
-    }
-
-    .carousel-slide{
-      min-width:calc((100% - 44px) / 3);
-      flex:0 0 calc((100% - 44px) / 3);
-    }
-
-    .carousel-controls{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:12px;
-      margin-top:18px;
-    }
-
-    .carousel-btn{
-      width:46px;
-      height:46px;
-      border:none;
-      border-radius:999px;
-      background:#fff;
-      color:var(--brand);
-      font-size:22px;
-      font-weight:900;
-      box-shadow:var(--shadow);
-      cursor:pointer;
-      transition:.18s ease;
-    }
-
-    .carousel-btn:hover{
-      transform:translateY(-2px);
-    }
-
-    .carousel-dots{
-      display:flex;
-      gap:8px;
-      align-items:center;
-      justify-content:center;
-      flex-wrap:wrap;
-    }
-
-    .carousel-dot{
-      width:10px;
-      height:10px;
-      border:none;
-      border-radius:999px;
-      background:#bfd5ee;
-      cursor:pointer;
-      padding:0;
-    }
-
-    .carousel-dot.active{
-      width:28px;
-      background:var(--brand);
-    }
-
-
     .impact-box{
       margin-top:22px;
       background:linear-gradient(135deg,#0b6bcb,#2c8cff);
@@ -494,24 +419,12 @@
       .plans-grid{
         grid-template-columns:1fr;
       }
-      .carousel-slide{
-        min-width:calc((100% - 22px) / 2);
-        flex-basis:calc((100% - 22px) / 2);
-      }
       .hero-visual{max-width:560px; margin:0 auto}
       .plan-card.featured{transform:none}
     }
 
     @media (max-width: 640px){
       .wrap{width:min(var(--max),calc(100% - 20px))}
-      .carousel-slide{
-        min-width:100%;
-        flex-basis:100%;
-      }
-      .carousel-track{gap:16px}
-      .carousel-controls{gap:10px}
-      .carousel-btn{width:42px;height:42px}
-
       .hero{padding-top:18px}
       .white-section{padding:20px}
       .card,.plan-card{padding:18px}
@@ -585,7 +498,6 @@
 
         <div class="cta-row">
           <a class="btn btn-primary" href="#comprar">VER PLANOS E COMPRAR</a>
-          <a class="btn btn-secondary" href="#prints-app">Ver o app funcionando</a>
           <a class="btn btn-secondary" href="https://wa.me/5514997073447?text=Olá%20quero%20saber%20mais%20sobre%20o%20app%20de%20orçamentos" target="_blank">Falar no WhatsApp</a>
         </div>
 
@@ -632,160 +544,137 @@
   </div>
 </section>
 
-<section id="prints-app">
-  <div class="wrap white-section">
-    <div class="prints-title">
-      <h2>Passe mais profissionalismo, feche mais negócios:</h2>
-      <p class="lead" style="margin-left:auto;margin-right:auto;">
-        Aplicativo simples e rápido para criar propostas profissionais direto no celular.
+<section id="prints">
+    <div class="wrap white-section">
+      <div class="prints-title">
+        <h2>Passe mais profissionalismo, feche mais negócios:</h2>
+        <p class="lead" style="margin-left:auto;margin-right:auto;">
+          Aplicativo simples e rápido para criar propostas profissionais direto no celular.
+        </p>
+      </div>
+
+  <section>
+    <div class="wrap white-section">
+      <h2>Você ainda faz orçamento no improviso?</h2>
+      <p class="lead">
+        Muitos profissionais perdem vendas porque enviam orçamento de qualquer jeito. Isso passa menos confiança,
+        consome tempo e dificulta o fechamento do serviço.
       </p>
-    </div>
 
-    <div class="carousel" data-carousel="app">
-      <div class="carousel-track">
-        <div class="carousel-slide">
-          <div class="print-card">
-            <div class="tag">Tela do orçamento</div>
-            <img src="print-orcamento.png" alt="Tela do orçamento no aplicativo">
-          </div>
+      <div class="problem">
+        <div class="card">
+          <strong>Sem o app</strong>
+          <ul class="list">
+            <li>Digita tudo manualmente no WhatsApp</li>
+            <li>Faz conta correndo e pode errar</li>
+            <li>Envia orçamento sem aparência profissional</li>
+            <li>Se perde nos códigos de erro</li>
+            <li>demora pra encontrar o diagnóstico</li>
+          </ul>
         </div>
 
-        <div class="carousel-slide">
-          <div class="print-card">
-            <div class="tag">Tela de serviços</div>
-            <img src="print-servicos.png" alt="Tela de serviços no aplicativo">
-          </div>
-        </div>
-
-        <div class="carousel-slide">
-          <div class="print-card">
-            <div class="tag">PDF gerado</div>
-            <img src="print-pdf.png" alt="PDF gerado pelo aplicativo">
-          </div>
+        <div class="card">
+          <strong>Com o app</strong>
+          <ul class="list">
+            <li>Monta o orçamento em poucos minutos</li>
+            <li>Gera um PDF bonito e organizado</li>
+            <li>Descobre a causa de erro rapidamente</li>
+            <li>Passa muito mais profissionalismo ao cliente</li>
+            <li>Agiliza o atendimento e aumenta a chance de fechar o negócio</li>
+          </ul>
         </div>
       </div>
-
-      <div class="carousel-controls">
-        <button class="carousel-btn prev" type="button" aria-label="Anterior">‹</button>
-        <div class="carousel-dots"></div>
-        <button class="carousel-btn next" type="button" aria-label="Próximo">›</button>
-      </div>
     </div>
+  </section>
 
-    <div class="impact-box">
-      Pare de enviar orçamento desorganizado no WhatsApp.
-      <span>Impressione seu cliente com uma proposta profissional em PDF.</span>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap white-section">
-    <h2>Você ainda faz orçamento no improviso?</h2>
-    <p class="lead">
-      Muitos profissionais perdem vendas porque enviam orçamento de qualquer jeito. Isso passa menos confiança,
-      consome tempo e dificulta o fechamento do serviço.
-    </p>
-
-    <div class="problem">
-      <div class="card">
-        <strong>Sem o app</strong>
-        <ul class="list">
-          <li>Digita tudo manualmente no WhatsApp</li>
-          <li>Faz conta correndo e pode errar</li>
-          <li>Envia orçamento sem aparência profissional</li>
-          <li>Se perde nos códigos de erro</li>
-          <li>demora pra encontrar o diagnóstico</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <strong>Com o app</strong>
-        <ul class="list">
-          <li>Monta o orçamento em poucos minutos</li>
-          <li>Gera um PDF bonito e organizado</li>
-          <li>Descobre a causa de erro rapidamente</li>
-          <li>Passa muito mais profissionalismo ao cliente</li>
-          <li>Agiliza o atendimento e aumenta a chance de fechar o negócio</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="beneficios">
-  <div class="wrap white-section">
-    <h2>O que o aplicativo faz</h2>
-    <p class="lead">
-      Ele foi pensado para o dia a dia de quem trabalha com climatização e precisa ganhar tempo sem perder qualidade.
-    </p>
-
-    <div class="cards-3">
-      <div class="card">
-        <h3>Cria propostas rapidamente</h3>
-        <p>Preencha os dados do cliente, adicione os serviços e monte o orçamento sem complicação.</p>
-      </div>
-      <div class="card">
-        <h3>Gera PDF profissional</h3>
-        <p>Seu cliente recebe uma proposta organizada, clara e com aparência muito mais profissional.</p>
-      </div>
-      <div class="card">
-        <h3>Códigos de erro na palma da mão</h3>
-        <p>chega de perguntar em grupos ou pesquisar no google, vc vai ter todos os códigos de erro a 1 clique, com você.</p>
-      </div>
-      <div class="card">
-        <h3>Calculadora de BTU</h3>
-        <p>Dimensione o ar corretamente para cada tipo te ambiente.</p>
-      </div>
-      <div class="card">
-        <h3>Ajuda a vender mais</h3>
-        <p>Um orçamento bem apresentado transmite confiança e valoriza o seu serviço.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="prints-codigos">
-  <div class="wrap white-section">
-    <div class="prints-title">
-      <h2>Acesso aos códigos de erros dos aparelhos</h2>
-      <p class="lead" style="margin-left:auto;margin-right:auto;">
-        Chega de ficar perdido pesquisando código de erro, ganhe tempo.
+  <section id="beneficios">
+    <div class="wrap white-section">
+      <h2>O que o aplicativo faz</h2>
+      <p class="lead">
+        Ele foi pensado para o dia a dia de quem trabalha com climatização e precisa ganhar tempo sem perder qualidade.
       </p>
-    </div>
 
-    <div class="carousel" data-carousel="codigos">
-      <div class="carousel-track">
-        <div class="carousel-slide">
-          <div class="print-card">
-            <div class="tag">Tela dos Cód. de Erros</div>
-            <img src="erros.png" alt="Tela dos códigos de erros no aplicativo">
-          </div>
+      <div class="cards-3">
+        <div class="card">
+          <h3>Cria propostas rapidamente</h3>
+          <p>Preencha os dados do cliente, adicione os serviços e monte o orçamento sem complicação.</p>
+        </div>
+        <div class="card">
+          <h3>Gera PDF profissional</h3>
+          <p>Seu cliente recebe uma proposta organizada, clara e com aparência muito mais profissional.</p>
+        </div>
+        <div class="card">
+          <h3>Códigos de erro na palma da mão</h3>
+          <p>chega de perguntar em grupos ou pesquisar no google, vc vai ter todos os códigos de erro a 1 clique, com você.</p>
+        </div>
+        <div class="card">
+          <h3>Calculadora de BTU</h3>
+          <p>Dimensione o ar corretamente para cada tipo te ambiente.</p>
+        </div>
+        <div class="card">
+          <h3>Ajuda a vender mais</h3>
+          <p>Um orçamento bem apresentado transmite confiança e valoriza o seu serviço.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+
+
+      <div class="prints-grid">
+        <div class="print-card">
+          <div class="tag">Tela do orçamento</div>
+          <img src="print-orcamento.png" alt="Tela do orçamento no aplicativo">
         </div>
 
-        <div class="carousel-slide">
-          <div class="print-card">
-            <div class="tag">Tela Calculadora</div>
-            <img src="calculadora.png" alt="Tela da calculadora no aplicativo">
-          </div>
+        <div class="print-card">
+          <div class="tag">Tela de serviços</div>
+          <img src="print-servicos.png" alt="Tela de serviços no aplicativo">
+        </div>
+
+        <div class="print-card">
+          <div class="tag">PDF gerado</div>
+          <img src="print-pdf.png" alt="PDF gerado pelo aplicativo">
         </div>
       </div>
 
-      <div class="carousel-controls">
-        <button class="carousel-btn prev" type="button" aria-label="Anterior">‹</button>
-        <div class="carousel-dots"></div>
-        <button class="carousel-btn next" type="button" aria-label="Próximo">›</button>
+      <div class="impact-box">
+        Pare de enviar orçamento desorganizado no WhatsApp.
+        <span>Impressione seu cliente com uma proposta profissional em PDF.</span>
       </div>
     </div>
+  </section>
+  
 
-    <div class="impact-box">
-      Pare de perder tempo pra gerar o diagnóstico.
-      <span>Tudo rapido no seu celular.</span>
+  <section id="prints">
+    <div class="wrap white-section">
+      <div class="prints-title">
+        <h2>Acesso aos códigos de erros dos aparelhos</h2>
+        <p class="lead" style="margin-left:auto;margin-right:auto;">
+          Chega de ficar perdido pesquisando código de erro, ganhe tempo.
+        </p>
+      </div>
+
+      <div class="prints-grid">
+        <div class="print-card">
+          <div class="tag">Tela dos Cód. de Erros</div>
+          <img src="erros.png" alt="Tela do orçamento no aplicativo">
+        </div>
+
+        <div class="print-card">
+          <div class="tag">Tela Calculadora</div>
+          <img src="calculadora.png" alt="Tela de serviços no aplicativo">
+        </div>
+
+      <div class="impact-box">
+        Pare de perder tempo pra gerar o diagnóstico.
+        <span>Tudo rapido no seu celular.</span>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="comprar">
+  <section id="comprar">
     <div class="wrap white-section">
       <div class="prints-title">
         <h2>Escolha sua versão</h2>
@@ -894,144 +783,6 @@
   <footer>
     © 2026 - Facilita Refrigerista. Todos os direitos reservados.
   </footer>
-
-<script>
-function initCarousel(root){
-  const track = root.querySelector('.carousel-track');
-  const slides = Array.from(root.querySelectorAll('.carousel-slide'));
-  const prevBtn = root.querySelector('.carousel-btn.prev');
-  const nextBtn = root.querySelector('.carousel-btn.next');
-  const dotsWrap = root.querySelector('.carousel-dots');
-  if(!track || !slides.length) return;
-
-  let index = 0;
-  let autoplay = null;
-  let startX = 0;
-  let currentTranslate = 0;
-  let prevTranslate = 0;
-  let isDragging = false;
-
-  function slidesPerView(){
-    if(window.innerWidth <= 640) return 1;
-    if(window.innerWidth <= 980) return 2;
-    return 3;
-  }
-
-  function maxIndex(){
-    return Math.max(0, slides.length - slidesPerView());
-  }
-
-  function buildDots(){
-    dotsWrap.innerHTML = '';
-    const total = maxIndex() + 1;
-    for(let i=0;i<total;i++){
-      const dot = document.createElement('button');
-      dot.type = 'button';
-      dot.className = 'carousel-dot' + (i === index ? ' active' : '');
-      dot.setAttribute('aria-label', 'Ir para slide ' + (i+1));
-      dot.addEventListener('click', () => {
-        index = i;
-        update();
-        restartAutoplay();
-      });
-      dotsWrap.appendChild(dot);
-    }
-  }
-
-  function updateDots(){
-    const dots = dotsWrap.querySelectorAll('.carousel-dot');
-    dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
-  }
-
-  function update(animate = true){
-    const firstSlide = slides[0];
-    const styles = window.getComputedStyle(track);
-    const gap = parseFloat(styles.columnGap || styles.gap || 0);
-    const slideWidth = firstSlide.getBoundingClientRect().width + gap;
-    index = Math.max(0, Math.min(index, maxIndex()));
-    currentTranslate = -(slideWidth * index);
-    prevTranslate = currentTranslate;
-    track.style.transition = animate ? 'transform .45s ease' : 'none';
-    track.style.transform = `translateX(${currentTranslate}px)`;
-    updateDots();
-  }
-
-  function next(){
-    index = index >= maxIndex() ? 0 : index + 1;
-    update();
-  }
-
-  function prev(){
-    index = index <= 0 ? maxIndex() : index - 1;
-    update();
-  }
-
-  function startAutoplay(){
-    stopAutoplay();
-    autoplay = setInterval(next, 2800);
-  }
-
-  function stopAutoplay(){
-    if(autoplay) clearInterval(autoplay);
-  }
-
-  function restartAutoplay(){
-    stopAutoplay();
-    startAutoplay();
-  }
-
-  function pointerDown(x){
-    isDragging = true;
-    startX = x;
-    track.classList.add('dragging');
-    track.style.transition = 'none';
-    stopAutoplay();
-  }
-
-  function pointerMove(x){
-    if(!isDragging) return;
-    const delta = x - startX;
-    currentTranslate = prevTranslate + delta;
-    track.style.transform = `translateX(${currentTranslate}px)`;
-  }
-
-  function pointerUp(x){
-    if(!isDragging) return;
-    isDragging = false;
-    track.classList.remove('dragging');
-    const movedBy = x - startX;
-    if(movedBy < -60) index += 1;
-    if(movedBy > 60) index -= 1;
-    update();
-    startAutoplay();
-  }
-
-  prevBtn.addEventListener('click', () => { prev(); restartAutoplay(); });
-  nextBtn.addEventListener('click', () => { next(); restartAutoplay(); });
-  root.addEventListener('mouseenter', stopAutoplay);
-  root.addEventListener('mouseleave', startAutoplay);
-
-  track.addEventListener('mousedown', e => pointerDown(e.clientX));
-  window.addEventListener('mousemove', e => pointerMove(e.clientX));
-  window.addEventListener('mouseup', e => pointerUp(e.clientX));
-
-  track.addEventListener('touchstart', e => pointerDown(e.touches[0].clientX), {passive:true});
-  track.addEventListener('touchmove', e => pointerMove(e.touches[0].clientX), {passive:true});
-  track.addEventListener('touchend', e => pointerUp((e.changedTouches[0] || e.touches[0]).clientX), {passive:true});
-
-  window.addEventListener('resize', () => {
-    if(index > maxIndex()) index = maxIndex();
-    buildDots();
-    update(false);
-  });
-
-  buildDots();
-  update(false);
-  startAutoplay();
-}
-
-document.querySelectorAll('.carousel').forEach(initCarousel);
-</script>
 
 <script>
 let total = (3*24*60)+(20*60)+20;
