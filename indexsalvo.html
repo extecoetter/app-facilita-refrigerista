@@ -252,8 +252,8 @@
 
     .prints-grid{
       display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:22px;
+      grid-template-columns:repeat(2,1fr);
+      gap:18px;
       align-items:start;
     }
 
@@ -347,7 +347,7 @@
       background:linear-gradient(180deg,#ffffff,#f6fafe);
       border:1px solid var(--line);
       border-radius:28px;
-      padding:16px;
+      padding:10px;
       box-shadow:var(--shadow);
     }
 
@@ -363,12 +363,14 @@
     }
 
     .print-card img{
-      width:100%;
-      display:block;
-      border-radius:22px;
-      background:#fff;
-      box-shadow:0 12px 30px rgba(16,32,51,.10);
-    }
+       width:100%;
+       max-height:520px;
+       object-fit:contain;
+       display:block;
+       border-radius:22px;
+       background:#fff;
+       box-shadow:0 12px 30px rgba(16,32,51,.10);
+     }
 
     .impact-box{
       margin-top:22px;
@@ -529,26 +531,26 @@
         -webkit-mask-image:none;
       }
       .prints-track{
-        gap:10px;
+        gap:0;
       }
       .prints-item{
-        flex:0 0 42vw;
-        width:42vw;
-        min-width:42vw;
-        max-width:42vw;
+        flex:0 0 72vw;
+        width:72vw;
+        min-width:72vw;
+        max-width:72vw;
       }
       .prints-item .print-card{
-        padding:8px;
-        border-radius:18px;
+        padding:4px;
+        border-radius:16px;
       }
       .prints-item .print-card .tag{
-        font-size:10px;
-        margin-bottom:6px;
+        font-size:11px;
+        margin-bottom:4px;
         padding:5px 6px;
       }
       .prints-item .print-card img{
-        border-radius:14px;
-        padding:3px;
+        border-radius:12px;
+        padding:1px;
       }
       .carousel-btn{
         width:42px;
@@ -692,42 +694,6 @@
             <div class="print-card">
               <div class="tag">Acesso aos Códigos de Erro</div>
               <img src="erros2.png" alt="Tela de serviços no aplicativo">
-            </div>
-          </div>
-          <div class="prints-item">
-            <div class="print-card">
-              <div class="tag">PDF gerado</div>
-              <img src="print-pdf.png" alt="PDF gerado pelo aplicativo">
-            </div>
-          </div>
-          <div class="prints-item">
-            <div class="print-card">
-              <div class="tag">Tela do orçamento</div>
-              <img src="print-orcamento.png" alt="Tela do orçamento no aplicativo">
-            </div>
-          </div>
-          <div class="prints-item">
-            <div class="print-card">
-              <div class="tag">Tela de serviços</div>
-              <img src="print-servicos.png" alt="Tela de serviços no aplicativo">
-            </div>
-          </div>
-          <div class="prints-item">
-            <div class="print-card">
-              <div class="tag">PDF gerado</div>
-              <img src="print-pdf.png" alt="PDF gerado pelo aplicativo">
-            </div>
-          </div>
-          <div class="prints-item">
-            <div class="print-card">
-              <div class="tag">Tela do orçamento</div>
-              <img src="print-orcamento.png" alt="Tela do orçamento no aplicativo">
-            </div>
-          </div>
-          <div class="prints-item">
-            <div class="print-card">
-              <div class="tag">Tela de serviços</div>
-              <img src="print-servicos.png" alt="Tela de serviços no aplicativo">
             </div>
           </div>
         </div>
