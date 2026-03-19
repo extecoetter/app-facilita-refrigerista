@@ -257,6 +257,97 @@
       align-items:start;
     }
 
+    .prints-carousel{
+      position:relative;
+      overflow:hidden;
+      margin-top:8px;
+      mask-image: linear-gradient(to right, transparent 0, black 4%, black 96%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0, black 4%, black 96%, transparent 100%);
+    }
+
+    .prints-track{
+      display:flex;
+      align-items:stretch;
+      gap:18px;
+      width:max-content;
+      animation:carousel-scroll 38s linear infinite;
+      will-change:transform;
+      cursor:grab;
+      user-select:none;
+    }
+
+    .prints-carousel.is-paused .prints-track,
+    .prints-carousel:hover .prints-track{
+      animation-play-state:paused;
+    }
+
+    .prints-carousel.dragging .prints-track{
+      animation:none !important;
+      cursor:grabbing;
+    }
+
+    .prints-item{
+      flex:0 0 calc((100vw - 120px) / 7);
+      width:calc((100vw - 120px) / 7);
+      min-width:150px;
+      max-width:170px;
+    }
+
+    .prints-item .print-card{
+      height:100%;
+      padding:12px;
+      border-radius:24px;
+    }
+
+    .prints-item .print-card .tag{
+      display:block;
+      text-align:center;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      margin-bottom:10px;
+      font-size:12px;
+      padding:7px 10px;
+    }
+
+    .prints-item .print-card img{
+      aspect-ratio:9/19.5;
+      object-fit:cover;
+      border-radius:18px;
+    }
+
+    .carousel-nav{
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      margin-top:16px;
+    }
+
+    .carousel-btn{
+      border:none;
+      background:#fff;
+      color:var(--brand);
+      width:48px;
+      height:48px;
+      border-radius:999px;
+      box-shadow:var(--shadow);
+      font-size:26px;
+      font-weight:900;
+      cursor:pointer;
+      transition:.18s ease;
+    }
+
+    .carousel-btn:hover{
+      transform:translateY(-2px);
+      background:var(--brand);
+      color:#fff;
+    }
+
+    @keyframes carousel-scroll{
+      from{ transform:translateX(0); }
+      to{ transform:translateX(calc(-50% - 9px)); }
+    }
+
     .print-card{
       background:linear-gradient(180deg,#ffffff,#f6fafe);
       border:1px solid var(--line);
@@ -419,6 +510,11 @@
       .plans-grid{
         grid-template-columns:1fr;
       }
+      .prints-item{
+        flex-basis:calc((100vw - 72px) / 4);
+        width:calc((100vw - 72px) / 4);
+        min-width:150px;
+      }
       .hero-visual{max-width:560px; margin:0 auto}
       .plan-card.featured{transform:none}
     }
@@ -433,6 +529,20 @@
       .mini-list{display:block}
       .mini-list li{margin:8px 0}
       .impact-box{font-size:19px}
+      .prints-carousel{
+        mask-image:none;
+        -webkit-mask-image:none;
+      }
+      .prints-item{
+        flex-basis:78vw;
+        width:78vw;
+        min-width:78vw;
+        max-width:78vw;
+      }
+      .carousel-btn{
+        width:42px;
+        height:42px;
+      }
     }
   
 /* PROMOÇÃO */
@@ -544,7 +654,7 @@
   </div>
 </section>
 
-<section id="prints">
+<section id="prints-app">
     <div class="wrap white-section">
       <div class="prints-title">
         <h2>Passe mais profissionalismo, feche mais negócios:</h2>
@@ -553,90 +663,98 @@
         </p>
       </div>
 
-  <section>
-    <div class="wrap white-section">
-      <h2>Você ainda faz orçamento no improviso?</h2>
-      <p class="lead">
-        Muitos profissionais perdem vendas porque enviam orçamento de qualquer jeito. Isso passa menos confiança,
-        consome tempo e dificulta o fechamento do serviço.
-      </p>
-
-      <div class="problem">
-        <div class="card">
-          <strong>Sem o app</strong>
-          <ul class="list">
-            <li>Digita tudo manualmente no WhatsApp</li>
-            <li>Faz conta correndo e pode errar</li>
-            <li>Envia orçamento sem aparência profissional</li>
-            <li>Se perde nos códigos de erro</li>
-            <li>demora pra encontrar o diagnóstico</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <strong>Com o app</strong>
-          <ul class="list">
-            <li>Monta o orçamento em poucos minutos</li>
-            <li>Gera um PDF bonito e organizado</li>
-            <li>Descobre a causa de erro rapidamente</li>
-            <li>Passa muito mais profissionalismo ao cliente</li>
-            <li>Agiliza o atendimento e aumenta a chance de fechar o negócio</li>
-          </ul>
+      <div class="prints-carousel" data-speed="38">
+        <div class="prints-track">
+          <div class="prints-item">
+            <div class="print-card">
+              <div class="tag">Tela do orçamento</div>
+              <img src="print-orcamento.png" alt="Tela do orçamento no aplicativo">
+            </div>
+          </div>
+          <div class="prints-item">
+            <div class="print-card">
+              <div class="tag">Tela de serviços</div>
+              <img src="print-servicos.png" alt="Tela de serviços no aplicativo">
+            </div>
+          </div>
+          <div class="prints-item">
+            <div class="print-card">
+              <div class="tag">PDF gerado</div>
+              <img src="print-pdf.png" alt="PDF gerado pelo aplicativo">
+            </div>
+          </div>
+          <div class="prints-item">
+            <div class="print-card">
+              <div class="tag">Tela do orçamento</div>
+              <img src="print-orcamento.png" alt="Tela do orçamento no aplicativo">
+            </div>
+          </div>
+          <div class="prints-item">
+            <div class="print-card">
+              <div class="tag">Tela de serviços</div>
+              <img src="print-servicos.png" alt="Tela de serviços no aplicativo">
+            </div>
+          </div>
+          <div class="prints-item">
+            <div class="print-card">
+              <div class="tag">PDF gerado</div>
+              <img src="print-pdf.png" alt="PDF gerado pelo aplicativo">
+            </div>
+          </div>
+          <div class="prints-item">
+            <div class="print-card">
+              <div class="tag">Tela do orçamento</div>
+              <img src="print-orcamento.png" alt="Tela do orçamento no aplicativo">
+            </div>
+          </div>
+          <div class="prints-item">
+            <div class="print-card">
+              <div class="tag">Tela de serviços</div>
+              <img src="print-servicos.png" alt="Tela de serviços no aplicativo">
+            </div>
+          </div>
+          <div class="prints-item">
+            <div class="print-card">
+              <div class="tag">PDF gerado</div>
+              <img src="print-pdf.png" alt="PDF gerado pelo aplicativo">
+            </div>
+          </div>
+          <div class="prints-item">
+            <div class="print-card">
+              <div class="tag">Tela do orçamento</div>
+              <img src="print-orcamento.png" alt="Tela do orçamento no aplicativo">
+            </div>
+          </div>
+          <div class="prints-item">
+            <div class="print-card">
+              <div class="tag">Tela de serviços</div>
+              <img src="print-servicos.png" alt="Tela de serviços no aplicativo">
+            </div>
+          </div>
+          <div class="prints-item">
+            <div class="print-card">
+              <div class="tag">PDF gerado</div>
+              <img src="print-pdf.png" alt="PDF gerado pelo aplicativo">
+            </div>
+          </div>
+          <div class="prints-item">
+            <div class="print-card">
+              <div class="tag">Tela do orçamento</div>
+              <img src="print-orcamento.png" alt="Tela do orçamento no aplicativo">
+            </div>
+          </div>
+          <div class="prints-item">
+            <div class="print-card">
+              <div class="tag">Tela de serviços</div>
+              <img src="print-servicos.png" alt="Tela de serviços no aplicativo">
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <section id="beneficios">
-    <div class="wrap white-section">
-      <h2>O que o aplicativo faz</h2>
-      <p class="lead">
-        Ele foi pensado para o dia a dia de quem trabalha com climatização e precisa ganhar tempo sem perder qualidade.
-      </p>
-
-      <div class="cards-3">
-        <div class="card">
-          <h3>Cria propostas rapidamente</h3>
-          <p>Preencha os dados do cliente, adicione os serviços e monte o orçamento sem complicação.</p>
-        </div>
-        <div class="card">
-          <h3>Gera PDF profissional</h3>
-          <p>Seu cliente recebe uma proposta organizada, clara e com aparência muito mais profissional.</p>
-        </div>
-        <div class="card">
-          <h3>Códigos de erro na palma da mão</h3>
-          <p>chega de perguntar em grupos ou pesquisar no google, vc vai ter todos os códigos de erro a 1 clique, com você.</p>
-        </div>
-        <div class="card">
-          <h3>Calculadora de BTU</h3>
-          <p>Dimensione o ar corretamente para cada tipo te ambiente.</p>
-        </div>
-        <div class="card">
-          <h3>Ajuda a vender mais</h3>
-          <p>Um orçamento bem apresentado transmite confiança e valoriza o seu serviço.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  
-
-
-      <div class="prints-grid">
-        <div class="print-card">
-          <div class="tag">Tela do orçamento</div>
-          <img src="print-orcamento.png" alt="Tela do orçamento no aplicativo">
-        </div>
-
-        <div class="print-card">
-          <div class="tag">Tela de serviços</div>
-          <img src="print-servicos.png" alt="Tela de serviços no aplicativo">
-        </div>
-
-        <div class="print-card">
-          <div class="tag">PDF gerado</div>
-          <img src="print-pdf.png" alt="PDF gerado pelo aplicativo">
-        </div>
+      <div class="carousel-nav">
+        <button class="carousel-btn" type="button" aria-label="Voltar">‹</button>
+        <button class="carousel-btn" type="button" aria-label="Avançar">›</button>
       </div>
 
       <div class="impact-box">
@@ -647,7 +765,7 @@
   </section>
   
 
-  <section id="prints">
+  <section id="prints-codigos">
     <div class="wrap white-section">
       <div class="prints-title">
         <h2>Acesso aos códigos de erros dos aparelhos</h2>
@@ -656,16 +774,75 @@
         </p>
       </div>
 
-      <div class="prints-grid">
-        <div class="print-card">
-          <div class="tag">Tela dos Cód. de Erros</div>
-          <img src="erros.png" alt="Tela do orçamento no aplicativo">
+      <div class="prints-carousel" data-speed="34">
+        <div class="prints-track">
+          <div class="prints-item">
+            <div class="print-card">
+              <div class="tag">Tela dos Cód. de Erros</div>
+              <img src="erros.png" alt="Tela dos códigos de erro no aplicativo">
+            </div>
+          </div>
+          <div class="prints-item">
+            <div class="print-card">
+              <div class="tag">Tela Calculadora</div>
+              <img src="calculadora.png" alt="Tela da calculadora no aplicativo">
+            </div>
+          </div>
+          <div class="prints-item">
+            <div class="print-card">
+              <div class="tag">Tela dos Cód. de Erros</div>
+              <img src="erros.png" alt="Tela dos códigos de erro no aplicativo">
+            </div>
+          </div>
+          <div class="prints-item">
+            <div class="print-card">
+              <div class="tag">Tela Calculadora</div>
+              <img src="calculadora.png" alt="Tela da calculadora no aplicativo">
+            </div>
+          </div>
+          <div class="prints-item">
+            <div class="print-card">
+              <div class="tag">Tela dos Cód. de Erros</div>
+              <img src="erros.png" alt="Tela dos códigos de erro no aplicativo">
+            </div>
+          </div>
+          <div class="prints-item">
+            <div class="print-card">
+              <div class="tag">Tela Calculadora</div>
+              <img src="calculadora.png" alt="Tela da calculadora no aplicativo">
+            </div>
+          </div>
+          <div class="prints-item">
+            <div class="print-card">
+              <div class="tag">Tela dos Cód. de Erros</div>
+              <img src="erros.png" alt="Tela dos códigos de erro no aplicativo">
+            </div>
+          </div>
+          <div class="prints-item">
+            <div class="print-card">
+              <div class="tag">Tela Calculadora</div>
+              <img src="calculadora.png" alt="Tela da calculadora no aplicativo">
+            </div>
+          </div>
+          <div class="prints-item">
+            <div class="print-card">
+              <div class="tag">Tela dos Cód. de Erros</div>
+              <img src="erros.png" alt="Tela dos códigos de erro no aplicativo">
+            </div>
+          </div>
+          <div class="prints-item">
+            <div class="print-card">
+              <div class="tag">Tela Calculadora</div>
+              <img src="calculadora.png" alt="Tela da calculadora no aplicativo">
+            </div>
+          </div>
         </div>
+      </div>
 
-        <div class="print-card">
-          <div class="tag">Tela Calculadora</div>
-          <img src="calculadora.png" alt="Tela de serviços no aplicativo">
-        </div>
+      <div class="carousel-nav">
+        <button class="carousel-btn" type="button" aria-label="Voltar">‹</button>
+        <button class="carousel-btn" type="button" aria-label="Avançar">›</button>
+      </div>
 
       <div class="impact-box">
         Pare de perder tempo pra gerar o diagnóstico.
@@ -805,6 +982,103 @@ function updateCountdown(){
 
 updateCountdown();
 setInterval(updateCountdown,60000);
+</script>
+
+
+<script>
+(function(){
+  function setupCarousel(carousel){
+    const track = carousel.querySelector('.prints-track');
+    const prevBtn = carousel.parentElement.querySelector('.carousel-nav .carousel-btn:first-child');
+    const nextBtn = carousel.parentElement.querySelector('.carousel-nav .carousel-btn:last-child');
+    if(!track) return;
+
+    let isDown = false;
+    let startX = 0;
+    let startTranslate = 0;
+    let currentTranslate = 0;
+    let animatingBack = false;
+
+    function getTranslateX(){
+      const style = window.getComputedStyle(track);
+      const matrix = new DOMMatrixReadOnly(style.transform);
+      return matrix.m41 || 0;
+    }
+
+    function pause(){
+      carousel.classList.add('is-paused');
+    }
+
+    function resume(){
+      if(isDown) return;
+      carousel.classList.remove('is-paused');
+      track.style.transform = '';
+    }
+
+    function nudge(direction){
+      pause();
+      const first = track.querySelector('.prints-item');
+      if(!first) return;
+      const gap = parseFloat(getComputedStyle(track).gap || 18);
+      const amount = first.getBoundingClientRect().width + gap;
+      currentTranslate = getTranslateX() + (direction * amount);
+      track.style.transform = `translateX(${currentTranslate}px)`;
+      setTimeout(() => {
+        track.style.transform = '';
+        resume();
+      }, 260);
+    }
+
+    if(prevBtn){
+      prevBtn.addEventListener('click', () => nudge(amount = 1));
+    }
+
+    if(nextBtn){
+      nextBtn.addEventListener('click', () => nudge(amount = -1));
+    }
+
+    function pointerDown(clientX){
+      isDown = true;
+      carousel.classList.add('dragging','is-paused');
+      startX = clientX;
+      startTranslate = getTranslateX();
+      currentTranslate = startTranslate;
+      track.style.transform = `translateX(${currentTranslate}px)`;
+    }
+
+    function pointerMove(clientX){
+      if(!isDown) return;
+      const delta = clientX - startX;
+      currentTranslate = startTranslate + delta;
+      track.style.transform = `translateX(${currentTranslate}px)`;
+    }
+
+    function pointerUp(){
+      if(!isDown) return;
+      isDown = false;
+      carousel.classList.remove('dragging');
+      track.style.transform = '';
+      setTimeout(() => carousel.classList.remove('is-paused'), 120);
+    }
+
+    carousel.addEventListener('mousedown', (e) => {
+      pointerDown(e.clientX);
+      e.preventDefault();
+    });
+
+    window.addEventListener('mousemove', (e) => pointerMove(e.clientX));
+    window.addEventListener('mouseup', pointerUp);
+
+    carousel.addEventListener('touchstart', (e) => pointerDown(e.touches[0].clientX), {passive:true});
+    carousel.addEventListener('touchmove', (e) => pointerMove(e.touches[0].clientX), {passive:true});
+    carousel.addEventListener('touchend', pointerUp);
+
+    carousel.addEventListener('mouseenter', pause);
+    carousel.addEventListener('mouseleave', resume);
+  }
+
+  document.querySelectorAll('.prints-carousel').forEach(setupCarousel);
+})();
 </script>
 
 </body>
