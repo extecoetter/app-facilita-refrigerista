@@ -261,23 +261,23 @@
       position:relative;
       overflow:hidden;
       margin-top:8px;
-      touch-action:pan-y;
-      -webkit-overflow-scrolling:touch;
+      mask-image: linear-gradient(to right, transparent 0, black 4%, black 96%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0, black 4%, black 96%, transparent 100%);
     }
 
     .prints-track{
       display:flex;
-      gap:10px;
-      width:max-content;
       align-items:stretch;
+      gap:18px;
+      width:max-content;
+      animation:carousel-scroll 38s linear infinite;
       will-change:transform;
       cursor:grab;
       user-select:none;
-      animation:prints-marquee var(--carousel-speed, 14s) linear infinite;
     }
 
-    .prints-carousel:hover .prints-track,
-    .prints-carousel.is-paused .prints-track{
+    .prints-carousel.is-paused .prints-track,
+    .prints-carousel:hover .prints-track{
       animation-play-state:paused;
     }
 
@@ -287,14 +287,16 @@
     }
 
     .prints-item{
-      flex:0 0 140px;
-      width:140px;
+      flex:0 0 calc((100vw - 120px) / 7);
+      width:calc((100vw - 120px) / 7);
+      min-width:150px;
+      max-width:170px;
     }
 
     .prints-item .print-card{
       height:100%;
-      padding:9px;
-      border-radius:22px;
+      padding:12px;
+      border-radius:24px;
     }
 
     .prints-item .print-card .tag{
@@ -303,35 +305,33 @@
       white-space:nowrap;
       overflow:hidden;
       text-overflow:ellipsis;
-      margin-bottom:8px;
-      font-size:11px;
-      padding:6px 8px;
+      margin-bottom:10px;
+      font-size:12px;
+      padding:7px 10px;
     }
 
     .prints-item .print-card img{
-      aspect-ratio:9 / 19.5;
-      object-fit:contain;
-      object-position:center;
-      border-radius:16px;
-      background:#fff;
+      aspect-ratio:9/19.5;
+      object-fit:cover;
+      border-radius:18px;
     }
 
     .carousel-nav{
       display:flex;
       justify-content:center;
-      gap:10px;
-      margin-top:14px;
+      gap:12px;
+      margin-top:16px;
     }
 
     .carousel-btn{
       border:none;
       background:#fff;
       color:var(--brand);
-      width:44px;
-      height:44px;
+      width:48px;
+      height:48px;
       border-radius:999px;
       box-shadow:var(--shadow);
-      font-size:24px;
+      font-size:26px;
       font-weight:900;
       cursor:pointer;
       transition:.18s ease;
@@ -343,9 +343,9 @@
       color:#fff;
     }
 
-    @keyframes prints-marquee{
-      from{transform:translateX(0)}
-      to{transform:translateX(calc(-50% - 5px))}
+    @keyframes carousel-scroll{
+      from{ transform:translateX(0); }
+      to{ transform:translateX(calc(-50% - 9px)); }
     }
 
     .print-card{
@@ -511,8 +511,9 @@
         grid-template-columns:1fr;
       }
       .prints-item{
-        flex:0 0 118px;
-        width:118px;
+        flex-basis:calc((100vw - 72px) / 4);
+        width:calc((100vw - 72px) / 4);
+        min-width:150px;
       }
       .hero-visual{max-width:560px; margin:0 auto}
       .plan-card.featured{transform:none}
@@ -529,31 +530,18 @@
       .mini-list li{margin:8px 0}
       .impact-box{font-size:19px}
       .prints-carousel{
-        overflow:visible;
-      }
-      .prints-track{
-        gap:8px;
+        mask-image:none;
+        -webkit-mask-image:none;
       }
       .prints-item{
-        flex:0 0 41vw;
-        width:41vw;
-        min-width:41vw;
-      }
-      .prints-item .print-card{
-        padding:7px;
-        border-radius:18px;
-      }
-      .prints-item .print-card .tag{
-        font-size:10px;
-        padding:5px 7px;
-        margin-bottom:6px;
-      }
-      .prints-item .print-card img{
-        border-radius:14px;
+        flex-basis:78vw;
+        width:78vw;
+        min-width:78vw;
+        max-width:78vw;
       }
       .carousel-btn{
-        width:40px;
-        height:40px;
+        width:42px;
+        height:42px;
       }
     }
   
@@ -636,6 +624,109 @@
     </div>
   </header>
 
+  <section id="prints-app">
+    <div class="wrap white-section">
+      <div class="prints-title">
+        <h2>Passe mais profissionalismo, feche mais negócios:</h2>
+        <p class="lead" style="margin-left:auto;margin-right:auto;">
+          Crie propostas profissionais, tenha acesso aos códigos de erro, e um diagnóstico guiado de problemeas, além da calculadora de BTU.
+        </p>
+      </div>
+
+      <div class="prints-carousel" data-speed="38">
+        <div class="prints-track">
+          <div class="prints-item">
+            <div class="print-card">
+              <div class="tag">Tela do orçamento</div>
+              <img src="print-orcamento.png" alt="Tela do orçamento no aplicativo">
+            </div>
+          </div>
+          <div class="prints-item">
+            <div class="print-card">
+              <div class="tag">Tela de serviços</div>
+              <img src="print-servicos.png" alt="Tela de serviços no aplicativo">
+            </div>
+          </div>
+          <div class="prints-item">
+            <div class="print-card">
+              <div class="tag">PDF gerado</div>
+              <img src="print-pdf.png" alt="PDF gerado pelo aplicativo">
+            </div>
+          </div>
+          <div class="prints-item">
+            <div class="print-card">
+              <div class="tag">Diagnóstico de Problemeas</div>
+              <img src="problema1.png" alt="Tela do orçamento no aplicativo">
+            </div>
+          </div>
+          <div class="prints-item">
+            <div class="print-card">
+              <div class="tag">Diagnóstico de Problemas</div>
+              <img src="problema2.png" alt="Tela de serviços no aplicativo">
+            </div>
+          </div>
+          <div class="prints-item">
+            <div class="print-card">
+              <div class="tag">Calculadora de BTU</div>
+              <img src="calculadora.png" alt="PDF gerado pelo aplicativo">
+            </div>
+          </div>
+          <div class="prints-item">
+            <div class="print-card">
+              <div class="tag">Acesso aos Códigos de Erro</div>
+              <img src="erros.png" alt="Tela do orçamento no aplicativo">
+            </div>
+          </div>
+          <div class="prints-item">
+            <div class="print-card">
+              <div class="tag">Acesso aos Códigos de Erro</div>
+              <img src="erros2.png" alt="Tela de serviços no aplicativo">
+            </div>
+          </div>
+          <div class="prints-item">
+            <div class="print-card">
+              <div class="tag">PDF gerado</div>
+              <img src="print-pdf.png" alt="PDF gerado pelo aplicativo">
+            </div>
+          </div>
+          <div class="prints-item">
+            <div class="print-card">
+              <div class="tag">Tela do orçamento</div>
+              <img src="print-orcamento.png" alt="Tela do orçamento no aplicativo">
+            </div>
+          </div>
+          <div class="prints-item">
+            <div class="print-card">
+              <div class="tag">Tela de serviços</div>
+              <img src="print-servicos.png" alt="Tela de serviços no aplicativo">
+            </div>
+          </div>
+          <div class="prints-item">
+            <div class="print-card">
+              <div class="tag">PDF gerado</div>
+              <img src="print-pdf.png" alt="PDF gerado pelo aplicativo">
+            </div>
+          </div>
+          <div class="prints-item">
+            <div class="print-card">
+              <div class="tag">Tela do orçamento</div>
+              <img src="print-orcamento.png" alt="Tela do orçamento no aplicativo">
+            </div>
+          </div>
+          <div class="prints-item">
+            <div class="print-card">
+              <div class="tag">Tela de serviços</div>
+              <img src="print-servicos.png" alt="Tela de serviços no aplicativo">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-nav">
+        <button class="carousel-btn" type="button" aria-label="Voltar">‹</button>
+        <button class="carousel-btn" type="button" aria-label="Avançar">›</button>
+      </div>
+
   <section id="video-demo-1" style="padding:40px 0;">
   <div class="wrap white-section">
     <h2 style="text-align:center;">Gerador de PDF Profissional</h2>
@@ -666,142 +757,6 @@
   </div>
 </section>
 
-<section id="prints-app">
-    <div class="wrap white-section">
-      <div class="prints-title">
-        <h2>Passe mais profissionalismo, feche mais negócios:</h2>
-        <p class="lead" style="margin-left:auto;margin-right:auto;">
-          Aplicativo simples e rápido para criar propostas profissionais direto no celular.
-        </p>
-      </div>
-
-  <section>
-    <div class="wrap white-section">
-      <h2>Você ainda faz orçamento no improviso?</h2>
-      <p class="lead">
-        Muitos profissionais perdem vendas porque enviam orçamento de qualquer jeito. Isso passa menos confiança,
-        consome tempo e dificulta o fechamento do serviço.
-      </p>
-
-      <div class="problem">
-        <div class="card">
-          <strong>Sem o app</strong>
-          <ul class="list">
-            <li>Digita tudo manualmente no WhatsApp</li>
-            <li>Faz conta correndo e pode errar</li>
-            <li>Envia orçamento sem aparência profissional</li>
-            <li>Se perde nos códigos de erro</li>
-            <li>demora pra encontrar o diagnóstico</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <strong>Com o app</strong>
-          <ul class="list">
-            <li>Monta o orçamento em poucos minutos</li>
-            <li>Gera um PDF bonito e organizado</li>
-            <li>Descobre a causa de erro rapidamente</li>
-            <li>Passa muito mais profissionalismo ao cliente</li>
-            <li>Agiliza o atendimento e aumenta a chance de fechar o negócio</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="beneficios">
-    <div class="wrap white-section">
-      <h2>O que o aplicativo faz</h2>
-      <p class="lead">
-        Ele foi pensado para o dia a dia de quem trabalha com climatização e precisa ganhar tempo sem perder qualidade.
-      </p>
-
-      <div class="cards-3">
-        <div class="card">
-          <h3>Cria propostas rapidamente</h3>
-          <p>Preencha os dados do cliente, adicione os serviços e monte o orçamento sem complicação.</p>
-        </div>
-        <div class="card">
-          <h3>Gera PDF profissional</h3>
-          <p>Seu cliente recebe uma proposta organizada, clara e com aparência muito mais profissional.</p>
-        </div>
-        <div class="card">
-          <h3>Códigos de erro na palma da mão</h3>
-          <p>chega de perguntar em grupos ou pesquisar no google, vc vai ter todos os códigos de erro a 1 clique, com você.</p>
-        </div>
-        <div class="card">
-          <h3>Calculadora de BTU</h3>
-          <p>Dimensione o ar corretamente para cada tipo te ambiente.</p>
-        </div>
-        <div class="card">
-          <h3>Ajuda a vender mais</h3>
-          <p>Um orçamento bem apresentado transmite confiança e valoriza o seu serviço.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  
-
-
-      <div class="prints-carousel" data-speed="12">
-        <div class="prints-track">
-          <div class="prints-item"><div class="print-card"><div class="tag">Tela do orçamento</div><img src="print-orcamento.png" alt="Tela do orçamento no aplicativo"></div></div>
-          <div class="prints-item"><div class="print-card"><div class="tag">Tela de serviços</div><img src="print-servicos.png" alt="Tela de serviços no aplicativo"></div></div>
-          <div class="prints-item"><div class="print-card"><div class="tag">PDF gerado</div><img src="print-pdf.png" alt="PDF gerado pelo aplicativo"></div></div>
-          <div class="prints-item"><div class="print-card"><div class="tag">Tela do orçamento</div><img src="print-orcamento.png" alt="Tela do orçamento no aplicativo"></div></div>
-          <div class="prints-item"><div class="print-card"><div class="tag">Tela de serviços</div><img src="print-servicos.png" alt="Tela de serviços no aplicativo"></div></div>
-          <div class="prints-item"><div class="print-card"><div class="tag">PDF gerado</div><img src="print-pdf.png" alt="PDF gerado pelo aplicativo"></div></div>
-          <div class="prints-item"><div class="print-card"><div class="tag">Tela do orçamento</div><img src="print-orcamento.png" alt="Tela do orçamento no aplicativo"></div></div>
-          <div class="prints-item"><div class="print-card"><div class="tag">Tela de serviços</div><img src="print-servicos.png" alt="Tela de serviços no aplicativo"></div></div>
-          <div class="prints-item"><div class="print-card"><div class="tag">PDF gerado</div><img src="print-pdf.png" alt="PDF gerado pelo aplicativo"></div></div>
-        </div>
-      </div>
-
-      <div class="carousel-nav">
-        <button class="carousel-btn" type="button" aria-label="Voltar">‹</button>
-        <button class="carousel-btn" type="button" aria-label="Avançar">›</button>
-      </div>
-
-      <div class="impact-box">
-        Pare de enviar orçamento desorganizado no WhatsApp.
-        <span>Impressione seu cliente com uma proposta profissional em PDF.</span>
-      </div>
-    </div>
-  </section>
-  
-
-  <section id="prints-codigos">
-    <div class="wrap white-section">
-      <div class="prints-title">
-        <h2>Acesso aos códigos de erros dos aparelhos</h2>
-        <p class="lead" style="margin-left:auto;margin-right:auto;">
-          Chega de ficar perdido pesquisando código de erro, ganhe tempo.
-        </p>
-      </div>
-
-      <div class="prints-carousel" data-speed="10">
-        <div class="prints-track">
-          <div class="prints-item"><div class="print-card"><div class="tag">Tela dos Cód. de Erros</div><img src="erros.png" alt="Tela dos códigos de erro no aplicativo"></div></div>
-          <div class="prints-item"><div class="print-card"><div class="tag">Tela Calculadora</div><img src="calculadora.png" alt="Tela da calculadora no aplicativo"></div></div>
-          <div class="prints-item"><div class="print-card"><div class="tag">Tela dos Cód. de Erros</div><img src="erros.png" alt="Tela dos códigos de erro no aplicativo"></div></div>
-          <div class="prints-item"><div class="print-card"><div class="tag">Tela Calculadora</div><img src="calculadora.png" alt="Tela da calculadora no aplicativo"></div></div>
-          <div class="prints-item"><div class="print-card"><div class="tag">Tela dos Cód. de Erros</div><img src="erros.png" alt="Tela dos códigos de erro no aplicativo"></div></div>
-          <div class="prints-item"><div class="print-card"><div class="tag">Tela Calculadora</div><img src="calculadora.png" alt="Tela da calculadora no aplicativo"></div></div>
-        </div>
-      </div>
-
-      <div class="carousel-nav">
-        <button class="carousel-btn" type="button" aria-label="Voltar">‹</button>
-        <button class="carousel-btn" type="button" aria-label="Avançar">›</button>
-      </div>
-
-      <div class="impact-box">
-        Pare de perder tempo pra gerar o diagnóstico.
-        <span>Tudo rapido no seu celular.</span>
-      </div>
-    </div>
-  </section>
 
   <section id="comprar">
     <div class="wrap white-section">
@@ -941,127 +896,92 @@ setInterval(updateCountdown,60000);
 (function(){
   function setupCarousel(carousel){
     const track = carousel.querySelector('.prints-track');
+    const prevBtn = carousel.parentElement.querySelector('.carousel-nav .carousel-btn:first-child');
+    const nextBtn = carousel.parentElement.querySelector('.carousel-nav .carousel-btn:last-child');
     if(!track) return;
 
-    const section = carousel.closest('.white-section') || carousel.parentElement;
-    const prevBtn = section.querySelector('.carousel-nav .carousel-btn:first-child');
-    const nextBtn = section.querySelector('.carousel-nav .carousel-btn:last-child');
-
-    const speed = parseFloat(carousel.dataset.speed || 12);
-    carousel.style.setProperty('--carousel-speed', `${speed}s`);
-
-    let isDragging = false;
+    let isDown = false;
     let startX = 0;
-    let startY = 0;
     let startTranslate = 0;
     let currentTranslate = 0;
-    let moved = false;
-    let resumeTimer = null;
+    let animatingBack = false;
 
     function getTranslateX(){
       const style = window.getComputedStyle(track);
-      const transform = style.transform;
-      if(!transform || transform === 'none') return 0;
-      const matrix = new DOMMatrixReadOnly(transform);
+      const matrix = new DOMMatrixReadOnly(style.transform);
       return matrix.m41 || 0;
     }
 
     function pause(){
-      clearTimeout(resumeTimer);
       carousel.classList.add('is-paused');
     }
 
-    function resume(delay = 180){
-      clearTimeout(resumeTimer);
-      resumeTimer = setTimeout(() => {
-        if(isDragging) return;
-        track.style.transition = '';
-        track.style.transform = '';
-        carousel.classList.remove('is-paused');
-      }, delay);
-    }
-
-    function itemWidth(){
-      const first = track.querySelector('.prints-item');
-      if(!first) return 0;
-      const gap = parseFloat(getComputedStyle(track).gap || 0);
-      return first.getBoundingClientRect().width + gap;
+    function resume(){
+      if(isDown) return;
+      carousel.classList.remove('is-paused');
+      track.style.transform = '';
     }
 
     function nudge(direction){
       pause();
-      currentTranslate = getTranslateX() + (direction * itemWidth() * 1.05);
-      track.style.transition = 'transform .25s ease';
-      track.style.transform = `translate3d(${currentTranslate}px,0,0)`;
-      resume(420);
+      const first = track.querySelector('.prints-item');
+      if(!first) return;
+      const gap = parseFloat(getComputedStyle(track).gap || 18);
+      const amount = first.getBoundingClientRect().width + gap;
+      currentTranslate = getTranslateX() + (direction * amount);
+      track.style.transform = `translateX(${currentTranslate}px)`;
+      setTimeout(() => {
+        track.style.transform = '';
+        resume();
+      }, 260);
     }
 
-    prevBtn.addEventListener('click', () => nudge(1));
-    nextBtn.addEventListener('click', () => nudge(-1));
+    if(prevBtn){
+      prevBtn.addEventListener('click', () => nudge(amount = 1));
+    }
 
-    function dragStart(x, y){
-      isDragging = true;
-      moved = false;
-      startX = x;
-      startY = y;
+    if(nextBtn){
+      nextBtn.addEventListener('click', () => nudge(amount = -1));
+    }
+
+    function pointerDown(clientX){
+      isDown = true;
+      carousel.classList.add('dragging','is-paused');
+      startX = clientX;
       startTranslate = getTranslateX();
       currentTranslate = startTranslate;
-      pause();
-      carousel.classList.add('dragging');
-      track.style.transition = 'none';
-      track.style.transform = `translate3d(${currentTranslate}px,0,0)`;
+      track.style.transform = `translateX(${currentTranslate}px)`;
     }
 
-    function dragMove(x, y, e){
-      if(!isDragging) return;
-      const dx = x - startX;
-      const dy = y - startY;
-
-      if(!moved && Math.abs(dx) < 5 && Math.abs(dy) < 5) return;
-      if(!moved && Math.abs(dy) > Math.abs(dx)){
-        dragEnd();
-        return;
-      }
-
-      moved = true;
-      currentTranslate = startTranslate + dx;
-      track.style.transform = `translate3d(${currentTranslate}px,0,0)`;
-
-      if(e && e.cancelable) e.preventDefault();
+    function pointerMove(clientX){
+      if(!isDown) return;
+      const delta = clientX - startX;
+      currentTranslate = startTranslate + delta;
+      track.style.transform = `translateX(${currentTranslate}px)`;
     }
 
-    function dragEnd(){
-      if(!isDragging) return;
-      isDragging = false;
+    function pointerUp(){
+      if(!isDown) return;
+      isDown = false;
       carousel.classList.remove('dragging');
-      track.style.transition = 'transform .18s ease-out';
-      track.style.transform = `translate3d(${currentTranslate}px,0,0)`;
-      resume(moved ? 220 : 100);
+      track.style.transform = '';
+      setTimeout(() => carousel.classList.remove('is-paused'), 120);
     }
 
     carousel.addEventListener('mousedown', (e) => {
-      dragStart(e.clientX, e.clientY);
+      pointerDown(e.clientX);
       e.preventDefault();
     });
 
-    window.addEventListener('mousemove', (e) => dragMove(e.clientX, e.clientY, e));
-    window.addEventListener('mouseup', dragEnd);
+    window.addEventListener('mousemove', (e) => pointerMove(e.clientX));
+    window.addEventListener('mouseup', pointerUp);
 
-    carousel.addEventListener('touchstart', (e) => {
-      const t = e.touches[0];
-      dragStart(t.clientX, t.clientY);
-    }, { passive:true });
-
-    carousel.addEventListener('touchmove', (e) => {
-      const t = e.touches[0];
-      dragMove(t.clientX, t.clientY, e);
-    }, { passive:false });
-
-    carousel.addEventListener('touchend', dragEnd);
-    carousel.addEventListener('touchcancel', dragEnd);
+    carousel.addEventListener('touchstart', (e) => pointerDown(e.touches[0].clientX), {passive:true});
+    carousel.addEventListener('touchmove', (e) => pointerMove(e.touches[0].clientX), {passive:true});
+    carousel.addEventListener('touchend', pointerUp);
 
     carousel.addEventListener('mouseenter', pause);
-    carousel.addEventListener('mouseleave', () => resume(120));
+    carousel.addEventListener('mouseleave', resume);
   }
 
   document.querySelectorAll('.prints-carousel').forEach(setupCarousel);
