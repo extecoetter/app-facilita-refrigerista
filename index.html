@@ -284,6 +284,36 @@
       font-weight:800;
     }
 
+
+
+    .hero-carousel-box{
+      margin-top:22px;
+      padding:16px;
+      border-radius:26px;
+      background:linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.08));
+      border:1px solid rgba(255,255,255,.22);
+      box-shadow:0 18px 40px rgba(0,0,0,.14);
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+    }
+
+    .hero-carousel-title{
+      margin:0 0 14px;
+      text-align:center;
+      color:#fff;
+      font-weight:900;
+      font-size:18px;
+    }
+
+    .hero-carousel-box .prints-carousel{
+      margin-top:0;
+      padding:4px 0;
+    }
+
+    .hero-carousel-box .carousel-nav{
+      margin-top:14px;
+    }
+
     .proof-bar{
       display:grid;
       grid-template-columns:repeat(3,1fr);
@@ -871,6 +901,15 @@
         max-width:420px;
       }
       .proof-mini strong{font-size:17px}
+
+      .hero-carousel-box{
+        padding:12px;
+        border-radius:20px;
+      }
+      .hero-carousel-title{
+        font-size:16px;
+        margin-bottom:10px;
+      }
       .prints-carousel{
         mask-image:none;
         -webkit-mask-image:none;
@@ -921,8 +960,7 @@
 
         <h1>Descubra defeitos de ar-condicionado em segundos, passe mais confiança e feche mais serviços</h1>
         <p class="sub">
-          Tenha no celular códigos de erro, diagnóstico com problemas e soluções, calculadora de BTU e orçamento em PDF profissional com poucos toques.
-          Tudo pensado para o técnico que quer atender mais rápido e parecer mais profissional na frente do cliente, mesmo sem ter experiencia.
+          Tenha no celular códigos de erro, diagnóstico com problemas e soluções, calculadora de BTU e orçamento em PDF profissional com poucos toques. Tudo pensado para técnico que quer atender mais rápido e parecer mais profissional na frente do cliente.
         </p>
 
         <div class="cta-row">
@@ -935,6 +973,25 @@
           <li>✅ Diagnóstico rápido de problemas</li>
           <li>✅ Orçamento profissional em PDF</li>
         </ul>
+        <div class="hero-carousel-box">
+          <p class="hero-carousel-title">Veja o app funcionando na prática 👇</p>
+<div class="prints-carousel" data-speed="96">
+<div class="prints-track">
+<div class="prints-item"><div class="print-card"><div class="tag">Tela do orçamento</div><img alt="Tela do orçamento no aplicativo" src="print-orcamento.png"/></div></div>
+<div class="prints-item"><div class="print-card"><div class="tag">Tela de serviços</div><img alt="Tela de serviços no aplicativo" src="print-servicos.png"/></div></div>
+<div class="prints-item"><div class="print-card"><div class="tag">PDF gerado</div><img alt="PDF gerado pelo aplicativo" src="print-pdf.png"/></div></div>
+<div class="prints-item"><div class="print-card"><div class="tag">Diagnóstico de problemas</div><img alt="Tela de diagnóstico de problemas" src="problema1.png"/></div></div>
+<div class="prints-item"><div class="print-card"><div class="tag">Diagnóstico de problemas</div><img alt="Tela de diagnóstico de problemas" src="problema2.png"/></div></div>
+<div class="prints-item"><div class="print-card"><div class="tag">Calculadora de BTU</div><img alt="Tela da calculadora de BTU" src="calculadora.png"/></div></div>
+<div class="prints-item"><div class="print-card"><div class="tag">Códigos de erro</div><img alt="Tela de códigos de erro" src="erros.png"/></div></div>
+<div class="prints-item"><div class="print-card"><div class="tag">Códigos de erro</div><img alt="Tela de códigos de erro" src="erros2.png"/></div></div>
+</div>
+</div>
+<div class="carousel-nav">
+<button aria-label="Voltar" class="carousel-btn" type="button">‹</button>
+<button aria-label="Avançar" class="carousel-btn" type="button">›</button>
+</div>
+        </div>
 
         <div class="proof-bar">
           <div class="proof-mini">
@@ -944,70 +1001,7 @@
           <div class="proof-mini">
             <strong>Prático</strong>
             <span>Funciona direto no celular</span>
-          </div>
-          <div class="proof-mini">
-            <strong>Mais profissional</strong>
-            <span>Impressione o cliente na hora</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="hero-visual">
-        <img src="print-pdf.png" alt="PDF profissional gerado pelo aplicativo">
-      </div>
-    </div>
-  </header>
-
-  <section>
-    <div class="wrap white-section">
-      <div class="impact-box">
-        Em poucos segundos você identifica o problema, consulta o erro e já envia um orçamento profissional
-        <span>Tudo isso no mesmo app, direto pelo celular</span>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap white-section">
-      <div class="prints-title">
-        <h2>Como o app te ajuda no dia a dia</h2>
-        <p class="lead" style="margin-left:auto;margin-right:auto;">
-          O objetivo é simples: fazer você atender mais rápido, passar mais segurança e facilitar o fechamento do serviço.
-        </p>
-      </div>
-
-      <div class="steps">
-        <div class="step-card">
-          <h3>Encontre o erro</h3>
-          <p>Pesquise códigos de erro do aparelho e agilize o diagnóstico sem perder tempo procurando informação em vários lugares.</p>
-        </div>
-
-        <div class="step-card">
-          <h3>Veja o problema e a solução</h3>
-          <p>Consulte a lista de problemas que o equipamento pode apresentar e tenha uma direção mais rápida para resolver.</p>
-        </div>
-
-        <div class="step-card">
-          <h3>Envie um orçamento profissional</h3>
-          <p>Depois do atendimento, gere o PDF no celular e envie para o cliente com mais organização e profissionalismo.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="prints-app">
-    <div class="wrap white-section">
-      <div class="prints-title">
-        <h2>Veja o aplicativo por dentro</h2>
-        <p class="lead" style="margin-left:auto;margin-right:auto;">
-          Códigos de erro, diagnóstico de problemas, calculadora de BTU e PDF profissional no mesmo lugar.
-        </p>
-      </div>
-
-      <div class="prints-carousel" data-speed="96">
-        <div class="prints-track">
-          <div class="prints-item"><div class="print-card"><div class="tag">Tela do orçamento</div><img src="print-orcamento.png" alt="Tela do orçamento no aplicativo"></div></div>
-          <div class="prints-item"><div class="print-card"><div class="tag">Tela de serviços</div><img src="print-servicos.png" alt="Tela de serviços no aplicativo"></div></div>
+   alt="Tela de serviços no aplicativo"></div></div>
           <div class="prints-item"><div class="print-card"><div class="tag">PDF gerado</div><img src="print-pdf.png" alt="PDF gerado pelo aplicativo"></div></div>
           <div class="prints-item"><div class="print-card"><div class="tag">Diagnóstico de problemas</div><img src="problema1.png" alt="Tela de diagnóstico de problemas"></div></div>
           <div class="prints-item"><div class="print-card"><div class="tag">Diagnóstico de problemas</div><img src="problema2.png" alt="Tela de diagnóstico de problemas"></div></div>
