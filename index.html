@@ -6,9 +6,7 @@
   <title>Facilita Refrigerista</title>
   <style>
     :root{
-      --bg1:#0456b7;
-      --bg2:#2891ff;
-      --bg3:#eef5ff;
+      --bg:#eef5ff;
       --card:#ffffff;
       --text:#102033;
       --muted:#5d6b7a;
@@ -17,9 +15,12 @@
       --brand-dark:#084f97;
       --brand-soft:#eaf3ff;
       --ok:#118a4e;
-      --shadow:0 16px 40px rgba(16,32,51,.12);
-      --shadow-strong:0 24px 56px rgba(11,107,203,.22);
-      --radius:26px;
+      --warn:#ff9f1c;
+      --ink:#07111f;
+      --shadow:0 18px 50px rgba(16,32,51,.12);
+      --shadow-strong:0 25px 70px rgba(11,107,203,.25);
+      --glow:0 0 0 1px rgba(255,255,255,.12), 0 14px 40px rgba(0,0,0,.18);
+      --radius:28px;
       --max:1180px;
     }
 
@@ -28,65 +29,157 @@
     body{
       margin:0;
       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-      color:var(--text);
-      line-height:1.55;
-      overflow-x:hidden;
       background:
         radial-gradient(circle at 12% 14%, rgba(255,255,255,.22), transparent 22%),
         radial-gradient(circle at 88% 10%, rgba(147,211,255,.24), transparent 20%),
-        linear-gradient(135deg,var(--bg1) 0%, var(--bg2) 44%, var(--bg3) 100%);
+        radial-gradient(circle at 50% 0%, rgba(255,255,255,.12), transparent 28%),
+        linear-gradient(135deg,#0552ad 0%, #1f84ff 44%, #eef5ff 100%);
+      color:var(--text);
+      line-height:1.55;
+      overflow-x:hidden;
     }
 
-    img,video{max-width:100%;display:block}
-    .wrap{width:min(var(--max),calc(100% - 24px));margin:0 auto}
+    body::before,
+    body::after{
+      content:"";
+      position:fixed;
+      inset:auto;
+      border-radius:999px;
+      pointer-events:none;
+      filter:blur(80px);
+      z-index:0;
+      opacity:.45;
+    }
+
+    body::before{
+      width:340px;
+      height:340px;
+      background:rgba(255,255,255,.18);
+      top:120px;
+      left:-80px;
+    }
+
+    body::after{
+      width:380px;
+      height:380px;
+      background:rgba(69,173,255,.26);
+      top:40px;
+      right:-100px;
+    }
+
+    .wrap{
+      width:min(var(--max),calc(100% - 32px));
+      margin:0 auto;
+      position:relative;
+      z-index:1;
+    }
 
     .hero{
-      padding:24px 0 36px;
+      padding:28px 0 40px;
       position:relative;
       overflow:hidden;
+    }
+
+    .hero::before,
+    .hero::after{
+      content:"";
+      position:absolute;
+      border-radius:999px;
+      pointer-events:none;
+      filter:blur(12px);
+    }
+
+    .hero::before{
+      width:420px;
+      height:420px;
+      background:rgba(255,255,255,.08);
+      top:-160px;
+      right:-120px;
+      animation:floatGlow 8s ease-in-out infinite;
+    }
+
+    .hero::after{
+      width:280px;
+      height:280px;
+      background:rgba(255,255,255,.06);
+      left:-90px;
+      top:80px;
+      animation:floatGlow 10s ease-in-out infinite reverse;
     }
 
     .hero-grid{
       display:grid;
-      grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
-      gap:28px;
-      align-items:start;
+      grid-template-columns:1.04fr .96fr;
+      gap:34px;
+      align-items:center;
     }
 
-    .logo-wrap{margin:0 0 18px}
+    .logo-wrap{
+      display:flex;
+      justify-content:flex-start;
+      margin:0 0 22px;
+    }
+
     .logo-card{
-      width:min(100%,760px);
-      min-height:170px;
-      padding:24px 28px;
+      position:relative;
       display:flex;
       align-items:center;
       justify-content:center;
-      border-radius:34px;
-      background:linear-gradient(135deg, rgba(255,255,255,.18), rgba(255,255,255,.10));
-      border:1px solid rgba(255,255,255,.28);
-      backdrop-filter:blur(14px);
-      -webkit-backdrop-filter:blur(14px);
-      box-shadow:0 18px 40px rgba(0,0,0,.16), inset 0 1px 0 rgba(255,255,255,.25);
+      width:min(100%, 760px);
+      min-height:220px;
+      padding:28px 34px;
+      border-radius:44px;
+      background:linear-gradient(135deg, rgba(255,255,255,.22), rgba(255,255,255,.10));
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+      border:1px solid rgba(255,255,255,.30);
+      box-shadow:
+        0 20px 50px rgba(0,0,0,.18),
+        inset 0 1px 0 rgba(255,255,255,.30),
+        inset 0 -1px 0 rgba(255,255,255,.08);
       overflow:hidden;
-      position:relative;
+      isolation:isolate;
+      margin-bottom:20px;
     }
+
+    .logo-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255,255,255,.18), transparent 28%),
+        radial-gradient(circle at 85% 80%, rgba(255,255,255,.10), transparent 24%);
+      pointer-events:none;
+    }
+
     .logo-card::after{
       content:"";
       position:absolute;
-      top:-30%; left:-18%;
-      width:180px; height:160%;
+      top:-30%;
+      left:-18%;
+      width:180px;
+      height:160%;
       background:linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
       transform:rotate(18deg);
       animation:logoShine 5.5s linear infinite;
       pointer-events:none;
     }
+
     .logo-card img{
-      width:min(100%,620px);
-      height:auto;
-      object-fit:contain;
-      filter:drop-shadow(0 18px 26px rgba(0,0,0,.18));
       position:relative;
       z-index:1;
+      width:min(100%, 620px);
+      height:auto;
+      display:block;
+      object-fit:contain;
+      background:transparent;
+      padding:0;
+      border:none;
+      border-radius:0;
+      filter:
+        drop-shadow(0 18px 26px rgba(0,0,0,.22))
+        drop-shadow(0 4px 10px rgba(255,255,255,.10));
+      transform:translateZ(0);
     }
 
     .hero-badge{
@@ -101,25 +194,25 @@
       color:#fff;
       font-weight:900;
       font-size:14px;
-      box-shadow:0 10px 24px rgba(0,0,0,.12);
-      backdrop-filter:blur(10px);
+      box-shadow:var(--glow);
+      backdrop-filter:blur(12px);
     }
 
     h1{
-      font-size:clamp(34px,5vw,62px);
-      line-height:1.03;
-      margin:0 0 14px;
-      letter-spacing:-.04em;
+      font-size:clamp(36px,5vw,66px);
+      line-height:1.02;
+      margin:0 0 16px;
+      letter-spacing:-.045em;
       color:#fff;
       max-width:760px;
-      text-shadow:0 10px 30px rgba(0,0,0,.15);
+      text-shadow:0 10px 34px rgba(0,0,0,.16);
     }
 
     .sub{
       font-size:19px;
       color:rgba(255,255,255,.96);
-      max-width:760px;
-      margin:0 0 22px;
+      max-width:720px;
+      margin:0 0 24px;
     }
 
     .cta-row{
@@ -135,86 +228,266 @@
       justify-content:center;
       text-decoration:none;
       border:none;
-      border-radius:18px;
-      padding:17px 24px;
+      border-radius:20px;
+      padding:18px 26px;
       font-size:16px;
       font-weight:900;
       cursor:pointer;
-      transition:transform .18s ease, box-shadow .18s ease;
+      transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
       min-width:220px;
       text-align:center;
-      max-width:100%;
+      position:relative;
+      overflow:hidden;
     }
+
+    .btn::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(120deg, transparent 25%, rgba(255,255,255,.25) 50%, transparent 75%);
+      transform:translateX(-130%);
+      transition:transform .6s ease;
+    }
+
+    .btn:hover::after{transform:translateX(130%)}
+
     .btn-primary{
       background:linear-gradient(135deg,#ffffff,#eaf3ff);
       color:var(--brand);
-      box-shadow:0 16px 38px rgba(0,0,0,.16), inset 0 1px 0 rgba(255,255,255,.9);
+      box-shadow:
+        0 16px 38px rgba(0,0,0,.18),
+        inset 0 1px 0 rgba(255,255,255,.9);
     }
-    .btn-primary:hover{transform:translateY(-2px)}
+
+    .btn-primary:hover{
+      background:#f8fbff;
+      transform:translateY(-3px) scale(1.015);
+    }
+
     .btn-secondary{
       background:linear-gradient(135deg,#0fd3ff,#0066ff);
-      color:#fff;
+      color:#fff !important;
+      border:1px solid rgba(255,255,255,.18);
       box-shadow:0 14px 34px rgba(0,102,255,.30);
     }
-    .btn-secondary:hover{transform:translateY(-2px)}
+
+    .btn-secondary:hover{transform:translateY(-3px) scale(1.015)}
 
     .mini-list{
       display:flex;
       flex-wrap:wrap;
       gap:14px 18px;
       padding:0;
-      margin:8px 0 0;
+      margin:10px 0 0;
       list-style:none;
       color:#fff;
       font-weight:800;
     }
 
-    .hero-carousel-box{
-      margin-top:24px;
-      padding:16px;
-      border-radius:26px;
-      background:linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.08));
-      border:1px solid rgba(255,255,255,.22);
-      box-shadow:0 18px 40px rgba(0,0,0,.14);
-      backdrop-filter:blur(10px);
-      -webkit-backdrop-filter:blur(10px);
+    .proof-bar{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+      margin-top:22px;
     }
 
-    .hero-carousel-title{
-      margin:0 0 12px;
-      text-align:center;
+    .proof-mini{
+      background:linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.10));
+      border:1px solid rgba(255,255,255,.24);
+      border-radius:22px;
+      padding:16px 18px;
+      color:#fff;
+      backdrop-filter:blur(12px);
+      box-shadow:var(--glow);
+    }
+
+    .proof-mini strong{
+      display:block;
+      font-size:18px;
+      line-height:1;
+      margin-bottom:5px;
+    }
+
+    .hero-visual{
+      background:linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.09));
+      border:1px solid rgba(255,255,255,.28);
+      border-radius:34px;
+      padding:18px;
+      box-shadow:
+        0 24px 60px rgba(0,0,0,.18),
+        inset 0 1px 0 rgba(255,255,255,.28);
+      backdrop-filter:blur(14px);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero-visual::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:radial-gradient(circle at top right, rgba(255,255,255,.16), transparent 35%);
+      pointer-events:none;
+    }
+
+    .hero-visual img{
+      width:100%;
+      display:block;
+      border-radius:26px;
+      box-shadow:0 22px 44px rgba(10,28,58,.22);
+      background:#fff;
+      transform:perspective(1400px) rotateY(-6deg) rotateX(2deg);
+      transform-origin:center;
+    }
+
+    section{padding:30px 0}
+
+    .white-section{
+      background:linear-gradient(180deg, rgba(255,255,255,.80), rgba(255,255,255,.68));
+      backdrop-filter:blur(10px);
+      border:1px solid rgba(255,255,255,.38);
+      border-radius:32px;
+      box-shadow:var(--shadow);
+      padding:36px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .white-section::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:radial-gradient(circle at top right, rgba(15,123,255,.06), transparent 28%);
+      pointer-events:none;
+    }
+
+    h2{
+      font-size:clamp(30px,3.6vw,46px);
+      line-height:1.05;
+      margin:0 0 14px;
+      letter-spacing:-.03em;
+      position:relative;
+      z-index:1;
+    }
+
+    .lead{
+      color:var(--muted);
+      font-size:17px;
+      max-width:780px;
+      margin:0 0 26px;
+      position:relative;
+      z-index:1;
+    }
+
+    .cards-3,
+    .cards-2{
+      position:relative;
+      z-index:1;
+    }
+
+    .cards-3{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .cards-2{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:18px;
+    }
+
+    .card{
+      background:linear-gradient(180deg,#ffffff,#f7fbff);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:24px;
+      box-shadow:var(--shadow);
+      transition:transform .18s ease, box-shadow .18s ease;
+    }
+
+    .card:hover,
+    .step-card:hover,
+    .plan-card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 24px 56px rgba(16,32,51,.16);
+    }
+
+    .card strong{display:block; margin-bottom:10px}
+    .card h3{margin:0 0 10px; font-size:22px}
+    .card p{margin:0; color:var(--muted)}
+
+    .steps{
+      counter-reset:step;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+      position:relative;
+      z-index:1;
+    }
+
+    .step-card{
+      position:relative;
+      background:linear-gradient(180deg,#fff,#f6fafe);
+      border:1px solid var(--line);
+      border-radius:30px;
+      padding:24px;
+      box-shadow:var(--shadow);
+      transition:transform .18s ease, box-shadow .18s ease;
+    }
+
+    .step-card::before{
+      counter-increment:step;
+      content:counter(step);
+      width:46px;
+      height:46px;
+      display:grid;
+      place-items:center;
+      border-radius:999px;
+      background:linear-gradient(135deg,#0b6bcb,#2c8cff);
       color:#fff;
       font-weight:900;
-      font-size:18px;
+      margin-bottom:14px;
+      box-shadow:0 12px 22px rgba(11,107,203,.28);
+    }
+
+    .prints-title{
+      text-align:center;
+      margin-bottom:28px;
+      position:relative;
+      z-index:1;
     }
 
     .prints-carousel{
       position:relative;
       overflow:hidden;
-      padding:4px 0;
+      margin-top:8px;
+      padding:6px 0;
       touch-action:pan-y;
+      cursor:grab;
       user-select:none;
+      mask-image:linear-gradient(to right, transparent 0, black 3%, black 97%, transparent 100%);
+      -webkit-mask-image:linear-gradient(to right, transparent 0, black 3%, black 97%, transparent 100%);
+      z-index:1;
     }
+
+    .prints-carousel.dragging{cursor:grabbing}
+
     .prints-track{
       display:flex;
       align-items:stretch;
-      gap:12px;
+      gap:14px;
       width:max-content;
       will-change:transform;
     }
+
     .prints-item{
-      flex:0 0 clamp(130px, 15vw, 180px);
-      width:clamp(130px, 15vw, 180px);
+      flex:0 0 clamp(118px, 12vw, 165px);
+      width:clamp(118px, 12vw, 165px);
     }
-    .print-card{
-      height:100%;
-      padding:10px;
-      border-radius:22px;
-      background:linear-gradient(180deg,#ffffff,#f6fafe);
-      border:1px solid var(--line);
-      box-shadow:var(--shadow);
-    }
-    .print-card .tag{
+
+    .prints-item .print-card{height:100%; padding:10px; border-radius:24px}
+
+    .prints-item .print-card .tag{
       display:block;
       text-align:center;
       white-space:nowrap;
@@ -224,17 +497,14 @@
       font-size:11px;
       line-height:1.2;
       padding:7px 8px;
-      border-radius:999px;
-      background:var(--brand-soft);
-      color:var(--brand);
-      font-weight:900;
     }
-    .print-card img{
+
+    .prints-item .print-card img{
       width:100%;
       aspect-ratio:9/19.5;
       object-fit:contain;
       object-position:center;
-      border-radius:16px;
+      border-radius:18px;
       background:#fff;
       padding:4px;
     }
@@ -243,112 +513,62 @@
       display:flex;
       justify-content:center;
       gap:12px;
-      margin-top:14px;
+      margin-top:18px;
+      position:relative;
+      z-index:1;
     }
+
     .carousel-btn{
       border:none;
       background:#fff;
       color:var(--brand);
-      width:46px;
-      height:46px;
+      width:50px;
+      height:50px;
       border-radius:999px;
       box-shadow:var(--shadow);
-      font-size:26px;
+      font-size:28px;
       font-weight:900;
       cursor:pointer;
       transition:.18s ease;
     }
-    .carousel-btn:hover{transform:translateY(-2px);background:var(--brand);color:#fff}
 
-    .proof-bar{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:14px;
-      margin-top:20px;
-    }
-    .proof-mini{
-      background:linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.10));
-      border:1px solid rgba(255,255,255,.24);
-      border-radius:22px;
-      padding:16px 18px;
+    .carousel-btn:hover{
+      transform:translateY(-2px);
+      background:var(--brand);
       color:#fff;
-      backdrop-filter:blur(12px);
-      box-shadow:0 12px 24px rgba(0,0,0,.12);
-    }
-    .proof-mini strong{display:block;font-size:18px;line-height:1;margin-bottom:5px}
-
-    .hero-visual{
-      background:linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.09));
-      border:1px solid rgba(255,255,255,.28);
-      border-radius:30px;
-      padding:18px;
-      box-shadow:0 24px 60px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.28);
-      backdrop-filter:blur(14px);
-      overflow:hidden;
-      align-self:center;
-    }
-    .hero-visual img{
-      width:100%;
-      border-radius:22px;
-      box-shadow:0 18px 36px rgba(10,28,58,.22);
-      background:#fff;
     }
 
-    section{padding:28px 0}
-    .white-section{
-      background:linear-gradient(180deg, rgba(255,255,255,.82), rgba(255,255,255,.68));
-      backdrop-filter:blur(10px);
-      border:1px solid rgba(255,255,255,.38);
-      border-radius:30px;
-      box-shadow:var(--shadow);
-      padding:34px;
-      overflow:hidden;
-    }
-    h2{
-      font-size:clamp(30px,3.6vw,46px);
-      line-height:1.05;
-      margin:0 0 14px;
-      letter-spacing:-.03em;
-      text-align:center;
-    }
-    .lead{
-      color:var(--muted);
-      font-size:17px;
-      max-width:780px;
-      margin:0 auto 26px;
-      text-align:center;
-    }
-    .steps,.cards-3,.plans-grid{
-      display:grid;
-      gap:18px;
-    }
-    .steps{grid-template-columns:repeat(3,1fr)}
-    .cards-3{grid-template-columns:repeat(3,1fr)}
-    .plans-grid{grid-template-columns:1fr 1fr;margin-top:28px}
-
-    .card,.step-card,.plan-card{
-      background:linear-gradient(180deg,#ffffff,#f7fbff);
+    .print-card{
+      background:linear-gradient(180deg,#ffffff,#f6fafe);
       border:1px solid var(--line);
-      border-radius:var(--radius);
-      padding:24px;
+      border-radius:30px;
+      padding:10px;
       box-shadow:var(--shadow);
     }
-    .card h3,.step-card h3{margin:0 0 10px;font-size:22px}
-    .card p,.step-card p{margin:0;color:var(--muted)}
-    .step-card::before{
-      counter-increment:step;
-      content:counter(step);
-      width:46px;height:46px;
-      display:grid;place-items:center;
+
+    .print-card .tag{
+      display:inline-block;
+      margin-bottom:12px;
+      padding:8px 12px;
       border-radius:999px;
-      background:linear-gradient(135deg,#0b6bcb,#2c8cff);
-      color:#fff;font-weight:900;
-      margin-bottom:14px;
-      box-shadow:0 12px 22px rgba(11,107,203,.28);
+      background:var(--brand-soft);
+      color:var(--brand);
+      font-size:13px;
+      font-weight:900;
     }
-    .steps{counter-reset:step}
+
+    .print-card img{
+      width:100%;
+      max-height:520px;
+      object-fit:contain;
+      display:block;
+      border-radius:24px;
+      background:#fff;
+      box-shadow:0 12px 30px rgba(16,32,51,.10);
+    }
 
     .impact-box{
+      margin-top:4px;
       background:linear-gradient(135deg,#0b6bcb,#2c8cff);
       color:#fff;
       border-radius:28px;
@@ -358,34 +578,145 @@
       font-size:25px;
       font-weight:900;
       line-height:1.28;
+      position:relative;
+      z-index:1;
+      overflow:hidden;
     }
-    .impact-box span{display:block;color:#dff0ff;font-size:17px;font-weight:700;margin-top:8px}
 
-    .testimonial{position:relative;padding-top:36px}
-    .testimonial::before{content:"“";position:absolute;top:6px;left:18px;font-size:58px;line-height:1;color:#dcecff;font-weight:900}
+    .impact-box::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:radial-gradient(circle at top right, rgba(255,255,255,.22), transparent 34%);
+      pointer-events:none;
+    }
 
-    .plan-card{position:relative;text-align:center;padding:38px 24px 30px;overflow:hidden}
-    .plan-card::before{content:"";position:absolute;left:0;top:0;width:100%;height:4px;background:linear-gradient(90deg,#0b6bcb,#57b4ff,#0b6bcb)}
-    .plan-card.featured{border:2px solid #3e94ff;box-shadow:0 26px 70px rgba(11,107,203,.24);transform:translateY(-4px)}
-    .badge-top{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#0b6bcb,#2d91ff);color:#fff;padding:10px 18px;border-radius:999px;font-size:13px;font-weight:900;box-shadow:0 14px 26px rgba(11,107,203,.18)}
-    .plan-subtitle{color:var(--muted);margin:6px 0 18px;font-size:17px}
-    .price{font-size:clamp(44px,6vw,70px);line-height:1;font-weight:900;color:var(--brand);margin-bottom:8px;letter-spacing:-.04em}
-    .price-note{color:var(--muted);margin-bottom:22px;font-size:17px}
-    .guarantee{margin-top:18px;color:var(--ok);font-weight:900}
-    .plan-list{text-align:left;margin:18px 0 24px;padding-left:18px;color:#26415a}
+    .impact-box span{
+      color:#dff0ff;
+      display:block;
+      font-size:17px;
+      font-weight:700;
+      margin-top:8px;
+    }
+
+    .testimonial{
+      position:relative;
+      padding-top:36px;
+    }
+
+    .testimonial::before{
+      content:"“";
+      position:absolute;
+      top:6px;
+      left:18px;
+      font-size:58px;
+      line-height:1;
+      color:#dcecff;
+      font-weight:900;
+    }
+
+    .plans-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:22px;
+      align-items:stretch;
+      margin-top:28px;
+      position:relative;
+      z-index:1;
+    }
+
+    .plan-card{
+      position:relative;
+      text-align:center;
+      padding:38px 24px 30px;
+      background:linear-gradient(180deg,#ffffff,#f3f8fe);
+      border:1px solid var(--line);
+      border-radius:32px;
+      box-shadow:var(--shadow);
+      transition:transform .18s ease, box-shadow .18s ease;
+      overflow:hidden;
+    }
+
+    .plan-card::before{
+      content:"";
+      position:absolute;
+      inset:0 auto auto 0;
+      width:100%;
+      height:4px;
+      background:linear-gradient(90deg,#0b6bcb,#57b4ff,#0b6bcb);
+      opacity:.9;
+    }
+
+    .plan-card.featured{
+      border:2px solid #3e94ff;
+      box-shadow:0 26px 70px rgba(11,107,203,.24);
+      transform:translateY(-6px);
+      background:linear-gradient(180deg,#ffffff,#eff7ff);
+    }
+
+    .badge-top{
+      position:absolute;
+      top:-14px;
+      left:50%;
+      transform:translateX(-50%);
+      background:linear-gradient(135deg,#0b6bcb,#2d91ff);
+      color:#fff;
+      padding:10px 18px;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:900;
+      letter-spacing:.03em;
+      box-shadow:0 14px 26px rgba(11,107,203,.18);
+    }
+
+    .plan-subtitle{
+      color:var(--muted);
+      margin:6px 0 18px;
+      font-size:17px;
+    }
+
+    .price{
+      font-size:clamp(44px,6vw,70px);
+      line-height:1;
+      font-weight:900;
+      color:var(--brand);
+      margin-bottom:8px;
+      letter-spacing:-.04em;
+    }
+
+    .price-note{
+      color:var(--muted);
+      margin-bottom:22px;
+      font-size:17px;
+    }
+
+    .guarantee{
+      margin-top:18px;
+      color:var(--ok);
+      font-weight:900;
+    }
+
+    .plan-list{
+      text-align:left;
+      margin:18px 0 24px;
+      padding-left:18px;
+      color:#26415a;
+    }
+
     .plan-list li{margin:10px 0}
 
-    .promo-title{font-weight:900;color:#d00000;margin-bottom:10px}
-    .countdown{display:flex;justify-content:center;gap:8px;margin-bottom:14px;flex-wrap:wrap}
-    .countdown div{background:#111;color:#fff;padding:9px 10px;border-radius:10px;font-weight:900;min-width:48px;box-shadow:0 10px 22px rgba(0,0,0,.18)}
-    .countdown small{display:block;font-size:10px;opacity:.7}
-    .old-price{font-size:20px;color:#888;text-decoration:line-through;text-decoration-color:red;margin-bottom:6px;font-weight:700}
-    .price-label{font-size:18px;font-weight:700;margin-bottom:4px}
+    .faq{display:grid; gap:14px; position:relative; z-index:1}
 
-    .faq{display:grid;gap:14px}
-    details{background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px 20px;box-shadow:var(--shadow)}
-    summary{cursor:pointer;font-weight:900}
-    details p{color:var(--muted);margin:12px 0 0}
+    details{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:20px;
+      padding:18px 20px;
+      box-shadow:var(--shadow);
+    }
+
+    summary{cursor:pointer; font-weight:900}
+    details p{color:var(--muted); margin:12px 0 0}
 
     .final-cta{
       text-align:center;
@@ -394,14 +725,92 @@
       position:relative;
       overflow:hidden;
     }
-    footer{padding:0 0 50px;color:#6b7a8e;text-align:center;font-size:14px}
+
+    .final-cta::before{
+      content:"";
+      position:absolute;
+      inset:auto -60px -120px auto;
+      width:320px;
+      height:320px;
+      border-radius:999px;
+      background:rgba(0,123,255,.20);
+      filter:blur(50px);
+      pointer-events:none;
+    }
+
     .floating-wa{
-      position:fixed;right:18px;bottom:18px;z-index:50;
-      display:inline-flex;align-items:center;gap:10px;
-      padding:14px 18px;border-radius:999px;
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      z-index:50;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:14px 18px;
+      border-radius:999px;
       background:linear-gradient(135deg,#28de71,#25d366);
-      color:#fff;text-decoration:none;font-weight:900;
+      color:#fff;
+      text-decoration:none;
+      font-weight:900;
       box-shadow:0 18px 40px rgba(0,0,0,.18);
+      transition:transform .18s ease, box-shadow .18s ease;
+    }
+
+    .floating-wa:hover{
+      transform:translateY(-3px) scale(1.02);
+      box-shadow:0 22px 44px rgba(0,0,0,.22);
+    }
+
+    footer{
+      padding:0 0 50px;
+      color:#6b7a8e;
+      text-align:center;
+      font-size:14px;
+    }
+
+    .promo-title{
+      font-weight:900;
+      color:#d00000;
+      margin-bottom:10px;
+    }
+
+    .countdown{
+      display:flex;
+      justify-content:center;
+      gap:8px;
+      margin-bottom:14px;
+      flex-wrap:wrap;
+    }
+
+    .countdown div{
+      background:#111;
+      color:#fff;
+      padding:9px 10px;
+      border-radius:10px;
+      font-weight:900;
+      min-width:48px;
+      box-shadow:0 10px 22px rgba(0,0,0,.18);
+    }
+
+    .countdown small{
+      display:block;
+      font-size:10px;
+      opacity:.7;
+    }
+
+    .old-price{
+      font-size:20px;
+      color:#888;
+      text-decoration:line-through;
+      text-decoration-color:red;
+      margin-bottom:6px;
+      font-weight:700;
+    }
+
+    .price-label{
+      font-size:18px;
+      font-weight:700;
+      margin-bottom:4px;
     }
 
     @keyframes logoShine{
@@ -409,34 +818,92 @@
       to{transform:translateX(520%) rotate(18deg)}
     }
 
-    @media (max-width:980px){
-      .hero-grid,.steps,.cards-3,.plans-grid,.proof-bar{grid-template-columns:1fr}
-      .hero-visual{max-width:620px;margin:0 auto}
+    @keyframes shine{
+      from{transform:translateX(-150%) rotate(18deg)}
+      to{transform:translateX(700%) rotate(18deg)}
+    }
+
+    @keyframes floatGlow{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(18px)}
+    }
+
+    @media (max-width: 980px){
+      .hero-grid,
+      .cards-3,
+      .cards-2,
+      .steps,
+      .plans-grid,
+      .proof-bar{
+        grid-template-columns:1fr;
+      }
+      .prints-item{
+        flex:0 0 clamp(120px, 22vw, 150px);
+        width:clamp(120px, 22vw, 150px);
+        min-width:120px;
+      }
+      .hero-visual{max-width:620px; margin:0 auto}
+      .hero-visual img{transform:none}
       .plan-card.featured{transform:none}
     }
 
-    @media (max-width:640px){
-      .wrap{width:min(var(--max),calc(100% - 16px))}
-      .hero{padding-top:16px}
-      .logo-card{min-height:auto;padding:16px;border-radius:24px}
-      .logo-card img{width:100%;max-width:420px}
-      .sub{font-size:17px}
-      .btn{width:100%;min-width:0}
+    @media (max-width: 640px){
+      .wrap{width:min(var(--max),calc(100% - 20px))}
+      .hero{padding-top:18px}
+      .white-section{padding:22px}
+      .card,.plan-card,.step-card{padding:18px}
+      .btn{width:100%}
       .cta-row{flex-direction:column}
       .mini-list{display:block}
       .mini-list li{margin:8px 0}
-      .proof-mini strong{font-size:17px}
-      .hero-carousel-box{padding:12px;border-radius:20px}
-      .hero-carousel-title{font-size:16px;margin-bottom:10px}
-      .prints-track{gap:0}
-      .prints-item{flex:0 0 72vw;width:72vw;min-width:72vw;max-width:72vw}
-      .print-card{padding:4px;border-radius:16px}
-      .print-card .tag{font-size:11px;margin-bottom:4px;padding:5px 6px}
-      .print-card img{border-radius:12px;padding:1px}
-      .white-section{padding:22px}
-      .card,.plan-card,.step-card{padding:18px}
       .impact-box{font-size:19px}
-      .floating-wa{right:12px;left:12px;justify-content:center}
+      .logo-wrap{
+        justify-content:center;
+      }
+      .logo-card{
+        width:100%;
+        min-height:auto;
+        padding:18px 16px;
+        border-radius:28px;
+      }
+      .logo-card img{
+        width:100%;
+        max-width:420px;
+      }
+      .proof-mini strong{font-size:17px}
+      .prints-carousel{
+        mask-image:none;
+        -webkit-mask-image:none;
+      }
+      .prints-track{gap:0}
+      .prints-item{
+        flex:0 0 72vw;
+        width:72vw;
+        min-width:72vw;
+        max-width:72vw;
+      }
+      .prints-item .print-card{
+        padding:4px;
+        border-radius:16px;
+      }
+      .prints-item .print-card .tag{
+        font-size:11px;
+        margin-bottom:4px;
+        padding:5px 6px;
+      }
+      .prints-item .print-card img{
+        border-radius:12px;
+        padding:1px;
+      }
+      .carousel-btn{
+        width:42px;
+        height:42px;
+      }
+      .floating-wa{
+        right:12px;
+        left:12px;
+        justify-content:center;
+      }
     }
   </style>
 </head>
@@ -454,7 +921,8 @@
 
         <h1>Descubra defeitos de ar-condicionado em segundos, passe mais confiança e feche mais serviços</h1>
         <p class="sub">
-          Tenha no celular códigos de erro, diagnóstico com problemas e soluções, calculadora de BTU e orçamento em PDF profissional com poucos toques. Tudo pensado para o técnico que quer atender mais rápido e parecer mais profissional na frente do cliente.
+          Tenha no celular códigos de erro, diagnóstico com problemas e soluções, calculadora de BTU e orçamento em PDF profissional com poucos toques.
+          Tudo pensado para o técnico que quer atender mais rápido e parecer mais profissional na frente do cliente, mesmo sem ter experiencia.
         </p>
 
         <div class="cta-row">
@@ -467,28 +935,6 @@
           <li>✅ Diagnóstico rápido de problemas</li>
           <li>✅ Orçamento profissional em PDF</li>
         </ul>
-
-        <div class="hero-carousel-box">
-          <p class="hero-carousel-title">Veja o app funcionando na prática 👇</p>
-
-          <div class="prints-carousel" data-speed="96">
-            <div class="prints-track">
-              <div class="prints-item"><div class="print-card"><div class="tag">Tela do orçamento</div><img src="print-orcamento.png" alt="Tela do orçamento"></div></div>
-              <div class="prints-item"><div class="print-card"><div class="tag">Tela de serviços</div><img src="print-servicos.png" alt="Tela de serviços"></div></div>
-              <div class="prints-item"><div class="print-card"><div class="tag">PDF gerado</div><img src="print-pdf.png" alt="PDF gerado"></div></div>
-              <div class="prints-item"><div class="print-card"><div class="tag">Diagnóstico</div><img src="problema1.png" alt="Diagnóstico"></div></div>
-              <div class="prints-item"><div class="print-card"><div class="tag">Diagnóstico</div><img src="problema2.png" alt="Diagnóstico"></div></div>
-              <div class="prints-item"><div class="print-card"><div class="tag">Calculadora BTU</div><img src="calculadora.png" alt="Calculadora BTU"></div></div>
-              <div class="prints-item"><div class="print-card"><div class="tag">Códigos de erro</div><img src="erros.png" alt="Códigos de erro"></div></div>
-              <div class="prints-item"><div class="print-card"><div class="tag">Códigos de erro</div><img src="erros2.png" alt="Códigos de erro"></div></div>
-            </div>
-          </div>
-
-          <div class="carousel-nav">
-            <button class="carousel-btn" type="button" aria-label="Voltar">‹</button>
-            <button class="carousel-btn" type="button" aria-label="Avançar">›</button>
-          </div>
-        </div>
 
         <div class="proof-bar">
           <div class="proof-mini">
@@ -523,18 +969,24 @@
 
   <section>
     <div class="wrap white-section">
-      <h2>Como o app te ajuda no dia a dia</h2>
-      <p class="lead">O objetivo é simples: fazer você atender mais rápido, passar mais segurança e facilitar o fechamento do serviço.</p>
+      <div class="prints-title">
+        <h2>Como o app te ajuda no dia a dia</h2>
+        <p class="lead" style="margin-left:auto;margin-right:auto;">
+          O objetivo é simples: fazer você atender mais rápido, passar mais segurança e facilitar o fechamento do serviço.
+        </p>
+      </div>
 
       <div class="steps">
         <div class="step-card">
           <h3>Encontre o erro</h3>
           <p>Pesquise códigos de erro do aparelho e agilize o diagnóstico sem perder tempo procurando informação em vários lugares.</p>
         </div>
+
         <div class="step-card">
           <h3>Veja o problema e a solução</h3>
           <p>Consulte a lista de problemas que o equipamento pode apresentar e tenha uma direção mais rápida para resolver.</p>
         </div>
+
         <div class="step-card">
           <h3>Envie um orçamento profissional</h3>
           <p>Depois do atendimento, gere o PDF no celular e envie para o cliente com mais organização e profissionalismo.</p>
@@ -543,11 +995,48 @@
     </div>
   </section>
 
-  <section id="video-demo-1">
+  <section id="prints-app">
     <div class="wrap white-section">
-      <h2>Gerador de PDF profissional</h2>
-      <p class="lead">Mostre para o cliente um orçamento mais organizado, mais bonito e com aparência profissional, direto pelo celular.</p>
-      <div style="max-width:600px;margin:30px auto 0;">
+      <div class="prints-title">
+        <h2>Veja o aplicativo por dentro</h2>
+        <p class="lead" style="margin-left:auto;margin-right:auto;">
+          Códigos de erro, diagnóstico de problemas, calculadora de BTU e PDF profissional no mesmo lugar.
+        </p>
+      </div>
+
+      <div class="prints-carousel" data-speed="96">
+        <div class="prints-track">
+          <div class="prints-item"><div class="print-card"><div class="tag">Tela do orçamento</div><img src="print-orcamento.png" alt="Tela do orçamento no aplicativo"></div></div>
+          <div class="prints-item"><div class="print-card"><div class="tag">Tela de serviços</div><img src="print-servicos.png" alt="Tela de serviços no aplicativo"></div></div>
+          <div class="prints-item"><div class="print-card"><div class="tag">PDF gerado</div><img src="print-pdf.png" alt="PDF gerado pelo aplicativo"></div></div>
+          <div class="prints-item"><div class="print-card"><div class="tag">Diagnóstico de problemas</div><img src="problema1.png" alt="Tela de diagnóstico de problemas"></div></div>
+          <div class="prints-item"><div class="print-card"><div class="tag">Diagnóstico de problemas</div><img src="problema2.png" alt="Tela de diagnóstico de problemas"></div></div>
+          <div class="prints-item"><div class="print-card"><div class="tag">Calculadora de BTU</div><img src="calculadora.png" alt="Tela da calculadora de BTU"></div></div>
+          <div class="prints-item"><div class="print-card"><div class="tag">Códigos de erro</div><img src="erros.png" alt="Tela de códigos de erro"></div></div>
+          <div class="prints-item"><div class="print-card"><div class="tag">Códigos de erro</div><img src="erros2.png" alt="Tela de códigos de erro"></div></div>
+        </div>
+      </div>
+
+      <div class="carousel-nav">
+        <button class="carousel-btn" type="button" aria-label="Voltar">‹</button>
+        <button class="carousel-btn" type="button" aria-label="Avançar">›</button>
+      </div>
+
+      <div class="cta-row" style="justify-content:center; margin-top:24px;">
+        <a class="btn btn-primary" href="#comprar">VER PLANOS E COMPRAR</a>
+        <a class="btn btn-secondary" href="https://wa.me/5514997073447?text=Olá%20quero%20saber%20mais%20sobre%20o%20Facilita%20Refrigerista" target="_blank" rel="noopener noreferrer">Tirar dúvida no WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="video-demo-1" style="padding:40px 0;">
+    <div class="wrap white-section">
+      <h2 style="text-align:center;">Gerador de PDF profissional</h2>
+      <p class="lead" style="text-align:center;margin-left:auto;margin-right:auto;">
+        Mostre para o cliente um orçamento mais organizado, mais bonito e com aparência profissional, direto pelo celular.
+      </p>
+
+      <div style="max-width:600px;margin:30px auto; position:relative; z-index:1;">
         <video controls playsinline style="width:100%; border-radius:24px; box-shadow:0 18px 46px rgba(0,0,0,0.22);">
           <source src="video.mp4" type="video/mp4">
         </video>
@@ -555,11 +1044,14 @@
     </div>
   </section>
 
-  <section id="video-demo-2">
+  <section id="video-demo-2" style="padding:40px 0;">
     <div class="wrap white-section">
-      <h2>Veja o aplicativo em ação</h2>
-      <p class="lead">Diagnóstico, códigos de erro, calculadora de BTU e orçamento profissional em um fluxo simples e rápido.</p>
-      <div style="max-width:600px;margin:30px auto 0;">
+      <h2 style="text-align:center;">Veja o aplicativo em ação</h2>
+      <p class="lead" style="text-align:center;margin-left:auto;margin-right:auto;">
+        Diagnóstico, códigos de erro, calculadora de BTU e orçamento profissional em um fluxo simples e rápido.
+      </p>
+
+      <div style="max-width:600px;margin:30px auto; position:relative; z-index:1;">
         <video controls playsinline style="width:100%; border-radius:24px; box-shadow:0 18px 46px rgba(0,0,0,0.22);">
           <source src="video2.mp4" type="video/mp4">
         </video>
@@ -569,59 +1061,104 @@
 
   <section>
     <div class="wrap white-section">
-      <h2>Por que esse app ajuda a vender mais serviço?</h2>
-      <p class="lead">O cliente percebe valor mais rápido quando você atende com agilidade, segurança e organização.</p>
+      <div class="prints-title">
+        <h2>Por que esse app ajuda a vender mais serviço?</h2>
+        <p class="lead" style="margin-left:auto;margin-right:auto;">
+          O cliente percebe valor mais rápido quando você atende com agilidade, segurança e organização.
+        </p>
+      </div>
+
       <div class="cards-3">
-        <div class="card"><h3>Mais confiança</h3><p>Você consulta erros e diagnósticos com mais rapidez, sem parecer inseguro na frente do cliente.</p></div>
-        <div class="card"><h3>Mais profissionalismo</h3><p>O orçamento em PDF com o seu logo melhora a apresentação do serviço e passa uma imagem mais séria do seu trabalho.</p></div>
-        <div class="card"><h3>Mais praticidade</h3><p>Em vez de depender de papéis, anotações soltas e buscas demoradas, você resolve tudo no celular.</p></div>
+        <div class="card">
+          <h3>Mais confiança</h3>
+          <p>Você consulta erros e diagnósticos com mais rapidez, sem parecer inseguro na frente do cliente.</p>
+        </div>
+        <div class="card">
+          <h3>Mais profissionalismo</h3>
+          <p>O orçamento em PDF com o seu logo melhora a apresentação do serviço e passa uma imagem mais séria do seu trabalho.</p>
+        </div>
+        <div class="card">
+          <h3>Mais praticidade</h3>
+          <p>Em vez de depender de papéis, anotações soltas e buscas demoradas, você resolve tudo no celular.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <section>
     <div class="wrap white-section">
-      <h2>O que outros técnicos pensam quando veem esse app</h2>
-      <p class="lead">Use esta seção com seus prints e depoimentos reais sempre que tiver. Já deixei pronta para você só trocar o texto depois.</p>
+      <div class="prints-title">
+        <h2>O que outros técnicos pensam quando veem esse app</h2>
+        <p class="lead" style="margin-left:auto;margin-right:auto;">
+          Use esta seção com seus prints e depoimentos reais sempre que tiver. Já deixei pronta para você só trocar o texto depois.
+        </p>
+      </div>
+
       <div class="cards-3">
-        <div class="card testimonial"><p>“Depois que comecei a apresentar orçamento mais organizado, o cliente passou a me levar mais a sério.”</p></div>
-        <div class="card testimonial"><p>“Ter código de erro, diagnóstico e orçamento no mesmo lugar agiliza muito o atendimento.”</p></div>
-        <div class="card testimonial"><p>“O app passa mais profissionalismo e ajuda bastante na apresentação do serviço.”</p></div>
+        <div class="card testimonial">
+          <p>“Depois que comecei a apresentar orçamento mais organizado, o cliente passou a me levar mais a sério.”</p>
+        </div>
+        <div class="card testimonial">
+          <p>“Ter código de erro, diagnóstico e orçamento no mesmo lugar agiliza muito o atendimento.”</p>
+        </div>
+        <div class="card testimonial">
+          <p>“O app passa mais profissionalismo e ajuda bastante na apresentação do serviço.”</p>
+        </div>
       </div>
     </div>
   </section>
 
   <section>
     <div class="wrap white-section">
-      <h2>Sem enrolação: o que você recebe</h2>
+      <div class="prints-title">
+        <h2>Sem enrolação: o que você recebe</h2>
+      </div>
+
       <div class="cards-3">
-        <div class="card"><h3>Pagamento único</h3><p>Você paga uma vez só e usa sem mensalidade.</p></div>
-        <div class="card"><h3>Entrega prática</h3><p>Após a compra, você envia seus dados e recebe sua versão pronta.</p></div>
-        <div class="card"><h3>Mais segurança para comprar</h3><p>Compra online pela Kiwify e suporte direto no WhatsApp para dúvidas.</p></div>
+        <div class="card">
+          <strong>Pagamento único</strong>
+          <p>Você paga uma vez só e usa sem mensalidade.</p>
+        </div>
+        <div class="card">
+          <strong>Entrega prática</strong>
+          <p>Após a compra, você envia seus dados e recebe sua versão pronta.</p>
+        </div>
+        <div class="card">
+          <strong>Mais segurança para comprar</strong>
+          <p>Compra online pela Kiwify e suporte direto no WhatsApp para dúvidas.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <section id="comprar">
     <div class="wrap white-section">
-      <h2>Escolha sua versão</h2>
-      <p class="lead">Pagamento único, sem mensalidade. Escolha a opção ideal para começar agora.</p>
+      <div class="prints-title">
+        <h2>Escolha sua versão</h2>
+        <p class="lead" style="margin-left:auto;margin-right:auto;">
+          Pagamento único, sem mensalidade. Escolha a opção ideal para começar agora.
+        </p>
+      </div>
 
       <div class="plans-grid">
         <div class="plan-card">
           <h3>App com Logo Padrão</h3>
           <p class="plan-subtitle">Mais simples e rápido para começar.</p>
+
           <div class="promo-title">🔥 Oferta por tempo limitado</div>
+
           <div class="countdown">
             <div><span class="d">00</span><small>d</small></div>
             <div><span class="h">00</span><small>h</small></div>
             <div><span class="m">00</span><small>m</small></div>
             <div><span class="s">00</span><small>s</small></div>
           </div>
+
           <div class="old-price">R$57,00</div>
           <div class="price-label">por apenas</div>
           <div class="price">R$37,00</div>
           <div class="price-note">Pagamento único</div>
+
           <ul class="plan-list">
             <li>✔ Aplicativo completo</li>
             <li>✔ Geração de PDF profissional</li>
@@ -630,6 +1167,7 @@
             <li>✔ Funciona no celular</li>
             <li>✔ Acesso vitalício</li>
           </ul>
+
           <a class="btn btn-primary" href="https://pay.kiwify.com.br/TjitDIM" target="_blank" rel="noopener noreferrer">COMPRAR COM LOGO PADRÃO</a>
           <div class="guarantee">✅ Compra segura pela Kiwify</div>
         </div>
@@ -638,17 +1176,21 @@
           <div class="badge-top">MAIS ESCOLHIDO</div>
           <h3>App com Logo Personalizado</h3>
           <p class="plan-subtitle">Mais profissional para impressionar seu cliente.</p>
+
           <div class="promo-title">🔥 Oferta por tempo limitado</div>
+
           <div class="countdown">
             <div><span class="d">00</span><small>d</small></div>
             <div><span class="h">00</span><small>h</small></div>
             <div><span class="m">00</span><small>m</small></div>
             <div><span class="s">00</span><small>s</small></div>
           </div>
+
           <div class="old-price">R$87,00</div>
           <div class="price-label">por apenas</div>
           <div class="price">R$67,00</div>
           <div class="price-note">Pagamento único<br>ou em até 12x no cartão</div>
+
           <ul class="plan-list">
             <li>✔ Aplicativo completo</li>
             <li>✔ Geração de PDF profissional</li>
@@ -657,6 +1199,7 @@
             <li>✔ Logo exclusivo personalizado</li>
             <li>✔ Atendimento direto para alinhar o logo</li>
           </ul>
+
           <a class="btn btn-primary" href="https://pay.kiwify.com.br/7zIN4ED" target="_blank" rel="noopener noreferrer">QUERO LOGO PERSONALIZADO</a>
           <div class="guarantee">✅ Compra segura pela Kiwify</div>
         </div>
@@ -694,24 +1237,30 @@
 
   <section class="final-cta">
     <div class="wrap">
-      <h2 style="color:#fff;">Passe mais profissionalismo, atenda mais rápido e feche mais serviços</h2>
-      <p class="lead" style="color:rgba(255,255,255,.92)">O cliente valoriza quem atende com organização. Escolha sua versão e comece agora.</p>
-      <div class="cta-row" style="justify-content:center; margin-bottom:0;">
+      <h2 style="color:#ffffff; position:relative; z-index:1;">Passe mais profissionalismo, atenda mais rápido e feche mais serviços</h2>
+      <p class="lead" style="margin-left:auto;margin-right:auto;color:rgba(255,255,255,.92);max-width:760px; position:relative; z-index:1;">
+        O cliente valoriza quem atende com organização. Escolha sua versão e comece agora.
+      </p>
+      <div class="cta-row" style="justify-content:center; margin-bottom:0; position:relative; z-index:1;">
         <a class="btn btn-primary" href="#comprar">ESCOLHER MEU PLANO</a>
         <a class="btn btn-secondary" href="https://wa.me/5514997073447?text=Olá%20quero%20saber%20mais%20sobre%20o%20Facilita%20Refrigerista" target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
       </div>
     </div>
   </section>
 
-  <footer>© 2026 - Facilita Refrigerista. Todos os direitos reservados.</footer>
+  <footer>
+    © 2026 - Facilita Refrigerista. Todos os direitos reservados.
+  </footer>
 
   <a class="floating-wa" href="https://wa.me/5514997073447?text=Olá%20quero%20saber%20mais%20sobre%20o%20Facilita%20Refrigerista" target="_blank" rel="noopener noreferrer">WhatsApp</a>
 
   <script>
     const endDate = new Date("2026-03-30T23:59:59-03:00").getTime();
+
     function updateCountdown() {
       const now = new Date().getTime();
       const diff = endDate - now;
+
       if (diff <= 0) {
         document.querySelectorAll(".d").forEach(el => el.textContent = "00");
         document.querySelectorAll(".h").forEach(el => el.textContent = "00");
@@ -719,15 +1268,18 @@
         document.querySelectorAll(".s").forEach(el => el.textContent = "00");
         return;
       }
+
       const d = Math.floor(diff / (1000 * 60 * 60 * 24));
       const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
       const m = Math.floor((diff / (1000 * 60)) % 60);
       const s = Math.floor((diff / 1000) % 60);
+
       document.querySelectorAll(".d").forEach(el => el.textContent = String(d).padStart(2, "0"));
       document.querySelectorAll(".h").forEach(el => el.textContent = String(h).padStart(2, "0"));
       document.querySelectorAll(".m").forEach(el => el.textContent = String(m).padStart(2, "0"));
       document.querySelectorAll(".s").forEach(el => el.textContent = String(s).padStart(2, "0"));
     }
+
     updateCountdown();
     setInterval(updateCountdown, 1000);
   </script>
@@ -755,51 +1307,121 @@
         let startTranslate = 0;
         let rafId = null;
         let lastTime = 0;
+        let resumeTimer = null;
         let speed = parseFloat(carousel.dataset.speed || '96');
 
-        function getGap(){ return parseFloat(getComputedStyle(track).gap || 12); }
+        function getGap(){
+          return parseFloat(getComputedStyle(track).gap || 14);
+        }
+
         function singleSetWidth(){
           const items = Array.from(track.children).slice(0, originalItems.length);
           return items.reduce((sum, item) => sum + item.getBoundingClientRect().width, 0) + (items.length - 1) * getGap();
         }
+
         function normalize(){
           const limit = singleSetWidth();
           if(!limit) return;
           while(x <= -limit) x += limit;
           while(x > 0) x -= limit;
         }
-        function render(){ track.style.transform = `translate3d(${x}px,0,0)`; }
+
+        function render(){
+          track.style.transform = `translate3d(${x}px,0,0)`;
+        }
+
         function tick(time){
           if(!lastTime) lastTime = time;
           const dt = (time - lastTime) / 1000;
           lastTime = time;
-          if(!isDragging){ x -= speed * dt; normalize(); render(); }
+          if(!isDragging){
+            x -= speed * dt;
+            normalize();
+            render();
+          }
           rafId = requestAnimationFrame(tick);
         }
-        function start(){ cancelAnimationFrame(rafId); lastTime = 0; rafId = requestAnimationFrame(tick); }
+
+        function start(){
+          cancelAnimationFrame(rafId);
+          lastTime = 0;
+          rafId = requestAnimationFrame(tick);
+        }
+
+        function stopTemporarily(ms = 1400){
+          clearTimeout(resumeTimer);
+          lastTime = 0;
+          resumeTimer = setTimeout(() => { lastTime = 0; }, ms);
+        }
+
         function nudge(direction){
           const first = track.querySelector('.prints-item');
           if(!first) return;
           x += direction * (first.getBoundingClientRect().width + getGap()) * 0.95;
-          normalize(); render();
+          normalize();
+          render();
+          stopTemporarily();
         }
-        function dragStart(clientX){ isDragging = true; startX = clientX; startTranslate = x; }
-        function dragMove(clientX){ if(!isDragging) return; x = startTranslate + (clientX - startX); normalize(); render(); }
-        function dragEnd(){ isDragging = false; }
+
+        function dragStart(clientX){
+          isDragging = true;
+          clearTimeout(resumeTimer);
+          carousel.classList.add('dragging');
+          startX = clientX;
+          startTranslate = x;
+        }
+
+        function dragMove(clientX){
+          if(!isDragging) return;
+          const delta = clientX - startX;
+          x = startTranslate + delta;
+          normalize();
+          render();
+        }
+
+        function dragEnd(){
+          if(!isDragging) return;
+          isDragging = false;
+          carousel.classList.remove('dragging');
+          stopTemporarily(700);
+        }
 
         if(prevBtn) prevBtn.addEventListener('click', () => nudge(1));
         if(nextBtn) nextBtn.addEventListener('click', () => nudge(-1));
 
-        carousel.addEventListener('mousedown', e => { dragStart(e.clientX); e.preventDefault(); });
-        window.addEventListener('mousemove', e => dragMove(e.clientX));
+        carousel.addEventListener('mousedown', (e) => {
+          dragStart(e.clientX);
+          e.preventDefault();
+        });
+        window.addEventListener('mousemove', (e) => dragMove(e.clientX));
         window.addEventListener('mouseup', dragEnd);
-        carousel.addEventListener('touchstart', e => dragStart(e.touches[0].clientX), {passive:true});
-        carousel.addEventListener('touchmove', e => dragMove(e.touches[0].clientX), {passive:true});
-        carousel.addEventListener('touchend', dragEnd, {passive:true});
-        window.addEventListener('resize', () => { normalize(); render(); lastTime = 0; });
+        window.addEventListener('mouseleave', dragEnd);
 
-        normalize(); render(); start();
+        carousel.addEventListener('touchstart', (e) => {
+          dragStart(e.touches[0].clientX);
+        }, {passive:true});
+
+        carousel.addEventListener('touchmove', (e) => {
+          dragMove(e.touches[0].clientX);
+        }, {passive:true});
+
+        carousel.addEventListener('touchend', dragEnd, {passive:true});
+        carousel.addEventListener('touchcancel', dragEnd, {passive:true});
+
+        carousel.addEventListener('mouseenter', () => { speed = 0; });
+        carousel.addEventListener('mouseleave', () => { speed = parseFloat(carousel.dataset.speed || '96'); lastTime = 0; });
+
+        window.addEventListener('resize', () => {
+          normalize();
+          render();
+          lastTime = 0;
+        });
+
+        normalize();
+        render();
+        start();
       }
+
       document.querySelectorAll('.prints-carousel').forEach(setupCarousel);
     })();
   </script>
