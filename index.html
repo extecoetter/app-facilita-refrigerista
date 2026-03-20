@@ -16,10 +16,12 @@
       --brand-soft:#eaf3ff;
       --ok:#118a4e;
       --warn:#ff9f1c;
-      --shadow:0 14px 40px rgba(16,32,51,.10);
-      --shadow-strong:0 20px 50px rgba(11,107,203,.20);
-      --radius:24px;
-      --max:1150px;
+      --ink:#07111f;
+      --shadow:0 18px 50px rgba(16,32,51,.12);
+      --shadow-strong:0 25px 70px rgba(11,107,203,.25);
+      --glow:0 0 0 1px rgba(255,255,255,.12), 0 14px 40px rgba(0,0,0,.18);
+      --radius:28px;
+      --max:1180px;
     }
 
     *{box-sizing:border-box}
@@ -28,19 +30,52 @@
       margin:0;
       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
       background:
-        radial-gradient(circle at top right, rgba(255,255,255,.22), transparent 28%),
-        linear-gradient(180deg,#0662c4 0%, #2488ff 34%, #eef5ff 100%);
+        radial-gradient(circle at 12% 14%, rgba(255,255,255,.22), transparent 22%),
+        radial-gradient(circle at 88% 10%, rgba(147,211,255,.24), transparent 20%),
+        radial-gradient(circle at 50% 0%, rgba(255,255,255,.12), transparent 28%),
+        linear-gradient(135deg,#0552ad 0%, #1f84ff 44%, #eef5ff 100%);
       color:var(--text);
       line-height:1.55;
+      overflow-x:hidden;
+    }
+
+    body::before,
+    body::after{
+      content:"";
+      position:fixed;
+      inset:auto;
+      border-radius:999px;
+      pointer-events:none;
+      filter:blur(80px);
+      z-index:0;
+      opacity:.45;
+    }
+
+    body::before{
+      width:340px;
+      height:340px;
+      background:rgba(255,255,255,.18);
+      top:120px;
+      left:-80px;
+    }
+
+    body::after{
+      width:380px;
+      height:380px;
+      background:rgba(69,173,255,.26);
+      top:40px;
+      right:-100px;
     }
 
     .wrap{
       width:min(var(--max),calc(100% - 32px));
       margin:0 auto;
+      position:relative;
+      z-index:1;
     }
 
     .hero{
-      padding:24px 0 36px;
+      padding:28px 0 40px;
       position:relative;
       overflow:hidden;
     }
@@ -50,55 +85,86 @@
       content:"";
       position:absolute;
       border-radius:999px;
-      filter:blur(6px);
       pointer-events:none;
+      filter:blur(12px);
     }
 
     .hero::before{
-      width:340px;
-      height:340px;
-      background:rgba(255,255,255,.09);
-      top:-120px;
-      right:-90px;
+      width:420px;
+      height:420px;
+      background:rgba(255,255,255,.08);
+      top:-160px;
+      right:-120px;
+      animation:floatGlow 8s ease-in-out infinite;
     }
 
     .hero::after{
-      width:220px;
-      height:220px;
-      background:rgba(255,255,255,.08);
-      left:-60px;
-      top:40px;
+      width:280px;
+      height:280px;
+      background:rgba(255,255,255,.06);
+      left:-90px;
+      top:80px;
+      animation:floatGlow 10s ease-in-out infinite reverse;
     }
 
     .hero-grid{
       display:grid;
-      grid-template-columns:1.05fr .95fr;
-      gap:30px;
+      grid-template-columns:1.04fr .96fr;
+      gap:34px;
       align-items:center;
     }
 
     .logo-card{
       display:inline-flex;
       align-items:center;
-      gap:18px;
-      padding:14px 20px;
-      border:1px solid rgba(255,255,255,.30);
-      background:rgba(255,255,255,.14);
+      gap:20px;
+      padding:16px 24px;
       border-radius:999px;
-      box-shadow:var(--shadow);
-      backdrop-filter:blur(10px);
+      background:linear-gradient(135deg, rgba(255,255,255,.18), rgba(255,255,255,.10));
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+      border:1px solid rgba(255,255,255,.35);
+      box-shadow:
+        0 14px 35px rgba(0,0,0,.16),
+        inset 0 1px 0 rgba(255,255,255,.34),
+        inset 0 -1px 0 rgba(255,255,255,.06);
       color:#fff;
-      font-weight:800;
-      margin-bottom:18px;
+      font-weight:900;
+      margin-bottom:20px;
+      position:relative;
+      overflow:hidden;
+      isolation:isolate;
+    }
+
+    .logo-card::after{
+      content:"";
+      position:absolute;
+      inset:-40% auto -40% -30%;
+      width:120px;
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,.26), transparent);
+      transform:rotate(18deg);
+      animation:shine 4.8s linear infinite;
+      z-index:-1;
     }
 
     .logo-card img{
-      width:220px;
-      height:110px;
+      width:112px;
+      height:112px;
       object-fit:contain;
-      border-radius:10px;
+      border-radius:24px;
       background:#fff;
-      padding:4px;
+      padding:10px;
+      box-shadow:
+        0 18px 34px rgba(0,0,0,.24),
+        inset 0 1px 0 rgba(255,255,255,.8);
+      flex:0 0 auto;
+    }
+
+    .logo-card span{
+      font-size:26px;
+      line-height:1.05;
+      letter-spacing:-.02em;
+      text-shadow:0 8px 26px rgba(0,0,0,.16);
     }
 
     .hero-badge{
@@ -106,29 +172,32 @@
       align-items:center;
       gap:8px;
       margin:0 0 14px;
-      padding:8px 14px;
+      padding:10px 16px;
       border-radius:999px;
-      background:rgba(255,255,255,.18);
-      border:1px solid rgba(255,255,255,.22);
+      background:rgba(255,255,255,.14);
+      border:1px solid rgba(255,255,255,.24);
       color:#fff;
-      font-weight:800;
+      font-weight:900;
       font-size:14px;
+      box-shadow:var(--glow);
+      backdrop-filter:blur(12px);
     }
 
     h1{
-      font-size:clamp(34px,5vw,60px);
+      font-size:clamp(36px,5vw,66px);
       line-height:1.02;
       margin:0 0 16px;
-      letter-spacing:-.035em;
+      letter-spacing:-.045em;
       color:#fff;
       max-width:760px;
+      text-shadow:0 10px 34px rgba(0,0,0,.16);
     }
 
     .sub{
       font-size:19px;
-      color:rgba(255,255,255,.95);
+      color:rgba(255,255,255,.96);
       max-width:720px;
-      margin:0 0 22px;
+      margin:0 0 24px;
     }
 
     .cta-row{
@@ -144,104 +213,145 @@
       justify-content:center;
       text-decoration:none;
       border:none;
-      border-radius:18px;
-      padding:17px 24px;
+      border-radius:20px;
+      padding:18px 26px;
       font-size:16px;
       font-weight:900;
       cursor:pointer;
-      transition:.18s ease;
+      transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
       min-width:220px;
       text-align:center;
+      position:relative;
+      overflow:hidden;
     }
 
+    .btn::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(120deg, transparent 25%, rgba(255,255,255,.25) 50%, transparent 75%);
+      transform:translateX(-130%);
+      transition:transform .6s ease;
+    }
+
+    .btn:hover::after{transform:translateX(130%)}
+
     .btn-primary{
-      background:#fff;
+      background:linear-gradient(135deg,#ffffff,#eaf3ff);
       color:var(--brand);
-      box-shadow:var(--shadow-strong);
+      box-shadow:
+        0 16px 38px rgba(0,0,0,.18),
+        inset 0 1px 0 rgba(255,255,255,.9);
     }
 
     .btn-primary:hover{
-      background:#f3f8ff;
-      transform:translateY(-2px);
+      background:#f8fbff;
+      transform:translateY(-3px) scale(1.015);
     }
 
     .btn-secondary{
-      background:linear-gradient(135deg,#00a1ff,#0066ff);
+      background:linear-gradient(135deg,#0fd3ff,#0066ff);
       color:#fff !important;
-      border:none;
-      box-shadow:0 8px 20px rgba(0,123,255,0.3);
+      border:1px solid rgba(255,255,255,.18);
+      box-shadow:0 14px 34px rgba(0,102,255,.30);
     }
 
-    .btn-secondary:hover{transform:translateY(-2px)}
+    .btn-secondary:hover{transform:translateY(-3px) scale(1.015)}
 
     .mini-list{
       display:flex;
       flex-wrap:wrap;
       gap:14px 18px;
       padding:0;
-      margin:8px 0 0;
+      margin:10px 0 0;
       list-style:none;
       color:#fff;
-      font-weight:700;
+      font-weight:800;
     }
 
     .proof-bar{
       display:grid;
       grid-template-columns:repeat(3,1fr);
-      gap:12px;
-      margin-top:18px;
+      gap:14px;
+      margin-top:22px;
     }
 
     .proof-mini{
-      background:rgba(255,255,255,.14);
-      border:1px solid rgba(255,255,255,.25);
-      border-radius:18px;
-      padding:14px 16px;
+      background:linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.10));
+      border:1px solid rgba(255,255,255,.24);
+      border-radius:22px;
+      padding:16px 18px;
       color:#fff;
-      backdrop-filter:blur(10px);
-      box-shadow:var(--shadow);
+      backdrop-filter:blur(12px);
+      box-shadow:var(--glow);
     }
 
     .proof-mini strong{
       display:block;
       font-size:18px;
       line-height:1;
-      margin-bottom:4px;
+      margin-bottom:5px;
     }
 
     .hero-visual{
-      background:rgba(255,255,255,.16);
-      border:1px solid rgba(255,255,255,.30);
-      border-radius:32px;
+      background:linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.09));
+      border:1px solid rgba(255,255,255,.28);
+      border-radius:34px;
       padding:18px;
-      box-shadow:var(--shadow);
-      backdrop-filter:blur(12px);
+      box-shadow:
+        0 24px 60px rgba(0,0,0,.18),
+        inset 0 1px 0 rgba(255,255,255,.28);
+      backdrop-filter:blur(14px);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero-visual::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:radial-gradient(circle at top right, rgba(255,255,255,.16), transparent 35%);
+      pointer-events:none;
     }
 
     .hero-visual img{
       width:100%;
       display:block;
-      border-radius:24px;
-      box-shadow:0 18px 40px rgba(10,28,58,.18);
+      border-radius:26px;
+      box-shadow:0 22px 44px rgba(10,28,58,.22);
       background:#fff;
+      transform:perspective(1400px) rotateY(-6deg) rotateX(2deg);
+      transform-origin:center;
     }
 
-    section{padding:28px 0}
+    section{padding:30px 0}
 
     .white-section{
-      background:rgba(255,255,255,.72);
-      backdrop-filter:blur(6px);
-      border:1px solid rgba(255,255,255,.35);
-      border-radius:30px;
+      background:linear-gradient(180deg, rgba(255,255,255,.80), rgba(255,255,255,.68));
+      backdrop-filter:blur(10px);
+      border:1px solid rgba(255,255,255,.38);
+      border-radius:32px;
       box-shadow:var(--shadow);
-      padding:34px;
+      padding:36px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .white-section::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:radial-gradient(circle at top right, rgba(15,123,255,.06), transparent 28%);
+      pointer-events:none;
     }
 
     h2{
-      font-size:clamp(28px,3.4vw,42px);
-      line-height:1.08;
+      font-size:clamp(30px,3.6vw,46px);
+      line-height:1.05;
       margin:0 0 14px;
-      letter-spacing:-.02em;
+      letter-spacing:-.03em;
+      position:relative;
+      z-index:1;
     }
 
     .lead{
@@ -249,6 +359,14 @@
       font-size:17px;
       max-width:780px;
       margin:0 0 26px;
+      position:relative;
+      z-index:1;
+    }
+
+    .cards-3,
+    .cards-2{
+      position:relative;
+      z-index:1;
     }
 
     .cards-3{
@@ -264,11 +382,19 @@
     }
 
     .card{
-      background:var(--card);
+      background:linear-gradient(180deg,#ffffff,#f7fbff);
       border:1px solid var(--line);
       border-radius:var(--radius);
       padding:24px;
       box-shadow:var(--shadow);
+      transition:transform .18s ease, box-shadow .18s ease;
+    }
+
+    .card:hover,
+    .step-card:hover,
+    .plan-card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 24px 56px rgba(16,32,51,.16);
     }
 
     .card strong{display:block; margin-bottom:10px}
@@ -280,34 +406,40 @@
       display:grid;
       grid-template-columns:repeat(3,1fr);
       gap:18px;
+      position:relative;
+      z-index:1;
     }
 
     .step-card{
       position:relative;
       background:linear-gradient(180deg,#fff,#f6fafe);
       border:1px solid var(--line);
-      border-radius:28px;
+      border-radius:30px;
       padding:24px;
       box-shadow:var(--shadow);
+      transition:transform .18s ease, box-shadow .18s ease;
     }
 
     .step-card::before{
       counter-increment:step;
       content:counter(step);
-      width:42px;
-      height:42px;
+      width:46px;
+      height:46px;
       display:grid;
       place-items:center;
       border-radius:999px;
-      background:var(--brand);
+      background:linear-gradient(135deg,#0b6bcb,#2c8cff);
       color:#fff;
       font-weight:900;
       margin-bottom:14px;
+      box-shadow:0 12px 22px rgba(11,107,203,.28);
     }
 
     .prints-title{
       text-align:center;
-      margin-bottom:26px;
+      margin-bottom:28px;
+      position:relative;
+      z-index:1;
     }
 
     .prints-carousel{
@@ -320,6 +452,7 @@
       user-select:none;
       mask-image:linear-gradient(to right, transparent 0, black 3%, black 97%, transparent 100%);
       -webkit-mask-image:linear-gradient(to right, transparent 0, black 3%, black 97%, transparent 100%);
+      z-index:1;
     }
 
     .prints-carousel.dragging{cursor:grabbing}
@@ -337,7 +470,7 @@
       width:clamp(118px, 12vw, 165px);
     }
 
-    .prints-item .print-card{height:100%; padding:10px; border-radius:22px}
+    .prints-item .print-card{height:100%; padding:10px; border-radius:24px}
 
     .prints-item .print-card .tag{
       display:block;
@@ -348,7 +481,7 @@
       margin-bottom:8px;
       font-size:11px;
       line-height:1.2;
-      padding:6px 8px;
+      padding:7px 8px;
     }
 
     .prints-item .print-card img{
@@ -356,7 +489,7 @@
       aspect-ratio:9/19.5;
       object-fit:contain;
       object-position:center;
-      border-radius:16px;
+      border-radius:18px;
       background:#fff;
       padding:4px;
     }
@@ -365,18 +498,20 @@
       display:flex;
       justify-content:center;
       gap:12px;
-      margin-top:16px;
+      margin-top:18px;
+      position:relative;
+      z-index:1;
     }
 
     .carousel-btn{
       border:none;
       background:#fff;
       color:var(--brand);
-      width:48px;
-      height:48px;
+      width:50px;
+      height:50px;
       border-radius:999px;
       box-shadow:var(--shadow);
-      font-size:26px;
+      font-size:28px;
       font-weight:900;
       cursor:pointer;
       transition:.18s ease;
@@ -391,7 +526,7 @@
     .print-card{
       background:linear-gradient(180deg,#ffffff,#f6fafe);
       border:1px solid var(--line);
-      border-radius:28px;
+      border-radius:30px;
       padding:10px;
       box-shadow:var(--shadow);
     }
@@ -404,7 +539,7 @@
       background:var(--brand-soft);
       color:var(--brand);
       font-size:13px;
-      font-weight:800;
+      font-weight:900;
     }
 
     .print-card img{
@@ -412,43 +547,54 @@
       max-height:520px;
       object-fit:contain;
       display:block;
-      border-radius:22px;
+      border-radius:24px;
       background:#fff;
       box-shadow:0 12px 30px rgba(16,32,51,.10);
     }
 
     .impact-box{
-      margin-top:20px;
+      margin-top:4px;
       background:linear-gradient(135deg,#0b6bcb,#2c8cff);
       color:#fff;
-      border-radius:26px;
-      padding:26px;
+      border-radius:28px;
+      padding:28px;
       box-shadow:var(--shadow-strong);
       text-align:center;
-      font-size:24px;
+      font-size:25px;
       font-weight:900;
-      line-height:1.3;
+      line-height:1.28;
+      position:relative;
+      z-index:1;
+      overflow:hidden;
+    }
+
+    .impact-box::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:radial-gradient(circle at top right, rgba(255,255,255,.22), transparent 34%);
+      pointer-events:none;
     }
 
     .impact-box span{
       color:#dff0ff;
       display:block;
       font-size:17px;
-      font-weight:600;
+      font-weight:700;
       margin-top:8px;
     }
 
     .testimonial{
       position:relative;
-      padding-top:34px;
+      padding-top:36px;
     }
 
     .testimonial::before{
       content:"“";
       position:absolute;
-      top:8px;
+      top:6px;
       left:18px;
-      font-size:54px;
+      font-size:58px;
       line-height:1;
       color:#dcecff;
       font-weight:900;
@@ -460,22 +606,37 @@
       gap:22px;
       align-items:stretch;
       margin-top:28px;
+      position:relative;
+      z-index:1;
     }
 
     .plan-card{
       position:relative;
       text-align:center;
-      padding:36px 24px 28px;
+      padding:38px 24px 30px;
       background:linear-gradient(180deg,#ffffff,#f3f8fe);
       border:1px solid var(--line);
-      border-radius:30px;
+      border-radius:32px;
       box-shadow:var(--shadow);
+      transition:transform .18s ease, box-shadow .18s ease;
+      overflow:hidden;
+    }
+
+    .plan-card::before{
+      content:"";
+      position:absolute;
+      inset:0 auto auto 0;
+      width:100%;
+      height:4px;
+      background:linear-gradient(90deg,#0b6bcb,#57b4ff,#0b6bcb);
+      opacity:.9;
     }
 
     .plan-card.featured{
       border:2px solid #3e94ff;
-      box-shadow:0 20px 60px rgba(11,107,203,.22);
-      transform:translateY(-4px);
+      box-shadow:0 26px 70px rgba(11,107,203,.24);
+      transform:translateY(-6px);
+      background:linear-gradient(180deg,#ffffff,#eff7ff);
     }
 
     .badge-top{
@@ -485,12 +646,12 @@
       transform:translateX(-50%);
       background:linear-gradient(135deg,#0b6bcb,#2d91ff);
       color:#fff;
-      padding:9px 16px;
+      padding:10px 18px;
       border-radius:999px;
       font-size:13px;
       font-weight:900;
       letter-spacing:.03em;
-      box-shadow:0 12px 24px rgba(11,107,203,.18);
+      box-shadow:0 14px 26px rgba(11,107,203,.18);
     }
 
     .plan-subtitle{
@@ -500,11 +661,12 @@
     }
 
     .price{
-      font-size:clamp(42px,6vw,68px);
+      font-size:clamp(44px,6vw,70px);
       line-height:1;
       font-weight:900;
       color:var(--brand);
       margin-bottom:8px;
+      letter-spacing:-.04em;
     }
 
     .price-note{
@@ -516,7 +678,7 @@
     .guarantee{
       margin-top:18px;
       color:var(--ok);
-      font-weight:800;
+      font-weight:900;
     }
 
     .plan-list{
@@ -528,22 +690,37 @@
 
     .plan-list li{margin:10px 0}
 
-    .faq{display:grid; gap:14px}
+    .faq{display:grid; gap:14px; position:relative; z-index:1}
 
     details{
       background:#fff;
       border:1px solid var(--line);
-      border-radius:18px;
+      border-radius:20px;
       padding:18px 20px;
       box-shadow:var(--shadow);
     }
 
-    summary{cursor:pointer; font-weight:800}
+    summary{cursor:pointer; font-weight:900}
     details p{color:var(--muted); margin:12px 0 0}
 
     .final-cta{
       text-align:center;
-      padding:10px 0 70px;
+      padding:12px 0 74px;
+      background:linear-gradient(180deg,#07111f,#0b0b0b);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .final-cta::before{
+      content:"";
+      position:absolute;
+      inset:auto -60px -120px auto;
+      width:320px;
+      height:320px;
+      border-radius:999px;
+      background:rgba(0,123,255,.20);
+      filter:blur(50px);
+      pointer-events:none;
     }
 
     .floating-wa{
@@ -556,11 +733,17 @@
       gap:10px;
       padding:14px 18px;
       border-radius:999px;
-      background:#25d366;
+      background:linear-gradient(135deg,#28de71,#25d366);
       color:#fff;
       text-decoration:none;
       font-weight:900;
       box-shadow:0 18px 40px rgba(0,0,0,.18);
+      transition:transform .18s ease, box-shadow .18s ease;
+    }
+
+    .floating-wa:hover{
+      transform:translateY(-3px) scale(1.02);
+      box-shadow:0 22px 44px rgba(0,0,0,.22);
     }
 
     footer{
@@ -581,15 +764,17 @@
       justify-content:center;
       gap:8px;
       margin-bottom:14px;
+      flex-wrap:wrap;
     }
 
     .countdown div{
       background:#111;
       color:#fff;
-      padding:8px 10px;
-      border-radius:8px;
+      padding:9px 10px;
+      border-radius:10px;
       font-weight:900;
-      min-width:45px;
+      min-width:48px;
+      box-shadow:0 10px 22px rgba(0,0,0,.18);
     }
 
     .countdown small{
@@ -613,6 +798,16 @@
       margin-bottom:4px;
     }
 
+    @keyframes shine{
+      from{transform:translateX(-150%) rotate(18deg)}
+      to{transform:translateX(700%) rotate(18deg)}
+    }
+
+    @keyframes floatGlow{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(18px)}
+    }
+
     @media (max-width: 980px){
       .hero-grid,
       .cards-3,
@@ -627,20 +822,34 @@
         width:clamp(120px, 22vw, 150px);
         min-width:120px;
       }
-      .hero-visual{max-width:560px; margin:0 auto}
+      .hero-visual{max-width:620px; margin:0 auto}
+      .hero-visual img{transform:none}
       .plan-card.featured{transform:none}
     }
 
     @media (max-width: 640px){
       .wrap{width:min(var(--max),calc(100% - 20px))}
       .hero{padding-top:18px}
-      .white-section{padding:20px}
+      .white-section{padding:22px}
       .card,.plan-card,.step-card{padding:18px}
       .btn{width:100%}
       .cta-row{flex-direction:column}
       .mini-list{display:block}
       .mini-list li{margin:8px 0}
       .impact-box{font-size:19px}
+      .logo-card{
+        width:100%;
+        justify-content:flex-start;
+        gap:14px;
+        padding:14px 16px;
+      }
+      .logo-card img{
+        width:84px;
+        height:84px;
+        border-radius:18px;
+      }
+      .logo-card span{font-size:18px}
+      .proof-mini strong{font-size:17px}
       .prints-carousel{
         mask-image:none;
         -webkit-mask-image:none;
@@ -682,16 +891,15 @@
     <div class="wrap hero-grid">
       <div>
         <div class="logo-card">
-          <img src="logosite.png" alt="Logo RE Climatização">
-          <span></span>
+          <img src="logosite.png" alt="Logo Facilita Refrigerista">
+          <span>Facilita Refrigerista</span>
         </div>
 
         <div class="hero-badge">🔥 App completo para técnicos em ar-condicionado</div>
 
-        <h1>Descubra defeitos de ar-condicionado em segundos, mesmo sem experiencia, e passe mais profissionalismo para o cliente</h1>
+        <h1>Descubra defeitos de ar-condicionado em segundos, passe mais confiança e feche mais serviços</h1>
         <p class="sub">
-          Tenha no celular os códigos de erro, diagnóstico com problemas e soluções, e calculadora de BTU, pra você parar de perder tempo na obra.
-          E ainda, geração de orçamento em PDF profissional com seu logo, com poucos toques.
+          Tenha no celular códigos de erro, diagnóstico com problemas e soluções, calculadora de BTU e orçamento em PDF profissional com poucos toques. Tudo pensado para técnico que quer atender mais rápido e parecer mais profissional na frente do cliente.
         </p>
 
         <div class="cta-row">
@@ -716,7 +924,7 @@
           </div>
           <div class="proof-mini">
             <strong>Mais profissional</strong>
-            <span>Impressione seu cliente na hora</span>
+            <span>Impressione o cliente na hora</span>
           </div>
         </div>
       </div>
@@ -741,7 +949,7 @@
       <div class="prints-title">
         <h2>Como o app te ajuda no dia a dia</h2>
         <p class="lead" style="margin-left:auto;margin-right:auto;">
-          O objetivo é simples: fazer você atender mais rápido, passar mais confiança e facilitar o fechamento do serviço.
+          O objetivo é simples: fazer você atender mais rápido, passar mais segurança e facilitar o fechamento do serviço.
         </p>
       </div>
 
@@ -805,8 +1013,8 @@
         Mostre para o cliente um orçamento mais organizado, mais bonito e com aparência profissional, direto pelo celular.
       </p>
 
-      <div style="max-width:600px;margin:30px auto;">
-        <video controls playsinline style="width:100%; border-radius:20px; box-shadow:0 15px 40px rgba(0,0,0,0.25);">
+      <div style="max-width:600px;margin:30px auto; position:relative; z-index:1;">
+        <video controls playsinline style="width:100%; border-radius:24px; box-shadow:0 18px 46px rgba(0,0,0,0.22);">
           <source src="video.mp4" type="video/mp4">
         </video>
       </div>
@@ -820,8 +1028,8 @@
         Diagnóstico, códigos de erro, calculadora de BTU e orçamento profissional em um fluxo simples e rápido.
       </p>
 
-      <div style="max-width:600px;margin:30px auto;">
-        <video controls playsinline style="width:100%; border-radius:20px; box-shadow:0 15px 40px rgba(0,0,0,0.25);">
+      <div style="max-width:600px;margin:30px auto; position:relative; z-index:1;">
+        <video controls playsinline style="width:100%; border-radius:24px; box-shadow:0 18px 46px rgba(0,0,0,0.22);">
           <source src="video2.mp4" type="video/mp4">
         </video>
       </div>
@@ -844,7 +1052,7 @@
         </div>
         <div class="card">
           <h3>Mais profissionalismo</h3>
-          <p>O orçamento em PDF com o seu logo, melhora a apresentação do serviço e passa uma imagem mais séria do seu trabalho.</p>
+          <p>O orçamento em PDF com o seu logo melhora a apresentação do serviço e passa uma imagem mais séria do seu trabalho.</p>
         </div>
         <div class="card">
           <h3>Mais praticidade</h3>
@@ -917,11 +1125,11 @@
           <div class="promo-title">🔥 Oferta por tempo limitado</div>
 
           <div class="countdown">
-           <div><span class="d">00</span><small>d</small></div>
-           <div><span class="h">00</span><small>h</small></div>
-           <div><span class="m">00</span><small>m</small></div>
-           <div><span class="s">00</span><small>s</small></div>
-         </div>
+            <div><span class="d">00</span><small>d</small></div>
+            <div><span class="h">00</span><small>h</small></div>
+            <div><span class="m">00</span><small>m</small></div>
+            <div><span class="s">00</span><small>s</small></div>
+          </div>
 
           <div class="old-price">R$57,00</div>
           <div class="price-label">por apenas</div>
@@ -949,11 +1157,11 @@
           <div class="promo-title">🔥 Oferta por tempo limitado</div>
 
           <div class="countdown">
-           <div><span class="d">00</span><small>d</small></div>
-           <div><span class="h">00</span><small>h</small></div>
-           <div><span class="m">00</span><small>m</small></div>
-           <div><span class="s">00</span><small>s</small></div>
-         </div>
+            <div><span class="d">00</span><small>d</small></div>
+            <div><span class="h">00</span><small>h</small></div>
+            <div><span class="m">00</span><small>m</small></div>
+            <div><span class="s">00</span><small>s</small></div>
+          </div>
 
           <div class="old-price">R$87,00</div>
           <div class="price-label">por apenas</div>
@@ -1004,13 +1212,13 @@
     </div>
   </section>
 
-  <section class="final-cta" style="background:#0b0b0b;">
+  <section class="final-cta">
     <div class="wrap">
-      <h2 style="color:#ffffff;">Passe mais profissionalismo, atenda mais rápido e feche mais serviços</h2>
-      <p class="lead" style="margin-left:auto;margin-right:auto;color:rgba(255,255,255,.92);max-width:760px;">
+      <h2 style="color:#ffffff; position:relative; z-index:1;">Passe mais profissionalismo, atenda mais rápido e feche mais serviços</h2>
+      <p class="lead" style="margin-left:auto;margin-right:auto;color:rgba(255,255,255,.92);max-width:760px; position:relative; z-index:1;">
         O cliente valoriza quem atende com organização. Escolha sua versão e comece agora.
       </p>
-      <div class="cta-row" style="justify-content:center; margin-bottom:0;">
+      <div class="cta-row" style="justify-content:center; margin-bottom:0; position:relative; z-index:1;">
         <a class="btn btn-primary" href="#comprar">ESCOLHER MEU PLANO</a>
         <a class="btn btn-secondary" href="https://wa.me/5514997073447?text=Olá%20quero%20saber%20mais%20sobre%20o%20Facilita%20Refrigerista" target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
       </div>
@@ -1024,34 +1232,34 @@
   <a class="floating-wa" href="https://wa.me/5514997073447?text=Olá%20quero%20saber%20mais%20sobre%20o%20Facilita%20Refrigerista" target="_blank" rel="noopener noreferrer">WhatsApp</a>
 
   <script>
-const endDate = new Date("2026-03-30T23:59:59-03:00").getTime();
+    const endDate = new Date("2026-03-30T23:59:59-03:00").getTime();
 
-function updateCountdown() {
-  const now = new Date().getTime();
-  const diff = endDate - now;
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const diff = endDate - now;
 
-  if (diff <= 0) {
-    document.querySelectorAll(".d").forEach(el => el.textContent = "00");
-    document.querySelectorAll(".h").forEach(el => el.textContent = "00");
-    document.querySelectorAll(".m").forEach(el => el.textContent = "00");
-    document.querySelectorAll(".s").forEach(el => el.textContent = "00");
-    return;
-  }
+      if (diff <= 0) {
+        document.querySelectorAll(".d").forEach(el => el.textContent = "00");
+        document.querySelectorAll(".h").forEach(el => el.textContent = "00");
+        document.querySelectorAll(".m").forEach(el => el.textContent = "00");
+        document.querySelectorAll(".s").forEach(el => el.textContent = "00");
+        return;
+      }
 
-  const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
-  const m = Math.floor((diff / (1000 * 60)) % 60);
-  const s = Math.floor((diff / 1000) % 60);
+      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const m = Math.floor((diff / (1000 * 60)) % 60);
+      const s = Math.floor((diff / 1000) % 60);
 
-  document.querySelectorAll(".d").forEach(el => el.textContent = String(d).padStart(2, "0"));
-  document.querySelectorAll(".h").forEach(el => el.textContent = String(h).padStart(2, "0"));
-  document.querySelectorAll(".m").forEach(el => el.textContent = String(m).padStart(2, "0"));
-  document.querySelectorAll(".s").forEach(el => el.textContent = String(s).padStart(2, "0"));
-}
+      document.querySelectorAll(".d").forEach(el => el.textContent = String(d).padStart(2, "0"));
+      document.querySelectorAll(".h").forEach(el => el.textContent = String(h).padStart(2, "0"));
+      document.querySelectorAll(".m").forEach(el => el.textContent = String(m).padStart(2, "0"));
+      document.querySelectorAll(".s").forEach(el => el.textContent = String(s).padStart(2, "0"));
+    }
 
-updateCountdown();
-setInterval(updateCountdown, 1000);
-</script>
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
 
   <script>
     (function(){
