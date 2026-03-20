@@ -114,47 +114,72 @@
       align-items:center;
     }
 
-    .logo-card{
+    .logo-wrap{
       display:flex;
-      justify-content:center;
-      align-items:center;
-
-      padding:20px;
-      border-radius:999px;
-
-      background:linear-gradient(135deg, rgba(255,255,255,.18), rgba(255,255,255,.10));
-      backdrop-filter:blur(18px);
-
-      border:1px solid rgba(255,255,255,.35);
-
-      box-shadow:
-        0 14px 35px rgba(0,0,0,.16),
-        inset 0 1px 0 rgba(255,255,255,.34);
-
-      margin:0 auto 20px;
-
-      max-width:600px; /* 🔥 isso aqui libera espaço pro logo crescer */
+      justify-content:flex-start;
+      margin:0 0 22px;
     }
 
-  
+    .logo-card{
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:min(100%, 760px);
+      min-height:220px;
+      padding:28px 34px;
+      border-radius:44px;
+      background:linear-gradient(135deg, rgba(255,255,255,.22), rgba(255,255,255,.10));
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+      border:1px solid rgba(255,255,255,.30);
+      box-shadow:
+        0 20px 50px rgba(0,0,0,.18),
+        inset 0 1px 0 rgba(255,255,255,.30),
+        inset 0 -1px 0 rgba(255,255,255,.08);
+      overflow:hidden;
+      isolation:isolate;
+      margin-bottom:20px;
+    }
+
+    .logo-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255,255,255,.18), transparent 28%),
+        radial-gradient(circle at 85% 80%, rgba(255,255,255,.10), transparent 24%);
+      pointer-events:none;
+    }
+
+    .logo-card::after{
+      content:"";
+      position:absolute;
+      top:-30%;
+      left:-18%;
+      width:180px;
+      height:160%;
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
+      transform:rotate(18deg);
+      animation:logoShine 5.5s linear infinite;
+      pointer-events:none;
+    }
 
     .logo-card img{
-      width:100%;
-      max-width:500px; /* controla tamanho máximo */
+      position:relative;
+      z-index:1;
+      width:min(100%, 620px);
       height:auto;
+      display:block;
       object-fit:contain;
-
       background:transparent;
       padding:0;
-
-      filter: drop-shadow(0 10px 25px rgba(0,0,0,.25));
-    }
-
-    .logo-card span{
-      font-size:26px;
-      line-height:1.05;
-      letter-spacing:-.02em;
-      text-shadow:0 8px 26px rgba(0,0,0,.16);
+      border:none;
+      border-radius:0;
+      filter:
+        drop-shadow(0 18px 26px rgba(0,0,0,.22))
+        drop-shadow(0 4px 10px rgba(255,255,255,.10));
+      transform:translateZ(0);
     }
 
     .hero-badge{
@@ -788,6 +813,11 @@
       margin-bottom:4px;
     }
 
+    @keyframes logoShine{
+      from{transform:translateX(-220%) rotate(18deg)}
+      to{transform:translateX(520%) rotate(18deg)}
+    }
+
     @keyframes shine{
       from{transform:translateX(-150%) rotate(18deg)}
       to{transform:translateX(700%) rotate(18deg)}
@@ -827,18 +857,19 @@
       .mini-list{display:block}
       .mini-list li{margin:8px 0}
       .impact-box{font-size:19px}
+      .logo-wrap{
+        justify-content:center;
+      }
       .logo-card{
         width:100%;
-        justify-content:flex-start;
-        gap:14px;
-        padding:14px 16px;
+        min-height:auto;
+        padding:18px 16px;
+        border-radius:28px;
       }
       .logo-card img{
-        width:84px;
-        height:84px;
-        border-radius:18px;
+        width:100%;
+        max-width:420px;
       }
-      .logo-card span{font-size:18px}
       .proof-mini strong{font-size:17px}
       .prints-carousel{
         mask-image:none;
@@ -880,16 +911,18 @@
   <header class="hero">
     <div class="wrap hero-grid">
       <div>
-        <div class="logo-card">
-          <img src="logosite2.png" alt="Logo Facilita Refrigerista">
-          <span></span>
+        <div class="logo-wrap">
+          <div class="logo-card">
+            <img src="logosite2.png" alt="Logo Facilita Refrigerista">
+          </div>
         </div>
 
         <div class="hero-badge">🔥 App completo para técnicos em ar-condicionado</div>
 
         <h1>Descubra defeitos de ar-condicionado em segundos, passe mais confiança e feche mais serviços</h1>
         <p class="sub">
-          Tenha no celular códigos de erro, diagnóstico com problemas e soluções, calculadora de BTU e orçamento em PDF profissional com poucos toques. Tudo pensado para técnico que quer atender mais rápido e parecer mais profissional na frente do cliente.
+          Tenha no celular códigos de erro, diagnóstico com problemas e soluções, calculadora de BTU e orçamento em PDF profissional com poucos toques.
+          Tudo pensado para o técnico que quer atender mais rápido e parecer mais profissional na frente do cliente, mesmo sem ter experiencia.
         </p>
 
         <div class="cta-row">
