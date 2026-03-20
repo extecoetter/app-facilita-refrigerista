@@ -115,26 +115,26 @@
     }
 
     .logo-card{
-      display:inline-flex;
+      display:flex;
       align-items:center;
+      justify-content:center; /* centraliza */
       gap:20px;
-      padding:16px 24px;
+
+      padding:20px 30px;
       border-radius:999px;
+
       background:linear-gradient(135deg, rgba(255,255,255,.18), rgba(255,255,255,.10));
       backdrop-filter:blur(18px);
-      -webkit-backdrop-filter:blur(18px);
+
       border:1px solid rgba(255,255,255,.35);
+
       box-shadow:
         0 14px 35px rgba(0,0,0,.16),
-        inset 0 1px 0 rgba(255,255,255,.34),
-        inset 0 -1px 0 rgba(255,255,255,.06);
-      color:#fff;
-      font-weight:900;
-      margin-bottom:20px;
-      position:relative;
-      overflow:hidden;
-      isolation:isolate;
-    }
+        inset 0 1px 0 rgba(255,255,255,.34);
+
+      margin:0 auto 20px; /* CENTRALIZA O BLOCO */
+      width:fit-content; /* não deixa gigante */
+     }
 
     .logo-card{
        align-items:center;
