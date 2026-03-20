@@ -917,10 +917,11 @@
           <div class="promo-title">🔥 Oferta por tempo limitado</div>
 
           <div class="countdown">
-            <div><span class="d">3</span><small>d</small></div>
-            <div><span class="h">20</span><small>h</small></div>
-            <div><span class="m">20</span><small>m</small></div>
-          </div>
+           <div><span class="d">00</span><small>d</small></div>
+           <div><span class="h">00</span><small>h</small></div>
+           <div><span class="m">00</span><small>m</small></div>
+           <div><span class="s">00</span><small>s</small></div>
+         </div>
 
           <div class="old-price">R$57,00</div>
           <div class="price-label">por apenas</div>
@@ -948,10 +949,11 @@
           <div class="promo-title">🔥 Oferta por tempo limitado</div>
 
           <div class="countdown">
-            <div><span class="d">3</span><small>d</small></div>
-            <div><span class="h">20</span><small>h</small></div>
-            <div><span class="m">20</span><small>m</small></div>
-          </div>
+           <div><span class="d">00</span><small>d</small></div>
+           <div><span class="h">00</span><small>h</small></div>
+           <div><span class="m">00</span><small>m</small></div>
+           <div><span class="s">00</span><small>s</small></div>
+         </div>
 
           <div class="old-price">R$87,00</div>
           <div class="price-label">por apenas</div>
@@ -1022,27 +1024,34 @@
   <a class="floating-wa" href="https://wa.me/5514997073447?text=Olá%20quero%20saber%20mais%20sobre%20o%20Facilita%20Refrigerista" target="_blank" rel="noopener noreferrer">WhatsApp</a>
 
   <script>
-    let total = (3*24*60)+(20*60)+20;
+const endDate = new Date("2026-03-30T23:59:59-03:00").getTime();
 
-    function updateCountdown(){
-      let d = Math.floor(total/(60*24));
-      let h = Math.floor((total%(60*24))/60);
-      let m = total%60;
+function updateCountdown() {
+  const now = new Date().getTime();
+  const diff = endDate - now;
 
-      document.querySelectorAll('.d').forEach(el => el.textContent = d);
-      document.querySelectorAll('.h').forEach(el => el.textContent = h);
-      document.querySelectorAll('.m').forEach(el => el.textContent = m);
+  if (diff <= 0) {
+    document.querySelectorAll(".d").forEach(el => el.textContent = "00");
+    document.querySelectorAll(".h").forEach(el => el.textContent = "00");
+    document.querySelectorAll(".m").forEach(el => el.textContent = "00");
+    document.querySelectorAll(".s").forEach(el => el.textContent = "00");
+    return;
+  }
 
-      total--;
+  const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const m = Math.floor((diff / (1000 * 60)) % 60);
+  const s = Math.floor((diff / 1000) % 60);
 
-      if(total <= 0){
-        total = (3*24*60)+(20*60)+20;
-      }
-    }
+  document.querySelectorAll(".d").forEach(el => el.textContent = String(d).padStart(2, "0"));
+  document.querySelectorAll(".h").forEach(el => el.textContent = String(h).padStart(2, "0"));
+  document.querySelectorAll(".m").forEach(el => el.textContent = String(m).padStart(2, "0"));
+  document.querySelectorAll(".s").forEach(el => el.textContent = String(s).padStart(2, "0"));
+}
 
-    updateCountdown();
-    setInterval(updateCountdown,60000);
-  </script>
+updateCountdown();
+setInterval(updateCountdown, 1000);
+</script>
 
   <script>
     (function(){
