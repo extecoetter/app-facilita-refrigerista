@@ -284,72 +284,6 @@
       font-weight:800;
     }
 
-
-
-    .hero-carousel-block{
-      margin-top:22px;
-      background:linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.09));
-      border:1px solid rgba(255,255,255,.22);
-      border-radius:26px;
-      padding:16px 14px 18px;
-      backdrop-filter:blur(10px);
-      box-shadow:var(--glow);
-    }
-
-    .hero-carousel-title{
-      color:#fff;
-      font-size:18px;
-      font-weight:900;
-      text-align:center;
-      margin-bottom:12px;
-    }
-
-    .hero-carousel{
-      margin-top:0;
-      padding:4px 0;
-    }
-
-    .hero-carousel .prints-item{
-      flex:0 0 clamp(110px, 11vw, 145px);
-      width:clamp(110px, 11vw, 145px);
-    }
-
-    .hero-carousel .print-card{
-      padding:6px;
-      border-radius:18px;
-    }
-
-    .hero-carousel .print-card .tag{
-      display:block;
-      text-align:center;
-      font-size:10px;
-      margin-bottom:6px;
-      padding:5px 6px;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-
-    .hero-carousel .print-card img{
-      border-radius:14px;
-      max-height:none;
-      aspect-ratio:9/19.5;
-      object-fit:contain;
-      background:#fff;
-      padding:2px;
-    }
-
-    .hero-carousel-nav{
-      margin-top:12px;
-    }
-
-    .hero-carousel-nav .carousel-btn{
-      width:42px;
-      height:42px;
-      font-size:24px;
-    }
-
-
     .proof-bar{
       display:grid;
       grid-template-columns:repeat(3,1fr);
@@ -908,13 +842,6 @@
         width:clamp(120px, 22vw, 150px);
         min-width:120px;
       }
-
-      .hero-carousel .prints-item{
-        flex:0 0 31vw;
-        width:31vw;
-        min-width:31vw;
-        max-width:31vw;
-      }
       .hero-visual{max-width:620px; margin:0 auto}
       .hero-visual img{transform:none}
       .plan-card.featured{transform:none}
@@ -943,25 +870,12 @@
         width:100%;
         max-width:420px;
       }
-
-      .hero-carousel-block{
-        margin-top:18px;
-        padding:12px 10px 14px;
-        border-radius:20px;
-      }
-
       .proof-mini strong{font-size:17px}
       .prints-carousel{
         mask-image:none;
         -webkit-mask-image:none;
       }
       .prints-track{gap:0}
-      .hero-carousel .prints-item{
-        flex:0 0 58vw;
-        width:58vw;
-        min-width:58vw;
-        max-width:58vw;
-      }
       .prints-item{
         flex:0 0 72vw;
         width:72vw;
@@ -1022,28 +936,6 @@
           <li>✅ Orçamento profissional em PDF</li>
         </ul>
 
-        <div class="hero-carousel-block">
-          <div class="hero-carousel-title">Veja o app por dentro</div>
-
-          <div class="prints-carousel hero-carousel" data-speed="96">
-            <div class="prints-track">
-              <div class="prints-item"><div class="print-card"><div class="tag">Tela do orçamento</div><img src="print-orcamento.png" alt="Tela do orçamento no aplicativo"></div></div>
-              <div class="prints-item"><div class="print-card"><div class="tag">Tela de serviços</div><img src="print-servicos.png" alt="Tela de serviços no aplicativo"></div></div>
-              <div class="prints-item"><div class="print-card"><div class="tag">PDF gerado</div><img src="print-pdf.png" alt="PDF gerado pelo aplicativo"></div></div>
-              <div class="prints-item"><div class="print-card"><div class="tag">Diagnóstico de problemas</div><img src="problema1.png" alt="Tela de diagnóstico de problemas"></div></div>
-              <div class="prints-item"><div class="print-card"><div class="tag">Diagnóstico de problemas</div><img src="problema2.png" alt="Tela de diagnóstico de problemas"></div></div>
-              <div class="prints-item"><div class="print-card"><div class="tag">Calculadora de BTU</div><img src="calculadora.png" alt="Tela da calculadora de BTU"></div></div>
-              <div class="prints-item"><div class="print-card"><div class="tag">Códigos de erro</div><img src="erros.png" alt="Tela de códigos de erro"></div></div>
-              <div class="prints-item"><div class="print-card"><div class="tag">Códigos de erro</div><img src="erros2.png" alt="Tela de códigos de erro"></div></div>
-            </div>
-          </div>
-
-          <div class="carousel-nav hero-carousel-nav">
-            <button class="carousel-btn" type="button" aria-label="Voltar">‹</button>
-            <button class="carousel-btn" type="button" aria-label="Avançar">›</button>
-          </div>
-        </div>
-
         <div class="proof-bar">
           <div class="proof-mini">
             <strong>Pagamento único</strong>
@@ -1103,6 +995,39 @@
     </div>
   </section>
 
+  <section id="prints-app">
+    <div class="wrap white-section">
+      <div class="prints-title">
+        <h2>Veja o aplicativo por dentro</h2>
+        <p class="lead" style="margin-left:auto;margin-right:auto;">
+          Códigos de erro, diagnóstico de problemas, calculadora de BTU e PDF profissional no mesmo lugar.
+        </p>
+      </div>
+
+      <div class="prints-carousel" data-speed="96">
+        <div class="prints-track">
+          <div class="prints-item"><div class="print-card"><div class="tag">Tela do orçamento</div><img src="print-orcamento.png" alt="Tela do orçamento no aplicativo"></div></div>
+          <div class="prints-item"><div class="print-card"><div class="tag">Tela de serviços</div><img src="print-servicos.png" alt="Tela de serviços no aplicativo"></div></div>
+          <div class="prints-item"><div class="print-card"><div class="tag">PDF gerado</div><img src="print-pdf.png" alt="PDF gerado pelo aplicativo"></div></div>
+          <div class="prints-item"><div class="print-card"><div class="tag">Diagnóstico de problemas</div><img src="problema1.png" alt="Tela de diagnóstico de problemas"></div></div>
+          <div class="prints-item"><div class="print-card"><div class="tag">Diagnóstico de problemas</div><img src="problema2.png" alt="Tela de diagnóstico de problemas"></div></div>
+          <div class="prints-item"><div class="print-card"><div class="tag">Calculadora de BTU</div><img src="calculadora.png" alt="Tela da calculadora de BTU"></div></div>
+          <div class="prints-item"><div class="print-card"><div class="tag">Códigos de erro</div><img src="erros.png" alt="Tela de códigos de erro"></div></div>
+          <div class="prints-item"><div class="print-card"><div class="tag">Códigos de erro</div><img src="erros2.png" alt="Tela de códigos de erro"></div></div>
+        </div>
+      </div>
+
+      <div class="carousel-nav">
+        <button class="carousel-btn" type="button" aria-label="Voltar">‹</button>
+        <button class="carousel-btn" type="button" aria-label="Avançar">›</button>
+      </div>
+
+      <div class="cta-row" style="justify-content:center; margin-top:24px;">
+        <a class="btn btn-primary" href="#comprar">VER PLANOS E COMPRAR</a>
+        <a class="btn btn-secondary" href="https://wa.me/5514997073447?text=Olá%20quero%20saber%20mais%20sobre%20o%20Facilita%20Refrigerista" target="_blank" rel="noopener noreferrer">Tirar dúvida no WhatsApp</a>
+      </div>
+    </div>
+  </section>
 
   <section id="video-demo-1" style="padding:40px 0;">
     <div class="wrap white-section">
